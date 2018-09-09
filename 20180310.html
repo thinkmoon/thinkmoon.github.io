@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://thinkmoon.cn",
+  "logo": "https://thinkmoon.cn/img/avatar.jpg"
+}
+</script>
+<head>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1226894331467822",
+        enable_page_level_ads: true
+    });
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125451225-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-125451225-1');
+</script>
+<!-- End Google Analytics -->
+
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=66000475"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://thinkmoon.cn/20180310.html">
+    
+    
+    <title>给你的网站加一个2.5D悬浮小人 | 指尖魔法屋 - 醉月思的博客 | 不问前途，不问归路，只求专注，全力以赴。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="折腾">
+    <meta name="description" content="我们平常访问某些网站的时候,会发现在网站上总是悬浮者一个可爱的小人.而且还可以跟用户进行各种互动(说话?).一般这种小人都是通过js加载出来的, 搜索关键词网上有教程. 不过我今天在这里记录的是,如何添加2.5D互动小人">
+<meta name="keywords" content="折腾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="给你的网站加一个2.5D悬浮小人">
+<meta property="og:url" content="https://thinkmoon.cn/20180310.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="我们平常访问某些网站的时候,会发现在网站上总是悬浮者一个可爱的小人.而且还可以跟用户进行各种互动(说话?).一般这种小人都是通过js加载出来的, 搜索关键词网上有教程. 不过我今天在这里记录的是,如何添加2.5D互动小人">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520662717979.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520649793712.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520650098369.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520650344036.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651227707.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651346521.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651513850.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651678626.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651875989.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651983137.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652150254.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652261768.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652378111.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652485684.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652604333.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652707543.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652801662.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652903977.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652987458.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653074078.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653136634.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653226268.jpg">
+<meta property="og:updated_time" content="2018-09-09T10:11:37.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="给你的网站加一个2.5D悬浮小人">
+<meta name="twitter:description" content="我们平常访问某些网站的时候,会发现在网站上总是悬浮者一个可爱的小人.而且还可以跟用户进行各种互动(说话?).一般这种小人都是通过js加载出来的, 搜索关键词网上有教程. 不过我今天在这里记录的是,如何添加2.5D互动小人">
+<meta name="twitter:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520662717979.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+<script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/thinkmoon" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">给你的网站加一个2.5D悬浮小人</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">给你的网站加一个2.5D悬浮小人</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-10T10:17:42.000Z" itemprop="datePublished" class="page-time">
+  2018-03-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>文章目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目github地址"><span class="post-toc-number">2.</span> <span class="post-toc-text">项目github地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#然后在-config-yml-hexo或者主题的都行-中添加"><span class="post-toc-number">3.</span> <span class="post-toc-text">然后在_config.yml(hexo或者主题的都行)中添加</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自定义模型的使用点我"><span class="post-toc-number">4.</span> <span class="post-toc-text">自定义模型的使用点我</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#hexo下现有模型的安装"><span class="post-toc-number">5.</span> <span class="post-toc-text">hexo下现有模型的安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最新版现有模型测试与预览"><span class="post-toc-number">6.</span> <span class="post-toc-text">最新版现有模型测试与预览</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-chitose"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">live2d-widget-model-chitose</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-epsilon2-1"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">live2d-widget-model-epsilon2_1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-gf"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">live2d-widget-model-gf</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-haru"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">live2d-widget-model-haru</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#live2d-widget-model-haru-01"><span class="post-toc-number">6.4.1.</span> <span class="post-toc-text">live2d-widget-model-haru/01</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#live2d-widget-model-haru-02"><span class="post-toc-number">6.4.2.</span> <span class="post-toc-text">live2d-widget-model-haru/02</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-haruto"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">live2d-widget-model-haruto</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-hibiki"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">live2d-widget-model-hibiki</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-izumi"><span class="post-toc-number">6.7.</span> <span class="post-toc-text">live2d-widget-model-izumi</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-koharu"><span class="post-toc-number">6.8.</span> <span class="post-toc-text">live2d-widget-model-koharu</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-miku"><span class="post-toc-number">6.9.</span> <span class="post-toc-text">live2d-widget-model-miku</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-ni-j"><span class="post-toc-number">6.10.</span> <span class="post-toc-text">live2d-widget-model-ni-j</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-nico"><span class="post-toc-number">6.11.</span> <span class="post-toc-text">live2d-widget-model-nico</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-nietzsche"><span class="post-toc-number">6.12.</span> <span class="post-toc-text">live2d-widget-model-nietzsche</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-nipsilon"><span class="post-toc-number">6.13.</span> <span class="post-toc-text">live2d-widget-model-nipsilon</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-nito"><span class="post-toc-number">6.14.</span> <span class="post-toc-text">live2d-widget-model-nito</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-shizuku"><span class="post-toc-number">6.15.</span> <span class="post-toc-text">live2d-widget-model-shizuku</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-tororo"><span class="post-toc-number">6.16.</span> <span class="post-toc-text">live2d-widget-model-tororo</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-tsumiki"><span class="post-toc-number">6.17.</span> <span class="post-toc-text">live2d-widget-model-tsumiki</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-unitychan"><span class="post-toc-number">6.18.</span> <span class="post-toc-text">live2d-widget-model-unitychan</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-wanko"><span class="post-toc-number">6.19.</span> <span class="post-toc-text">live2d-widget-model-wanko</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#live2d-widget-model-z16"><span class="post-toc-number">6.20.</span> <span class="post-toc-text">live2d-widget-model-z16</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.21.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#mobile-的值决定了在手机端是否显示"><span class="post-toc-number">6.22.</span> <span class="post-toc-text">mobile 的值决定了在手机端是否显示</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-给你的网站加一个2.5D悬浮小人"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">给你的网站加一个2.5D悬浮小人</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-10 10:17:42" datetime="2018-03-10T10:17:42.000Z"  itemprop="datePublished">2018-03-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520662717979.jpg" alt="live2d-widget-model-chitose"><br>我们平常访问某些网站的时候,会发现在网站上总是悬浮者一个可爱的小人.而且还可以跟用户进行各种互动(说话?).<br>一般这种小人都是通过js加载出来的, 搜索关键词网上有教程. 不过我今天在这里记录的是,如何添加2.5D互动小人<br><a id="more"></a></p>
+<blockquote>
+<p>平台: hexo + hexo-plugins(live2d-widget-models)<br>同时也支持jekyll, wordpress, etc.</p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install --save hexo-helper-live2d</span><br></pre></td></tr></table></figure>
+<h2 id="项目github地址"><a href="#项目github地址" class="headerlink" title="项目github地址"></a>项目github地址</h2><p><a href="https://github.com/xiazeyu/live2d-widget-models" target="_blank" rel="noopener">https://github.com/xiazeyu/live2d-widget-models</a></p>
+<h2 id="然后在-config-yml-hexo或者主题的都行-中添加"><a href="#然后在-config-yml-hexo或者主题的都行-中添加" class="headerlink" title="然后在_config.yml(hexo或者主题的都行)中添加"></a>然后在_config.yml(hexo或者主题的都行)中添加</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">live2d:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  scriptFrom:</span> <span class="string">local</span></span><br><span class="line"><span class="attr">  model:</span></span><br><span class="line"><span class="attr">    use:</span> <span class="string">live2d-widget-model-wanko</span> <span class="string">//使用的模型名,下面会详细讲</span></span><br><span class="line"><span class="attr">  display:</span> <span class="string">//如果觉得默认定位不满意可在此微调,bottom</span></span><br><span class="line"><span class="attr">    position:</span> <span class="string">right</span></span><br><span class="line"><span class="attr">    width:</span> <span class="number">150</span></span><br><span class="line"><span class="attr">    height:</span> <span class="number">300</span></span><br><span class="line">	<span class="attr">bottom:-30</span></span><br><span class="line"><span class="attr">  mobile:</span></span><br><span class="line"><span class="attr">    show:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="自定义模型的使用点我"><a href="#自定义模型的使用点我" class="headerlink" title="自定义模型的使用点我"></a>自定义模型的使用<a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md" target="_blank" rel="noopener">点我</a></h2><h2 id="hexo下现有模型的安装"><a href="#hexo下现有模型的安装" class="headerlink" title="hexo下现有模型的安装"></a>hexo下现有模型的安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &#123;packagename&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>安装示例</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install live2d-widget-model-chitose</span><br></pre></td></tr></table></figure>
+<h2 id="最新版现有模型测试与预览"><a href="#最新版现有模型测试与预览" class="headerlink" title="最新版现有模型测试与预览"></a>最新版现有模型测试与预览</h2><blockquote>
+<p>OK, 这是重点[哭笑不得],<br>现实效果是会动的, 由于截gif过于麻烦, 我就只好截屏了. 现实效果绝对比这帅.</p>
+</blockquote>
+<h3 id="live2d-widget-model-chitose"><a href="#live2d-widget-model-chitose" class="headerlink" title="live2d-widget-model-chitose"></a>live2d-widget-model-chitose</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520649793712.jpg" alt="live2d-widget-model-chitose"></p>
+<blockquote>
+<p>唔, 这是一个美少年. 比较适合女生. 我就不用这个了.</p>
+</blockquote>
+<h3 id="live2d-widget-model-epsilon2-1"><a href="#live2d-widget-model-epsilon2-1" class="headerlink" title="live2d-widget-model-epsilon2_1"></a>live2d-widget-model-epsilon2_1</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520650098369.jpg" alt="live2d-widget-model-epsilon2_1"></p>
+<blockquote>
+<p>一个夏装妹子, 比较适合宅男</p>
+</blockquote>
+<h3 id="live2d-widget-model-gf"><a href="#live2d-widget-model-gf" class="headerlink" title="live2d-widget-model-gf"></a>live2d-widget-model-gf</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520650344036.jpg" alt="live2d-widget-model-gf"></p>
+<blockquote>
+<p>一个卡通人物(废话), 很炫酷</p>
+</blockquote>
+<h3 id="live2d-widget-model-haru"><a href="#live2d-widget-model-haru" class="headerlink" title="live2d-widget-model-haru"></a>live2d-widget-model-haru</h3><blockquote>
+<p>这个模型需要两点注意, </p>
+</blockquote>
+<ol>
+<li>它的安装方式是</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install live2d-widget-model-haru</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>模型的使用却是<br>use:  live2d-widget-model-haru/01 或者<br>use: live2d-widget-model-haru/02<br>这是因为他这个包里有两个模型的原因</p>
+</blockquote>
+<ol start="2">
+<li>它在子模型下的json文件是空的,</li>
+</ol>
+<blockquote>
+<p>所以你要将/博客路径/node_modules/live2d-widget-model-haru/package.json复制进01, 02 文件夹.</p>
+</blockquote>
+<h4 id="live2d-widget-model-haru-01"><a href="#live2d-widget-model-haru-01" class="headerlink" title="live2d-widget-model-haru/01"></a>live2d-widget-model-haru/01</h4><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651227707.jpg" alt="live2d-widget-model-haru/01"></p>
+<h4 id="live2d-widget-model-haru-02"><a href="#live2d-widget-model-haru-02" class="headerlink" title="live2d-widget-model-haru/02"></a>live2d-widget-model-haru/02</h4><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651346521.jpg" alt="live2d-widget-model-haru/02"></p>
+<h3 id="live2d-widget-model-haruto"><a href="#live2d-widget-model-haruto" class="headerlink" title="live2d-widget-model-haruto"></a>live2d-widget-model-haruto</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651513850.jpg" alt="live2d-widget-model-haruto"></p>
+<h3 id="live2d-widget-model-hibiki"><a href="#live2d-widget-model-hibiki" class="headerlink" title="live2d-widget-model-hibiki"></a>live2d-widget-model-hibiki</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651678626.jpg" alt="live2d-widget-model-hibiki"></p>
+<blockquote>
+<p>吐槽一句, 这位同学太高了,已经把我电脑屏幕高快全占了</p>
+</blockquote>
+<h3 id="live2d-widget-model-izumi"><a href="#live2d-widget-model-izumi" class="headerlink" title="live2d-widget-model-izumi"></a>live2d-widget-model-izumi</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651875989.jpg" alt="live2d-widget-model-izumi"></p>
+<h3 id="live2d-widget-model-koharu"><a href="#live2d-widget-model-koharu" class="headerlink" title="live2d-widget-model-koharu"></a>live2d-widget-model-koharu</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651983137.jpg" alt="live2d-widget-model-koharu"></p>
+<blockquote>
+<p>是不是有些熟悉? 这妹妹跟haruto是情侣啊!</p>
+</blockquote>
+<h3 id="live2d-widget-model-miku"><a href="#live2d-widget-model-miku" class="headerlink" title="live2d-widget-model-miku"></a>live2d-widget-model-miku</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652150254.jpg" alt="live2d-widget-model-miku"></p>
+<h3 id="live2d-widget-model-ni-j"><a href="#live2d-widget-model-ni-j" class="headerlink" title="live2d-widget-model-ni-j"></a>live2d-widget-model-ni-j</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652261768.jpg" alt="live2d-widget-model-ni-j"></p>
+<h3 id="live2d-widget-model-nico"><a href="#live2d-widget-model-nico" class="headerlink" title="live2d-widget-model-nico"></a>live2d-widget-model-nico</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652378111.jpg" alt="live2d-widget-model-nico"></p>
+<h3 id="live2d-widget-model-nietzsche"><a href="#live2d-widget-model-nietzsche" class="headerlink" title="live2d-widget-model-nietzsche"></a>live2d-widget-model-nietzsche</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652485684.jpg" alt="live2d-widget-model-nietzsche"></p>
+<h3 id="live2d-widget-model-nipsilon"><a href="#live2d-widget-model-nipsilon" class="headerlink" title="live2d-widget-model-nipsilon"></a>live2d-widget-model-nipsilon</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652604333.jpg" alt="live2d-widget-model-nipsilon"></p>
+<h3 id="live2d-widget-model-nito"><a href="#live2d-widget-model-nito" class="headerlink" title="live2d-widget-model-nito"></a>live2d-widget-model-nito</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652707543.jpg" alt="live2d-widget-model-nito"></p>
+<h3 id="live2d-widget-model-shizuku"><a href="#live2d-widget-model-shizuku" class="headerlink" title="live2d-widget-model-shizuku"></a>live2d-widget-model-shizuku</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652801662.jpg" alt="live2d-widget-model-shizuku"></p>
+<h3 id="live2d-widget-model-tororo"><a href="#live2d-widget-model-tororo" class="headerlink" title="live2d-widget-model-tororo"></a>live2d-widget-model-tororo</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652903977.jpg" alt="live2d-widget-model-tororo"></p>
+<h3 id="live2d-widget-model-tsumiki"><a href="#live2d-widget-model-tsumiki" class="headerlink" title="live2d-widget-model-tsumiki"></a>live2d-widget-model-tsumiki</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652987458.jpg" alt="live2d-widget-model-tsumiki"></p>
+<h3 id="live2d-widget-model-unitychan"><a href="#live2d-widget-model-unitychan" class="headerlink" title="live2d-widget-model-unitychan"></a>live2d-widget-model-unitychan</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653074078.jpg" alt="live2d-widget-model-unitychan"></p>
+<h3 id="live2d-widget-model-wanko"><a href="#live2d-widget-model-wanko" class="headerlink" title="live2d-widget-model-wanko"></a>live2d-widget-model-wanko</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653136634.jpg" alt="live2d-widget-model-wanko"></p>
+<h3 id="live2d-widget-model-z16"><a href="#live2d-widget-model-z16" class="headerlink" title="live2d-widget-model-z16"></a>live2d-widget-model-z16</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653226268.jpg" alt="live2d-widget-model-z16"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>我把官网所有的模型都装了一次, 最后发现一个规律, 那就是模型妹子偏多. 看来技术宅喜欢动漫少女的说法基本正确. 由于我装了一个多小时的模型, 已经对此有些反感了, 所以就保留最后一个不换了. 想看效果的可以电脑端访问<a href="https://www.thinkmoon.cn" target="_blank" rel="noopener">https://www.thinkmoon.cn</a> 看效果</p>
+</blockquote>
+<h3 id="mobile-的值决定了在手机端是否显示"><a href="#mobile-的值决定了在手机端是否显示" class="headerlink" title="mobile 的值决定了在手机端是否显示"></a>mobile 的值决定了在手机端是否显示</h3><blockquote>
+<p>由于显示会影响阅读,我这儿设为false </p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2018年03月10日 - 10:03<br>
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-09T10:11:37.138Z" itemprop="dateUpdated">2018-09-09 10:11:37</time>
+</span><br>
+
+
+        
+        转载附上原文链接： https://thinkmoon.cn/20180310.html
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/折腾/">折腾</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://thinkmoon.cn/20180310.html&title=《给你的网站加一个2.5D悬浮小人》 — 指尖魔法屋 - 醉月思的博客&pic=https://thinkmoon.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thinkmoon.cn/20180310.html&title=《给你的网站加一个2.5D悬浮小人》 — 指尖魔法屋 - 醉月思的博客&source=我们平常访问某些网站的时候,会发现在网站上总是悬浮者一个可爱的小人.而且还可以跟用户进行各种互动(说话?).一般这种小人都是通过js加载出来的, 搜索关键..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://thinkmoon.cn/20180310.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《给你的网站加一个2.5D悬浮小人》 — 指尖魔法屋 - 醉月思的博客&url=https://thinkmoon.cn/20180310.html&via=https://thinkmoon.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://thinkmoon.cn/20180310.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/20180322.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">杂谈 | 让人生少些遗憾</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/20180225.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Bootstrap-table 爬坑之旅</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    <div id="container"></div>
+<link rel="stylesheet" href="/css/gitment.css?v=1.7.2">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'thinkmoon',
+  repo: 'thinkmoon.github.io',
+  oauth: {
+    client_id: '3a1b56f27cc225971123',
+    client_secret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  },
+})
+gitment.render('container')
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+<!--    <div class="top">
+        
+    </div>-->
+    <div class="bottom">  
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+        </p>
+        <p><span>醉月思 &copy; 2017 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://thinkmoon.cn/20180310.html&title=《给你的网站加一个2.5D悬浮小人》 — 指尖魔法屋 - 醉月思的博客&pic=https://thinkmoon.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thinkmoon.cn/20180310.html&title=《给你的网站加一个2.5D悬浮小人》 — 指尖魔法屋 - 醉月思的博客&source=我们平常访问某些网站的时候,会发现在网站上总是悬浮者一个可爱的小人.而且还可以跟用户进行各种互动(说话?).一般这种小人都是通过js加载出来的, 搜索关键..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://thinkmoon.cn/20180310.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《给你的网站加一个2.5D悬浮小人》 — 指尖魔法屋 - 醉月思的博客&url=https://thinkmoon.cn/20180310.html&via=https://thinkmoon.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://thinkmoon.cn/20180310.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://thinkmoon.cn/20180310.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

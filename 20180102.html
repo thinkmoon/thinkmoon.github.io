@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://thinkmoon.cn",
+  "logo": "https://thinkmoon.cn/img/avatar.jpg"
+}
+</script>
+<head>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1226894331467822",
+        enable_page_level_ads: true
+    });
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125451225-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-125451225-1');
+</script>
+<!-- End Google Analytics -->
+
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=66000475"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://thinkmoon.cn/20180102.html">
+    
+    
+    <title>利用Server酱推送消息到个人微信 | 指尖魔法屋 - 醉月思的博客 | 不问前途，不问归路，只求专注，全力以赴。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="通知软件推荐">
+    <meta name="description" content="如果你需要及时收到服务器的运行报告，如果你嫌装客户端端软件太麻烦。那么你可以试试这个，调用WEB API推送消息到你的微信；我想这可能会是一个不错的装逼姿势。">
+<meta name="keywords" content="通知软件推荐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Server酱推送消息到个人微信">
+<meta property="og:url" content="https://thinkmoon.cn/20180102.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="如果你需要及时收到服务器的运行报告，如果你嫌装客户端端软件太麻烦。那么你可以试试这个，调用WEB API推送消息到你的微信；我想这可能会是一个不错的装逼姿势。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509075155084.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/55ec21e37e46b.gif">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091155306.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091329022.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091540971.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091667950.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091830688.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091860414.jpg">
+<meta property="og:updated_time" content="2018-09-09T10:11:37.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用Server酱推送消息到个人微信">
+<meta name="twitter:description" content="如果你需要及时收到服务器的运行报告，如果你嫌装客户端端软件太麻烦。那么你可以试试这个，调用WEB API推送消息到你的微信；我想这可能会是一个不错的装逼姿势。">
+<meta name="twitter:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509075155084.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+<script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/thinkmoon" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">利用Server酱推送消息到个人微信</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">利用Server酱推送消息到个人微信</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-02T13:15:42.000Z" itemprop="datePublished" class="page-time">
+  2018-01-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/软件推荐/">软件推荐</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>文章目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Server酱工作原理图"><span class="post-toc-number">1.</span> <span class="post-toc-text">Server酱工作原理图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#技术要求"><span class="post-toc-number">2.</span> <span class="post-toc-text">技术要求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#操作流程"><span class="post-toc-number">3.</span> <span class="post-toc-text">操作流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ServerChan-工作原理分析"><span class="post-toc-number">4.</span> <span class="post-toc-text">ServerChan 工作原理分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#局限与完善"><span class="post-toc-number">5.</span> <span class="post-toc-text">局限与完善</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ServerChan"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">利用Server酱推送消息到个人微信</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-02 13:15:42" datetime="2018-01-02T13:15:42.000Z"  itemprop="datePublished">2018-01-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/软件推荐/">软件推荐</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>如果你需要及时收到服务器的运行报告，如果你嫌装客户端端软件太麻烦。那么你可以试试这个，调用WEB API推送消息到你的微信；我想这可能会是一个不错的装逼姿势。<br><a id="more"></a><br><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509075155084.jpg" alt="Server酱"></p>
+<blockquote>
+<p>「Server酱」，英文名「ServerChan」，是一款「程序员」和「服务器」之间的通信软件。说人话？就是从服务器推报警和日志到手机的工具。</p>
+</blockquote>
+<h3 id="Server酱工作原理图"><a href="#Server酱工作原理图" class="headerlink" title="Server酱工作原理图"></a>Server酱工作原理图</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/55ec21e37e46b.gif" alt="工作原理图" title="工作原理图"></p>
+<p>大致解释一下步骤：</p>
+<ol>
+<li>登录Server酱官网，使用==github #800000==账号登录</li>
+<li>绑定一个微信（你的或者你想通知的人的）</li>
+<li>获取到SendKey（它根据这个==Sendkey #800500==区分目标）</li>
+<li>在你发起消息的服务器或者软件调用API发送GET请求</li>
+<li>手机微信上收到消息</li>
+</ol>
+<h3 id="技术要求"><a href="#技术要求" class="headerlink" title="技术要求"></a>技术要求</h3><ol>
+<li>需要有一个GitHub账号，没有可以注册一个。</li>
+<li>需要有一个微信账号，没有可以注册一个。</li>
+<li>需要关注一个公众号，没有可以关注一下。</li>
+<li>需要会使用Get请求,任何语言。</li>
+</ol>
+<h3 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h3><p>1.进入官网，使用GitHub账号登录。开始绑定微信。就是使用微信扫描之后（会叫你关注一个公众号），然后在这个界面点击&lt;检查结果并确认绑定&gt;</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091155306.jpg" alt="微信绑定"></p>
+<blockquote>
+<p>绑定成功之后是这样子的</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091329022.jpg" alt="绑定成功"></p>
+<p>2.获取SendKey（在发送消息页面）。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091540971.jpg" alt="SCKEY"></p>
+<p>3.首先我们来测试一下能否发送成功</p>
+<blockquote>
+<p>在这个在线发送工具下输入你想发送的数据。</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091667950.jpg" alt="在线发送工具"></p>
+<p>4.打开微信看看效果</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091830688.jpg" alt="消息预览"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1509091860414.jpg" alt="消息展示"></p>
+<blockquote>
+<p>注意这个界面不要随便分享，因为这个链接里面就有你的SCKEY，如果你不想突然收到别人莫名其妙的消息，那还是自己看就好了。</p>
+</blockquote>
+<p>5.php调用WEB API发送消息（一定得是PHP？不，你用表单都可以，It‘s up to you.)</p>
+<blockquote>
+<p>对了，其实这个消息内容是支持markdown的哦（很好的一个设计），如果不知道什么是markdown的话。。。去百度？</p>
+</blockquote>
+<p>写成一个函数</p>
+<pre><code>function weixin_notify($SCKEY,$header,$content){
+    file_get_contents(&apos;https://sc.ftqq.com/&apos;.$SCKEY.&apos;.send?text=&apos;.urlencode($header).&apos;&amp;desp=&apos;.urlencode($content));
+}
+</code></pre><blockquote>
+<p>然后你再需要发送服务器警告的地方调用函数即可</p>
+</blockquote>
+<h3 id="ServerChan-工作原理分析"><a href="#ServerChan-工作原理分析" class="headerlink" title="ServerChan 工作原理分析"></a>ServerChan 工作原理分析</h3><blockquote>
+<p>如果你打算做一个类似的平台的话。你首先有两个东西是必不可缺的。1,一个服务器后端。2，一个通过微信认证了的服务号</p>
+</blockquote>
+<ol>
+<li>首先你得关注公众号</li>
+<li>你扫描之后绑定微信，其实是一个区分用户的过程，来记录你的userID。比如：百词斩官方公众号通过你发特定的字符串来区别。</li>
+<li>它的服务端通过SCKEY与userID做一个映射，然后根据你的SCKEY来发给不同的人。</li>
+<li>服务端开放一个接口，接收你的SCKEY、title、content。然后再调用微信官方接口发送客户消息。</li>
+<li>用户收到消息</li>
+</ol>
+<h3 id="局限与完善"><a href="#局限与完善" class="headerlink" title="局限与完善"></a>局限与完善</h3><ul>
+<li>==首先这里的SCKEY与userID只是简单的一对一的关系，但其实如果做成一对多更好。因为这样便可以群发通知 #801400==</li>
+<li>==她这儿的的分享链接里面包含了很多个人敏感的信息，而其实这在微信的标准里面是不安全的。 #801900==</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2018年01月02日 - 13:01<br>
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-09T10:11:37.138Z" itemprop="dateUpdated">2018-09-09 10:11:37</time>
+</span><br>
+
+
+        
+        转载附上原文链接： https://thinkmoon.cn/20180102.html
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通知软件推荐/">通知软件推荐</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://thinkmoon.cn/20180102.html&title=《利用Server酱推送消息到个人微信》 — 指尖魔法屋 - 醉月思的博客&pic=https://thinkmoon.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thinkmoon.cn/20180102.html&title=《利用Server酱推送消息到个人微信》 — 指尖魔法屋 - 醉月思的博客&source=如果你需要及时收到服务器的运行报告，如果你嫌装客户端端软件太麻烦。那么你可以试试这个，调用WEB API推送消息到你的微信；我想这可能会是一个不错的装逼姿势。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://thinkmoon.cn/20180102.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用Server酱推送消息到个人微信》 — 指尖魔法屋 - 醉月思的博客&url=https://thinkmoon.cn/20180102.html&via=https://thinkmoon.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://thinkmoon.cn/20180102.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/20180110.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">醉月老哥的微信助手</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/20171216.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">推荐一个（神器级）服务器软件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    <div id="container"></div>
+<link rel="stylesheet" href="/css/gitment.css?v=1.7.2">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'thinkmoon',
+  repo: 'thinkmoon.github.io',
+  oauth: {
+    client_id: '3a1b56f27cc225971123',
+    client_secret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  },
+})
+gitment.render('container')
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+<!--    <div class="top">
+        
+    </div>-->
+    <div class="bottom">  
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+        </p>
+        <p><span>醉月思 &copy; 2017 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://thinkmoon.cn/20180102.html&title=《利用Server酱推送消息到个人微信》 — 指尖魔法屋 - 醉月思的博客&pic=https://thinkmoon.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thinkmoon.cn/20180102.html&title=《利用Server酱推送消息到个人微信》 — 指尖魔法屋 - 醉月思的博客&source=如果你需要及时收到服务器的运行报告，如果你嫌装客户端端软件太麻烦。那么你可以试试这个，调用WEB API推送消息到你的微信；我想这可能会是一个不错的装逼姿势。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://thinkmoon.cn/20180102.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用Server酱推送消息到个人微信》 — 指尖魔法屋 - 醉月思的博客&url=https://thinkmoon.cn/20180102.html&via=https://thinkmoon.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://thinkmoon.cn/20180102.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://thinkmoon.cn/20180102.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

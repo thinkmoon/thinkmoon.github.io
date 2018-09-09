@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://thinkmoon.cn",
+  "logo": "https://thinkmoon.cn/img/avatar.jpg"
+}
+</script>
+<head>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1226894331467822",
+        enable_page_level_ads: true
+    });
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125451225-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-125451225-1');
+</script>
+<!-- End Google Analytics -->
+
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=66000475"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://thinkmoon.cn/20170415.html">
+    
+    
+    <title>QQ机器人起航篇（一） | 指尖魔法屋 - 醉月思的博客 | 不问前途，不问归路，只求专注，全力以赴。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="QQ">
+    <meta name="description" content="一听说QQ机器人是不是感觉有点高大上？感觉离自己有点远？不过事实就是如果你想创建，或者说拥有一个QQ机器人确实一件非常容易的事情。 创建方法 1.腾讯QQ自带的QQ小冰  2.利用第三方框架在自己电脑或者windows云主机上挂一个机器人（mypcqq，酷Q等）    ----------这个方法的好处就是可拓展性强，可二次开发，所以我在以后主要介绍这种方法 框架一（mypcQQ） 从功能上">
+<meta name="keywords" content="QQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QQ机器人起航篇（一）">
+<meta property="og:url" content="https://thinkmoon.cn/20170415.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="一听说QQ机器人是不是感觉有点高大上？感觉离自己有点远？不过事实就是如果你想创建，或者说拥有一个QQ机器人确实一件非常容易的事情。 创建方法 1.腾讯QQ自带的QQ小冰  2.利用第三方框架在自己电脑或者windows云主机上挂一个机器人（mypcqq，酷Q等）    ----------这个方法的好处就是可拓展性强，可二次开发，所以我在以后主要介绍这种方法 框架一（mypcQQ） 从功能上">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-09T10:11:37.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QQ机器人起航篇（一）">
+<meta name="twitter:description" content="一听说QQ机器人是不是感觉有点高大上？感觉离自己有点远？不过事实就是如果你想创建，或者说拥有一个QQ机器人确实一件非常容易的事情。 创建方法 1.腾讯QQ自带的QQ小冰  2.利用第三方框架在自己电脑或者windows云主机上挂一个机器人（mypcqq，酷Q等）    ----------这个方法的好处就是可拓展性强，可二次开发，所以我在以后主要介绍这种方法 框架一（mypcQQ） 从功能上">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+<script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/thinkmoon" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">QQ机器人起航篇（一）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">QQ机器人起航篇（一）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-15T08:14:01.000Z" itemprop="datePublished" class="page-time">
+  2017-04-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/教程/">教程</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-QQ机器人启航篇"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">QQ机器人起航篇（一）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-15 08:14:01" datetime="2017-04-15T08:14:01.000Z"  itemprop="datePublished">2017-04-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/教程/">教程</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>   一听说QQ机器人是不是感觉有点高大上？感觉离自己有点远？不过事实就是如果你想创建，或者说拥有一个QQ机器人确实一件非常容易的事情。</p>
+<p>创建方法</p>
+<pre><code>1.腾讯QQ自带的QQ小冰
+
+2.利用第三方框架在自己电脑或者windows云主机上挂一个机器人（mypcqq，酷Q等）
+
+  ----------这个方法的好处就是可拓展性强，可二次开发，所以我在以后主要介绍这种方法
+</code></pre><p>框架一（mypcQQ）</p>
+<p>从功能上看这个框架功能略显强大（拥有撤回检测，气泡设置，卡片消息），但是缺点也很明显那就是不稳定，页面不太友好。</p>
+<p>官网截图：（<a href="http://www.mypcqq.cc/）" target="_blank" rel="noopener">www.mypcqq.cc/）</a></p>
+<p>软件运行截图</p>
+<p>框架二（酷Q机器人）</p>
+<pre><code>官网截图：（http://cqp.cc/）
+</code></pre><p>软件运行截图</p>
+<p>因为mypcQQ我认为实在是太不稳定了，所以我在以后的QQ机器人二次开发中着重介绍酷Q机器人的二次开发。</p>
+<p>酷Q机器人C++SDK解析</p>
+<p>1，酷Q机器人工作原理</p>
+<p>先是QQ服务器端发送数据给酷Q客户端，酷Q根据数据判断是否触发了事件，以及触发了哪类事件，不同类事件都有一个默认的type，然后酷Q会根据这个type在JSON中查找所有具有该type的event项目，并将这些项目按照priority从小到大的顺序排列，然后按照顺序依次向你的DLL发送指令，指令的内容就是每个event项目所规定的function值，以及该事件的type所决定的必要参数。在你的DLL内部，会先查找指令中指定的function，找到[函数名]正确的函数，然后按[参数列表]规定的顺序代入参数，执行你写的代码。[参数列表]只规定了参数的数目、顺序和类型，而参数变量名称酷Q是不管的，也就是说只要数目顺序类型正确，参数变量的名称你可以自己修改。比如fromQQ你可以把它改成TheQNumberItFrom，或者abc，都可以，只要你自己方便就行。<br>最后，如何命令酷Q执行你需要的动作呢？你需要调用头文件cqp.h中声明的函数。这些函数只进行了声明，其定义在酷Q加载后会在其它DLL中定义，所以VS可能会提示这些函数未定义，但不影响编译生成，请忽视这些提示。</p>
+<p>2，SDK视图    </p>
+<pre><code>3，SDK文件解析
+</code></pre><p>appmain.h   </p>
+<p>插件APPID的定义，内容不多，在编译前，将这里面的CQAPPID也定义为你之前的文件名AppID。规则见 <a href="http://d.cqp.me/Pro/开发/基础信息。" target="_blank" rel="noopener">http://d.cqp.me/Pro/开发/基础信息。</a></p>
+<p>cqp.h      </p>
+<p>cqp.h分为常量定义和函数声明两部分。常量定义部分看不懂也没关系，关键是后面的函数声明部分。函数用途按英语意思去用</p>
+<p>每一条声明都具有如下格式：<br>CQAPI([返回值类型]) <a href="[参数列表]">函数名</a>;<br>[函数名]描述了该函数的功能，如果你看不懂英文（你还是放弃吧），JSON中的auth部分的注释有每一个函数英文名的翻译。<br>CQ_get开头的函数用于向QQ服务器获取一些状态信息（比如获取某个群员的信息），其它函数用于向服务器发送操作指令（比如发送消息）。get类函数返回你想要获取的信息，其它函数返回操作结果。不同的返回值对应的操作结果，在cqp.h的常量定义部分有说明。<br>你必须按照[参数列表]的规定调用这些函数。</p>
+<p>appmain.cpp</p>
+<p>这个cpp是最重要的部分，我们平常编写的功能都是在这个cpp里面，根据对应的规则调用，官方SDK里面有详细的注释。</p>
+<p>JSON文件</p>
+<p>在修改之前，你要明确JSON的作用：这个文件是你的DLL和酷Q之间的交流协议，它规定了酷Q该如何使用你写的DLL。<br>json规则：<a href="http://d.cqp.me/Pro/开发" target="_blank" rel="noopener">http://d.cqp.me/Pro/开发</a><br>event部分：// 事件列表，同一事件类型可重复定义（发布前请删除无用事件）<br>id：这就是个索引，只要保证你所有事件的id不重复即可<br>type：规定酷Q应该在何时触发这个事件。每种事件对应的type值是固定的，只要你设置的type值正确，酷Q就会在正确的时机触发你的事件。事件的名称无关紧要。<br>name：这个就是显示给用户看的，和你的程序没有关系。<br>function：自由定义，但不能重复，而且有格式要求：<br>1、由英文字母、数字、下划线构成<br>2、第一个字符不能是数字<br>3、大小写敏感，大写和小写是不同的<br>4、不能和这些关键字重名：<a href="https://msdn.microsoft.com/zh-cn/library/2e6a4at9.aspx" target="_blank" rel="noopener">https://msdn.microsoft.com/zh-cn/library/2e6a4at9.aspx</a><br>如果你需要删除一个事件，需要把一对{}内的内容以及之后的逗号完全删除，否则会报错。请注意不要删除[]，而且[]内的最后一对{}后不能跟逗号，其它的必须跟逗号。<br>如果你需要增加新的事件，建议复制粘贴再修改，以免疏忽。</p>
+<p>参考链接：<a href="https://cqp.cc/t/27173" target="_blank" rel="noopener">https://cqp.cc/t/27173</a></p>
+<p>这篇主要让大家对酷Q有个基本的了解，下一篇做个小例子。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2017年04月15日 - 08:04<br>
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-09T10:11:37.138Z" itemprop="dateUpdated">2018-09-09 10:11:37</time>
+</span><br>
+
+
+        
+        转载附上原文链接： https://thinkmoon.cn/20170415.html
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QQ/">QQ</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://thinkmoon.cn/20170415.html&title=《QQ机器人起航篇（一）》 — 指尖魔法屋 - 醉月思的博客&pic=https://thinkmoon.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thinkmoon.cn/20170415.html&title=《QQ机器人起航篇（一）》 — 指尖魔法屋 - 醉月思的博客&source=指尖魔法屋, 醉月思的博客!" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://thinkmoon.cn/20170415.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《QQ机器人起航篇（一）》 — 指尖魔法屋 - 醉月思的博客&url=https://thinkmoon.cn/20170415.html&via=https://thinkmoon.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://thinkmoon.cn/20170415.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/20170427.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C++11新特性</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/20170412.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">搬瓦工在控制面板取消了一键安装Shadowsocks的解决方法(转)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    <div id="container"></div>
+<link rel="stylesheet" href="/css/gitment.css?v=1.7.2">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'thinkmoon',
+  repo: 'thinkmoon.github.io',
+  oauth: {
+    client_id: '3a1b56f27cc225971123',
+    client_secret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  },
+})
+gitment.render('container')
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+<!--    <div class="top">
+        
+    </div>-->
+    <div class="bottom">  
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+        </p>
+        <p><span>醉月思 &copy; 2017 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://thinkmoon.cn/20170415.html&title=《QQ机器人起航篇（一）》 — 指尖魔法屋 - 醉月思的博客&pic=https://thinkmoon.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thinkmoon.cn/20170415.html&title=《QQ机器人起航篇（一）》 — 指尖魔法屋 - 醉月思的博客&source=指尖魔法屋, 醉月思的博客!" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://thinkmoon.cn/20170415.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《QQ机器人起航篇（一）》 — 指尖魔法屋 - 醉月思的博客&url=https://thinkmoon.cn/20170415.html&via=https://thinkmoon.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://thinkmoon.cn/20170415.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://thinkmoon.cn/20170415.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
