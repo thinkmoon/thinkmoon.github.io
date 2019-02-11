@@ -1,4 +1,7 @@
-# robots.txt generated at http://tool.chinaz.com/robots/ 
-User-agent: *
-Disallow: 
-Sitemap: https://wq.thinkmoon.cn/sitemap.xml
+User-agent: * 
+Disallow: /vendors/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+
+Sitemap: https://thinkmoon.cn/sitemap.xml

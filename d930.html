@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+  	<meta name="robots" content="nofollow" />
+   <link rel="stylesheet" href="https://blog.cdn.thinkmoon.cn/mygitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+    <link rel="canonical" href="https://thinkmoon.cn/d930.html">
+    
+    
+    <title>自建网站对接微信公众号 | 指尖魔法屋 - 醉月思的博客 | 德尚无形，术精无境</title>
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="codeigniter,微信公众号,PHP">
+    <meta name="description" content="平常我们有些写各种网站, 个人博客系统, 物流管理系统, 通信录管理系统, 校园二手网站. 我们都知道, 只需要租用一个服务器, 再配置一个备案好的域名, 就可以在浏览器上进行访问了.不知大家, 不知大家有没有想过, 将你搭的网站对接微信公众号, 利用微信这个大用户软件, 来为你引流呢?">
+<meta name="keywords" content="codeigniter,微信公众号,PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自建网站对接微信公众号">
+<meta property="og:url" content="https://thinkmoon.cn/d930.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="平常我们有些写各种网站, 个人博客系统, 物流管理系统, 通信录管理系统, 校园二手网站. 我们都知道, 只需要租用一个服务器, 再配置一个备案好的域名, 就可以在浏览器上进行访问了.不知大家, 不知大家有没有想过, 将你搭的网站对接微信公众号, 利用微信这个大用户软件, 来为你引流呢?">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523606408034.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523712185351.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523713636476.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523781481068.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523714004736.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523714822433.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.svg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523781959421.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523782005232.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523782015976.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523890856126.jpg">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523890881266.jpg">
+<meta property="og:updated_time" content="2018-09-09T12:09:18.398Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自建网站对接微信公众号">
+<meta name="twitter:description" content="平常我们有些写各种网站, 个人博客系统, 物流管理系统, 通信录管理系统, 校园二手网站. 我们都知道, 只需要租用一个服务器, 再配置一个备案好的域名, 就可以在浏览器上进行访问了.不知大家, 不知大家有没有想过, 将你搭的网站对接微信公众号, 利用微信这个大用户软件, 来为你引流呢?">
+<meta name="twitter:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523606408034.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">自建网站对接微信公众号</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">自建网站对接微信公众号</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-12T07:25:00.000Z" itemprop="datePublished" class="page-time">
+  2018-04-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>文章目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一般来说分为三种情况"><span class="post-toc-text">一般来说分为三种情况</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#额-那其实不是没认证就没得玩"><span class="post-toc-text">额, 那其实不是没认证就没得玩?</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优点"><span class="post-toc-text">优点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#缺点"><span class="post-toc-text">缺点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#跟我一起操作"><span class="post-toc-text">跟我一起操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#登录"><span class="post-toc-text">登录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#微信token"><span class="post-toc-text">微信token</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改回调域名-接口-gt-网页授权获取用户基本信息-gt-修改"><span class="post-toc-text">修改回调域名, 接口&gt; 网页授权获取用户基本信息 &gt; 修改</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#微信的接口"><span class="post-toc-text">微信的接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取用户信息-实现免登录的效果"><span class="post-toc-text">获取用户信息, 实现免登录的效果</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#所用接口"><span class="post-toc-text">所用接口:</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试演示"><span class="post-toc-text">测试演示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-将授权url发给手机"><span class="post-toc-text">1. 将授权url发给手机</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-关注测试号"><span class="post-toc-text">2. 关注测试号</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关注后点击"><span class="post-toc-text">关注后点击</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#测试号访问成功"><span class="post-toc-text">测试号访问成功.</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#正式号运行效果"><span class="post-toc-text">正式号运行效果</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-自建网站对接微信公众号"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">自建网站对接微信公众号</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-12 15:25:00" datetime="2018-04-12T07:25:00.000Z"  itemprop="datePublished">2018-04-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>平常我们有些写各种网站, 个人博客系统, 物流管理系统, 通信录管理系统, 校园二手网站. 我们都知道, 只需要租用一个服务器, 再配置一个备案好的域名, 就可以在浏览器上进行访问了.<br>不知大家, 不知大家有没有想过, 将你搭的网站对接微信公众号, 利用微信这个大用户软件, 来为你引流呢?<br><a id="more"></a></p>
+</blockquote>
+<hr>
+<table>
+<thead>
+<tr>
+<th>本文环境</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作系统</td>
+<td>Ubuntu 16.04.03</td>
+</tr>
+<tr>
+<td>运行方式</td>
+<td>VMware虚拟机</td>
+</tr>
+<tr>
+<td>编程语言</td>
+<td>PHP</td>
+</tr>
+<tr>
+<td>项目局域网地址</td>
+<td><a href="http://192.168.253.1/audit" target="_blank" rel="noopener">http://192.168.253.1/audit</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523606408034.jpg" alt="enter description here"></p>
+<p> Q: 你在搞笑吗? 不是直接在微信里面打开的吗?</p>
+<blockquote>
+<p>A: 直接用微信打开是可以, 然后你在微信里面让用户再注册一个账号? 对于大部分不想麻烦的小伙伴来说, 他们会对此忘而却步. 其实微信是提供接口, 让你可以获取到微信的用户名,和用户头像的. </p>
+</blockquote>
+<h2 id="一般来说分为三种情况"><a href="#一般来说分为三种情况" class="headerlink" title="一般来说分为三种情况"></a>一般来说分为三种情况</h2><ol>
+<li><p>使用通过的微信<strong>开放</strong>平台( 注意,不是微信公众平台) </p>
+<blockquote>
+<p>需要开发者认证</p>
+</blockquote>
+</li>
+<li><p>使用认证过的订阅号.</p>
+<blockquote>
+<p>需要微信认证</p>
+</blockquote>
+</li>
+<li><p>使用认证过的服务号</p>
+</li>
+</ol>
+<blockquote>
+<p>需要微信认证</p>
+</blockquote>
+<h2 id="额-那其实不是没认证就没得玩"><a href="#额-那其实不是没认证就没得玩" class="headerlink" title="额, 那其实不是没认证就没得玩?"></a>额, 那其实不是没认证就没得玩?</h2><blockquote>
+<p>好吧, 实际是的确如此, 不过. 如果你真的只是想玩玩. 你可以去这儿. <a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</a></p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523712185351.jpg" alt="enter description here"></p>
+<blockquote>
+<p>微信测试号</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>拥有几乎所有接口, </li>
+<li>以及享受局域网IP回调(意思就是说,可以支持局域网, 这是正式微信平台号所不具备的)</li>
+<li>发送模板消息, 不用审核.<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3></li>
+<li>只支持最多100个用户</li>
+<li>不能设置名称, 头像.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>对于一些只是想玩玩, 或者小规模用户的是没有问题的.</p>
+</blockquote>
+<h3 id="跟我一起操作"><a href="#跟我一起操作" class="headerlink" title="跟我一起操作"></a>跟我一起操作</h3><h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><blockquote>
+<p>扫码登录就好了;</p>
+</blockquote>
+<h4 id="微信token"><a href="#微信token" class="headerlink" title="微信token"></a>微信token</h4><blockquote>
+<p>新建php文件(啥语言都可以,自行修改)<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">token</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $nonce = $_GET[<span class="string">'nonce'</span>];</span><br><span class="line">        $token = <span class="string">'weixin'</span>;</span><br><span class="line">        $timestamp = $_GET[<span class="string">'timestamp'</span>];</span><br><span class="line">        $echostr = $_GET[<span class="string">'echostr'</span>];</span><br><span class="line">        $signature = $_GET[<span class="string">'signature'</span>];</span><br><span class="line">        <span class="comment">//形成数组，然后按字典序排序</span></span><br><span class="line">        $array = <span class="keyword">array</span>();</span><br><span class="line">        $array = <span class="keyword">array</span>($nonce, $timestamp, $token);</span><br><span class="line">        sort($array);</span><br><span class="line">        <span class="comment">//拼接成字符串,sha1加密 ，然后与signature进行校验</span></span><br><span class="line">        $str = sha1(implode($array));</span><br><span class="line">        <span class="keyword">if</span> ($str == $signature &amp;&amp; $echostr) &#123;</span><br><span class="line">            <span class="comment">//第一次接入weixin api接口的时候</span></span><br><span class="line">            <span class="keyword">echo</span> $echostr;</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后在测试号里填写路径和token, 认证成功后就可以继续操作了</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523713636476.jpg" alt="enter description here"></p>
+<blockquote>
+<p>TIP: 这个链接并不需要一直可访问,<strong>只需要第一次认证通过就OK</strong>, 甚至认证过可以直接删掉.</p>
+</blockquote>
+<h3 id="修改回调域名-接口-gt-网页授权获取用户基本信息-gt-修改"><a href="#修改回调域名-接口-gt-网页授权获取用户基本信息-gt-修改" class="headerlink" title="修改回调域名, 接口&gt; 网页授权获取用户基本信息 &gt; 修改"></a>修改回调域名, 接口&gt; 网页授权获取用户基本信息 &gt; 修改</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523781481068.jpg" alt="enter description here"></p>
+<blockquote>
+<p><strong>只有测试号支持ip</strong></p>
+</blockquote>
+<h3 id="微信的接口"><a href="#微信的接口" class="headerlink" title="微信的接口"></a>微信的接口</h3><blockquote>
+<p>接口详情可在<em><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141013" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141013</a></em>里查看</p>
+</blockquote>
+<blockquote>
+<p><strong>注意</strong>: </p>
+<ol>
+<li>这些接口不是简单的对接就好了, 每次请求都需要携带access_token,</li>
+<li>而获取access_token, 每天有获取上限.</li>
+<li>access-token具有有效期(7200s) , 过期需要重新获取. </li>
+</ol>
+</blockquote>
+<blockquote>
+<p>获取access_token的方法<em><a href="https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&amp;type=%E5%9F%BA%E7%A1%80%E6%94%AF%E6%8C%81&amp;form=%E8%8E%B7%E5%8F%96access_token%E6%8E%A5%E5%8F%A3%20/token" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&amp;type=%E5%9F%BA%E7%A1%80%E6%94%AF%E6%8C%81&amp;form=%E8%8E%B7%E5%8F%96access_token%E6%8E%A5%E5%8F%A3%20/token</a></em></p>
+</blockquote>
+<h3 id="获取用户信息-实现免登录的效果"><a href="#获取用户信息-实现免登录的效果" class="headerlink" title="获取用户信息, 实现免登录的效果"></a>获取用户信息, 实现免登录的效果</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523714004736.jpg" alt="enter description here"></p>
+<blockquote>
+<p>在这儿我们需要三个接口</p>
+</blockquote>
+<h4 id="所用接口"><a href="#所用接口" class="headerlink" title="所用接口:"></a>所用接口:</h4><blockquote>
+<p>接口一:<br><em><code>https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=SCOPE&amp;state=STATE#wechat_redirect</code></em><br>接口二:<br><em><code>https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&amp;secret=SECRET&amp;code=CODE&amp;grant_type=authorization_code</code></em><br>接口三:<br><em><code>https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&amp;openid=OPENID&amp;lang=zh_CN</code></em><br>接口四: 刷新access_token<br><em><code>https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&amp;grant_type=refresh_token&amp;refresh_token=REFRESH_TOKEN</code></em></p>
+</blockquote>
+<blockquote>
+<p>接口返回数据, 详见<em><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842</a></em></p>
+<ol>
+<li>第一步：用户同意授权，获取code<br>示例:( 注意appid, redirect_url是变量)<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$str = <span class="string">'http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx20874ebf2ea1fc7f&amp;redirect_uri='</span> . urlencode(<span class="string">"http://192.168.253.1/audit/client/"</span>) . <span class="string">'&amp;response_type=code&amp;scope=snsapi_base&amp;state=123#wechat_redirect'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523714822433.jpg" alt="enter description here"></p>
+<ol start="2">
+<li>第二步：通过code换取网页授权access_token<blockquote>
+<p>示例</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$data = json_decode(file_get_contents(<span class="string">"https://api.weixin.qq.com/sns/oauth2/access_token?appid="</span> . <span class="keyword">$this</span>-&gt;appid . <span class="string">"&amp;secret="</span> . <span class="keyword">$this</span>-&gt;secret . <span class="string">"&amp;code="</span> . $_GET[<span class="string">'code'</span>] . <span class="string">"&amp;grant_type=authorization_code"</span>));</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>: 此处的access_token与上面的access_token不是同一个东西</p>
+<ol start="3">
+<li>第三步: 通过access_token换取userinfo<br>示例<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$userInfo = json_decode(file_get_contents(<span class="string">"https://api.weixin.qq.com/sns/userinfo?access_token="</span> . $data-&gt;access_token . <span class="string">"&amp;openid="</span> . $data-&gt;openid . <span class="string">"&amp;lang=zh_CN"</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<ol start="4">
+<li>刷新access_token, 如果需要</li>
+</ol>
+<blockquote>
+<p>这是我画的一个请求过程图, 可以帮助理解</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.svg" alt="enter description here" title="未命名文件 &#40;1&#41;"></p>
+<h3 id="测试演示"><a href="#测试演示" class="headerlink" title="测试演示"></a>测试演示</h3><h4 id="1-将授权url发给手机"><a href="#1-将授权url发给手机" class="headerlink" title="1. 将授权url发给手机"></a>1. 将授权url发给手机</h4><blockquote>
+<p>非必需, 也可以在电脑上, 也可以写到公众号子菜单中点击进入. </p>
+</blockquote>
+<h4 id="2-关注测试号"><a href="#2-关注测试号" class="headerlink" title="2. 关注测试号"></a>2. 关注测试号</h4><blockquote>
+<p>不然会这样</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523781959421.jpg" alt="enter description here"></p>
+<h4 id="关注后点击"><a href="#关注后点击" class="headerlink" title="关注后点击"></a>关注后点击</h4><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523782005232.jpg" alt="enter description here"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523782015976.jpg" alt="enter description here"></p>
+<h4 id="测试号访问成功"><a href="#测试号访问成功" class="headerlink" title="测试号访问成功."></a>测试号访问成功.</h4><blockquote>
+<p>额, 关于后台代码原理就不讲了.<br>类似于一个从微信服务器发来的表单, 登录进了系统, 然后再把这些数据存入数据库就好了.</p>
+</blockquote>
+<h3 id="正式号运行效果"><a href="#正式号运行效果" class="headerlink" title="正式号运行效果"></a>正式号运行效果</h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523890856126.jpg" alt="enter description here"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523890881266.jpg" alt="enter description here"></p>
+
+        </div>
+        <!-- id 将作为查询条件 -->
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2018-04-12 - 15:04<br>
+        
+<span class="post-time">
+    最后更新时间：</span><time datetime="2018-09-09T12:09:18.398Z" itemprop="dateUpdated">2018-09-09 20:09:18</time>
+    <br>
+
+
+        
+        <span>原文链接：</span> <a href="https://thinkmoon.cn/d930.html">https://thinkmoon.cn/d930.html</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1226894331467822"
+     data-ad-slot="4141601129"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <div class="post-footer">
+          
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/codeigniter/">codeigniter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-betweens">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/99b5.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i>上一篇文章</div>
+        <h4 class="title">node环境安装canvas写中文并自定义字体生成图片</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/602a.html" id="post-next" class="post-nav-link">
+        <div class="tips">下一篇文章<i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python3 + Django + uwsgi + nginx 配置部署笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    <div id="container"></div>
+
+
+
+
+
+
+
+
+
+<div id="gitalk-container"></div>
+    <script>
+       const gitalk = new Gitalk({
+  clientID: '3a1b56f27cc225971123',
+  clientSecret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  repo: 'thinkmoon.github.io',
+  owner: 'thinkmoon',
+  admin: ['thinkmoon'],
+  labels: ['gitment'],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p>
+            
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            &nbsp;&nbsp;
+            <a href="https://www.github.com/thinkmoon" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+            </a>
+        </p>
+        <p><span>
+                醉月思 &copy;
+                
+                2017 -
+                
+                2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">
+                    粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo"
+                target="_blank">indigo</a></p>
+        <div>
+            <p style="font-weight: bold">友情链接</p>
+            <p>
+                
+                <a rel="follow" href="https://thinkmoon.cn" title="专注编程技术分享，互联网科技技术交流" target="_blank">
+                        指尖魔法屋</a>&nbsp;
+                
+                <a rel="follow" href="https://blog.psyannabel.cn" title="博客" target="_blank">
+                        ananbel的博客</a>&nbsp;
+                
+                <a rel="follow" href="https://www.shimaisui.com" title="腾讯云专题网" target="_blank">
+                        腾讯云专题网</a>&nbsp;
+                
+            </p>
+        </div>
+       <p id="htmer_time" style="color:#42b983;font-size:14px;">
+    </div>
+              <script>
+                function secondToDate(second) {
+if (!second) {
+return 0;
+}
+var time = new Array(0, 0, 0, 0, 0);
+if (second >= 365 * 24 * 3600) {
+time[0] = parseInt(second / (365 * 24 * 3600));
+second %= 365 * 24 * 3600;
+}
+if (second >= 24 * 3600) {
+time[1] = parseInt(second / (24 * 3600));
+second %= 24 * 3600;
+}
+if (second >= 3600) {
+time[2] = parseInt(second / 3600);
+second %= 3600;
+}
+if (second >= 60) {
+time[3] = parseInt(second / 60);
+second %= 60;
+}
+if (second > 0) {
+time[4] = second;
+}
+return time;
+}
+function setTime() {
+var create_time = Math.round(new Date(Date.UTC(2017, 04, 12, 01, 01, 01)).getTime() / 1000);
+var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+currentTime = secondToDate((timestamp - create_time));
+currentTimeHtml = '本站已顽强运行：' + currentTime[0] + '年' + currentTime[1] + '天'
++ currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
++ '秒';
+document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+}    
+setInterval(setTime, 1000);</script>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

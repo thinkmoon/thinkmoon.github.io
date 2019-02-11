@@ -329,7 +329,7 @@
                 }
 
                 this.setImgRect = function (rect) {
-                    this.$img.style.cssText = 'width: ' + rect.w + 'px; max-width: ' + rect.w + 'px; height:' + rect.h + 'px; top: ' + rect.t + 'px; left: ' + rect.l + 'px';
+                    this.$img.style.cssText = 'width: ' + rect.w + 'px; max-width: ' + rect.w + 'px; height:' + rect.h + 'px; top: 0px; left: ' + rect.l + 'px';
                 }
 
                 this.setFrom = function () {
@@ -493,8 +493,6 @@
      * 菜单展开事件监听
      */
     menuToggle.addEventListener(even, function (e) {
-        document.getElementsByClassName("post-card")[0].style.width=65+'vw';
-        document.getElementsByClassName("body-wrap")[0].style.width=80+'vw';
         Blog.toggleMenu(true);
         e.preventDefault();
     }, false);
@@ -502,8 +500,6 @@
      * 菜单折叠事件监听
      */
     menuOff.addEventListener(even, function () {
-        document.getElementsByClassName("post-card")[0].style.width=80+'vw';
-        document.getElementsByClassName("body-wrap")[0].style.width=95+'vw';
         menu.classList.add('hide');
     }, false);
 
@@ -513,8 +509,6 @@
             hide()
         });
         e.preventDefault();
-        document.getElementsByClassName("post-card")[0].style.width=100+'vw';
-        document.getElementsByClassName("body-wrap")[0].style.width=100+'vw';
     }, false);
 
     d.addEventListener('scroll', function () {

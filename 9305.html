@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+  	<meta name="robots" content="nofollow" />
+   <link rel="stylesheet" href="https://blog.cdn.thinkmoon.cn/mygitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+    <link rel="canonical" href="https://thinkmoon.cn/9305.html">
+    
+    
+    <title>C++11新特性之auto的妙用 | 指尖魔法屋 - 醉月思的博客 | 德尚无形，术精无境</title>
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="C++,auto新特性">
+    <meta name="description" content="C++11引入了auto和decltype关键字实现类型推导，通过这两个关键字不仅能方便地获得复杂的类型，还能简化书写，提高编码效率。下面说一下C++中的auto  旧标准auto其实并不是一个新的关键字，在旧的标准C++98/03中，它代表着“具有自动存储周期的局部变量”。啥意思呢？就是我们平常所说的变量，他与static相对。就是说所有非static类型的都是“具有自动存储期的”。也就是说在">
+<meta name="keywords" content="C++,auto新特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11新特性之auto的妙用">
+<meta property="og:url" content="https://thinkmoon.cn/9305.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="C++11引入了auto和decltype关键字实现类型推导，通过这两个关键字不仅能方便地获得复杂的类型，还能简化书写，提高编码效率。下面说一下C++中的auto  旧标准auto其实并不是一个新的关键字，在旧的标准C++98/03中，它代表着“具有自动存储周期的局部变量”。啥意思呢？就是我们平常所说的变量，他与static相对。就是说所有非static类型的都是“具有自动存储期的”。也就是说在">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-13T11:27:20.087Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++11新特性之auto的妙用">
+<meta name="twitter:description" content="C++11引入了auto和decltype关键字实现类型推导，通过这两个关键字不仅能方便地获得复杂的类型，还能简化书写，提高编码效率。下面说一下C++中的auto  旧标准auto其实并不是一个新的关键字，在旧的标准C++98/03中，它代表着“具有自动存储周期的局部变量”。啥意思呢？就是我们平常所说的变量，他与static相对。就是说所有非static类型的都是“具有自动存储期的”。也就是说在">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++11新特性之auto的妙用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++11新特性之auto的妙用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-27T00:18:14.000Z" itemprop="datePublished" class="page-time">
+  2017-04-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>文章目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#旧标准"><span class="post-toc-text">旧标准</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新标准"><span class="post-toc-text">新标准</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#auto的基本用法"><span class="post-toc-text">auto的基本用法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#auto的推导规则"><span class="post-toc-text">auto的推导规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#auto的限制"><span class="post-toc-text">auto的限制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-auto无法定义数组"><span class="post-toc-text">4.  auto无法定义数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-auto无法推导出模板参数"><span class="post-toc-text">5.  auto无法推导出模板参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#auto的优势"><span class="post-toc-text">auto的优势</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C-11新特性"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++11新特性之auto的妙用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-27 08:18:14" datetime="2017-04-27T00:18:14.000Z"  itemprop="datePublished">2017-04-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>C++11引入了auto和decltype关键字实现类型推导，通过这两个关键字不仅能方便地获得复杂的类型，还能简化书写，提高编码效率。下面说一下C++中的auto</p>
+</blockquote>
+<h3 id="旧标准"><a href="#旧标准" class="headerlink" title="旧标准"></a>旧标准</h3><p>auto其实并不是一个新的关键字，在旧的标准C++98/03中，它代表着“具有自动存储周期的局部变量”。啥意思呢？就是我们平常所说的变量，他与static相对。就是说所有非static类型的都是“具有自动存储期的”。也就是说在旧的标准下。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">autoint i =<span class="number">3</span>;<span class="comment">//等价于int i=3;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="新标准"><a href="#新标准" class="headerlink" title="新标准"></a>新标准</h3><p>在C++11中，auto作为一个新的类型指示符（如int，double）来指示编译器的，但是auto申明的变量的类型必须由编译器在编译时期推导出来，也称类型推导。这种类型推导不是C++所独有的，还有很多具备这种能力的语言（如Python，Javascript）。我们先来看一段Python代码<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name =<span class="string">"thinkmoon"</span><span class="keyword">print</span><span class="string">"hello,"</span>+ name</span><br></pre></td></tr></table></figure></p>
+<p>在这里的name是不需要定义类型的，因为这个类型很容易被推导为字符串性，如过要想在C++中实现这种效果，我们可以这样。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> name =<span class="string">"thinkmoon"</span>; </span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt;<span class="string">"hello,"</span>&lt;&lt; name &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	return0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>效果是一样的，是不是觉得写起来特别的方便呢？</p>
+<p>但是需要注意的是，在C++中这种静态类型推导是发生在编译期间的。而像Python这种动态类型推导却是发生在运行期间的。</p>
+<h3 id="auto的基本用法"><a href="#auto的基本用法" class="headerlink" title="auto的基本用法"></a>auto的基本用法</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line">usingnamespace <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">auto</span> x =<span class="number">5</span>; </span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//x被推导为intauto p =newauto(1);    </span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt;<span class="string">"*"</span>&lt;&lt; p &lt;&lt;<span class="string">"="</span>&lt;&lt;*p &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//p被推导为</span></span><br><span class="line"><span class="keyword">int</span> *constauto*v =&amp;x, u =<span class="number">6</span>; </span><br><span class="line"><span class="built_in">cout</span> &lt;&lt;<span class="string">"*"</span>&lt;&lt; v &lt;&lt;<span class="string">"="</span>&lt;&lt;*v &lt;&lt;<span class="string">"\n u="</span>&lt;&lt; u &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//v被推导为const int *，u被推导const int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于最后一个类型推导有几个需要注意</p>
+<ol>
+<li>v被推导为const int *而这里auto代替int，但是u等于6还是要写的，否则编译器会报错。</li>
+<li>u的等号后面只能写整型的变量，否则会报错，因为不能让编译器产生具有二义性的推断。<blockquote>
+<p>其实我们学习的时候可以把auto理解为占位符，它只是占着一个位置并不做其它的事情，由编译器将其类型推导出来再用对应的类型去运行，所以这个时候auto的类型推导是不能让编译器产生二义性的。  </p>
+</blockquote>
+</li>
+</ol>
+<h3 id="auto的推导规则"><a href="#auto的推导规则" class="headerlink" title="auto的推导规则"></a>auto的推导规则</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> x =<span class="number">0</span>;<span class="keyword">auto</span>* a =&amp;x;<span class="comment">//auto推导为int，</span></span><br><span class="line"><span class="keyword">auto</span> b =&amp;x;<span class="comment">//auto推导为int *，即使不申明为指针也能推断为指针</span></span><br><span class="line"><span class="keyword">auto</span>&amp; c = x;<span class="comment">//auto推导为int，等价于int </span></span><br><span class="line"><span class="keyword">auto</span> d = c;<span class="comment">//auto推导为int，auto会抛弃右值的引用类型</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> e = x;<span class="comment">//e是const int类型，</span></span><br><span class="line"><span class="keyword">auto</span> f = e;<span class="comment">//f是int型constauto&amp;g = x;//g是const </span></span><br><span class="line"><span class="keyword">int</span> &amp; <span class="keyword">auto</span> &amp; h = g;  <span class="comment">//h是const int &amp;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>总结：</p>
+<ol>
+<li>当不申明为引用或者指针时，auto的推导规则会抛弃对应右值的cv限定符（cv-qualifier，const，volatile限定符的总称）。</li>
+<li>当申明为引用或者指针时，auto推导规则会保留右值的cv属性。</li>
+</ol>
+</blockquote>
+<h3 id="auto的限制"><a href="#auto的限制" class="headerlink" title="auto的限制"></a>auto的限制</h3><ol>
+<li><p>auto s</p>
+<blockquote>
+<p>错误原因:s没有明确的类型，auto无法推断。</p>
+</blockquote>
+</li>
+<li><p>void fun(auto a=1){….}</p>
+<blockquote>
+<p>错误原因：auto类型推导不能用作函数参数。</p>
+</blockquote>
+</li>
+<li>auto不能用于非静态成员函数</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">auto</span> var_1=<span class="number">0</span>;<span class="comment">//错误，auto不能用于非静态成员函数</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">auto</span> var_2=<span class="number">0</span>;<span class="comment">//OK，var_2为static const int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-auto无法定义数组"><a href="#4-auto无法定义数组" class="headerlink" title="4.  auto无法定义数组"></a>4.  auto无法定义数组</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[<span class="number">10</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">auto</span> aa    = arr; <span class="comment">//OK,aa为int *</span></span><br><span class="line">	<span class="keyword">auto</span> bb[<span class="number">10</span>]=arr;<span class="comment">//error,auto无法定义数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-auto无法推导出模板参数"><a href="#5-auto无法推导出模板参数" class="headerlink" title="5.  auto无法推导出模板参数"></a>5.  auto无法推导出模板参数</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Bar&lt;<span class="keyword">int</span>&gt; bar;</span><br><span class="line">Bar&lt;<span class="keyword">auto</span>&gt; bb = bar;<span class="comment">//error,auto无法推导出模板参数</span></span><br></pre></td></tr></table></figure>
+<h3 id="auto的优势"><a href="#auto的优势" class="headerlink" title="auto的优势"></a>auto的优势</h3><p>既然auto的功能特性这么方便，那么它的优势在哪？或者说，我们什么时候使用它能达到神效呢？</p>
+<ol>
+<li>遍历vector<blockquote>
+<p>这是一个简单的遍历。<br><code>vector&lt;int&gt; vs;for(auto i = vs.begin(); i &lt; vs.end(); i++){......}</code><br>其实还可以更简单<br><code>for(auto var : vs){.......}</code></p>
+</blockquote>
+</li>
+<li>待补充。。。。。。。嘿嘿！</li>
+</ol>
+
+        </div>
+        <!-- id 将作为查询条件 -->
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2017-04-27 - 08:04<br>
+        
+<span class="post-time">
+    最后更新时间：</span><time datetime="2018-09-13T11:27:20.087Z" itemprop="dateUpdated">2018-09-13 19:27:20</time>
+    <br>
+
+
+        
+        <span>原文链接：</span> <a href="https://thinkmoon.cn/9305.html">https://thinkmoon.cn/9305.html</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1226894331467822"
+     data-ad-slot="4141601129"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <div class="post-footer">
+          
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/auto新特性/">auto新特性</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-betweens">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/e75e.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i>上一篇文章</div>
+        <h4 class="title">写一个图类</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/c5d6.html" id="post-next" class="post-nav-link">
+        <div class="tips">下一篇文章<i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">QQ机器人起航篇（一）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    <div id="container"></div>
+
+
+
+
+
+
+
+
+
+<div id="gitalk-container"></div>
+    <script>
+       const gitalk = new Gitalk({
+  clientID: '3a1b56f27cc225971123',
+  clientSecret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  repo: 'thinkmoon.github.io',
+  owner: 'thinkmoon',
+  admin: ['thinkmoon'],
+  labels: ['gitment'],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p>
+            
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            &nbsp;&nbsp;
+            <a href="https://www.github.com/thinkmoon" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+            </a>
+        </p>
+        <p><span>
+                醉月思 &copy;
+                
+                2017 -
+                
+                2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">
+                    粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo"
+                target="_blank">indigo</a></p>
+        <div>
+            <p style="font-weight: bold">友情链接</p>
+            <p>
+                
+                <a rel="follow" href="https://thinkmoon.cn" title="专注编程技术分享，互联网科技技术交流" target="_blank">
+                        指尖魔法屋</a>&nbsp;
+                
+                <a rel="follow" href="https://blog.psyannabel.cn" title="博客" target="_blank">
+                        ananbel的博客</a>&nbsp;
+                
+                <a rel="follow" href="https://www.shimaisui.com" title="腾讯云专题网" target="_blank">
+                        腾讯云专题网</a>&nbsp;
+                
+            </p>
+        </div>
+       <p id="htmer_time" style="color:#42b983;font-size:14px;">
+    </div>
+              <script>
+                function secondToDate(second) {
+if (!second) {
+return 0;
+}
+var time = new Array(0, 0, 0, 0, 0);
+if (second >= 365 * 24 * 3600) {
+time[0] = parseInt(second / (365 * 24 * 3600));
+second %= 365 * 24 * 3600;
+}
+if (second >= 24 * 3600) {
+time[1] = parseInt(second / (24 * 3600));
+second %= 24 * 3600;
+}
+if (second >= 3600) {
+time[2] = parseInt(second / 3600);
+second %= 3600;
+}
+if (second >= 60) {
+time[3] = parseInt(second / 60);
+second %= 60;
+}
+if (second > 0) {
+time[4] = second;
+}
+return time;
+}
+function setTime() {
+var create_time = Math.round(new Date(Date.UTC(2017, 04, 12, 01, 01, 01)).getTime() / 1000);
+var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+currentTime = secondToDate((timestamp - create_time));
+currentTimeHtml = '本站已顽强运行：' + currentTime[0] + '年' + currentTime[1] + '天'
++ currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
++ '秒';
+document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+}    
+setInterval(setTime, 1000);</script>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
