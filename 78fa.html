@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+  	<meta name="robots" content="nofollow" />
+   <link rel="stylesheet" href="https://blog.cdn.thinkmoon.cn/mygitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+    <link rel="canonical" href="https://thinkmoon.cn/78fa.html">
+    
+    
+    <title>使用轻量级php博客(gitblog)搭建个人博客-可生成静态网站 | 指尖魔法屋 - 醉月思的博客 | 德尚无形，术精无境</title>
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="博客,gitblog">
+    <meta name="description" content="一说到搭建个人博客，大家一定是第一时间想到WordPress了吧？其实使用WordPress非常的方便，实用性也非常高,如果不知如何搭建wordpress博客，可以去隔壁Benny的学习日记(公众号)看教程。但是如果你只是想要一个简洁的博客文章页，那么你可以试着用一下gitblog。">
+<meta name="keywords" content="博客,gitblog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用轻量级php博客(gitblog)搭建个人博客-可生成静态网站">
+<meta property="og:url" content="https://thinkmoon.cn/78fa.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="一说到搭建个人博客，大家一定是第一时间想到WordPress了吧？其实使用WordPress非常的方便，实用性也非常高,如果不知如何搭建wordpress博客，可以去隔壁Benny的学习日记(公众号)看教程。但是如果你只是想要一个简洁的博客文章页，那么你可以试着用一下gitblog。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/5.PNG">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1.PNG">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2.PNG">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/3.PNG">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/4.PNG">
+<meta property="og:updated_time" content="2018-09-13T09:08:04.074Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用轻量级php博客(gitblog)搭建个人博客-可生成静态网站">
+<meta name="twitter:description" content="一说到搭建个人博客，大家一定是第一时间想到WordPress了吧？其实使用WordPress非常的方便，实用性也非常高,如果不知如何搭建wordpress博客，可以去隔壁Benny的学习日记(公众号)看教程。但是如果你只是想要一个简洁的博客文章页，那么你可以试着用一下gitblog。">
+<meta name="twitter:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/5.PNG">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用轻量级php博客(gitblog)搭建个人博客-可生成静态网站</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用轻量级php博客(gitblog)搭建个人博客-可生成静态网站</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-22T03:21:58.000Z" itemprop="datePublished" class="page-time">
+  2017-10-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>文章目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是markdown-md-文件"><span class="post-toc-text">什么是markdown(md)文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#了解gitblog-网址http-www-gitblog-cn"><span class="post-toc-text">了解gitblog 网址http://www.gitblog.cn</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#gitblog与WordPress的区别"><span class="post-toc-text">gitblog与WordPress的区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何配置安装gitblog"><span class="post-toc-text">如何配置安装gitblog</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写一篇博客"><span class="post-toc-text">编写一篇博客</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#同步wp博客到gitblog"><span class="post-toc-text">同步wp博客到gitblog</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#完成gitblog的搭建"><span class="post-toc-text">完成gitblog的搭建</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-使用gitblog搭建个人博客（待改"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用轻量级php博客(gitblog)搭建个人博客-可生成静态网站</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-22 11:21:58" datetime="2017-10-22T03:21:58.000Z"  itemprop="datePublished">2017-10-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>一说到搭建个人博客，大家一定是第一时间想到WordPress了吧？<br>其实使用WordPress非常的方便，实用性也非常高,如果不知如何搭建wordpress博客，<br>可以去隔壁Benny的学习日记(公众号)看教程。但是如果你只是想要一个简洁的博客文章页，那么你可以试着用一下<strong>gitblog</strong>。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="什么是markdown-md-文件"><a href="#什么是markdown-md-文件" class="headerlink" title="什么是markdown(md)文件"></a>什么是markdown(md)文件</h3><blockquote>
+<p>markdown是一种轻量级的标记语言，它允许人们使用易读易写的纯文本格式编写文档。唔，通俗点就跟HTML一样。约定一些特定的符号来决定它的显示形式。它相对于HTML的优势就是，简单，使作者将关注重点放在内容上。相信大家也经历过调CSS的绝望吧？</p>
+</blockquote>
+<p>它的语法极其简单,语法内容:<br><a href="http://www.jianshu.com/p/de9c98bba332" target="_blank" rel="noopener">我的简书</a><br>像我这篇文章就是md文件复制的。</p>
+<h3 id="了解gitblog-网址http-www-gitblog-cn"><a href="#了解gitblog-网址http-www-gitblog-cn" class="headerlink" title="了解gitblog 网址http://www.gitblog.cn"></a>了解gitblog 网址<a href="http://www.gitblog.cn" target="_blank" rel="noopener">http://www.gitblog.cn</a></h3><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/5.PNG" alt="gitblog官网"></p>
+<p>github地址<a href="https://github.com/jockchou/gitblog" target="_blank" rel="noopener">https://github.com/jockchou/gitblog</a></p>
+<blockquote>
+<p>Gitblog是一个简单易用的Markdown博客系统，它不需要数据库，没有管理后台功能，更新博客只需要添加你写好的Markdown文件即可。 它摆脱了在线编辑器排版困难，无法实时预览的缺点，一切都交给Markdown来完成，一篇博客就是一个Markdown文件。 同时也支持评论，代码高亮，数学公式，页面PV统计等常用功能。 Gitblog提供了不同的主题样式，你可以根据自己的喜好配置，如果你想自己制作博客主题，也是非常容易的。 Gitblog还支持整站静态导出，你完全可以导出整站静态网页部署到Github Pages。</p>
+</blockquote>
+<h3 id="gitblog与WordPress的区别"><a href="#gitblog与WordPress的区别" class="headerlink" title="gitblog与WordPress的区别"></a>gitblog与WordPress的区别</h3><ol>
+<li>数据库，gitblog只有文件，没有数据库。也就是说它不需数据库，这样做的优点是简洁，适合与那些网站内容修改频率不高博客。系统更轻量级，移植性高，还可以到全站导出为静态文件。然后把它们部署到类似于githubpage平台。</li>
+<li>框架，gitblog是使用codeigniter<a href="http://codeigniter.org.cn" target="_blank" rel="noopener">http://codeigniter.org.cn</a><br>框架(一个小型的轻量级php框架)。WordPress是完全使用自己的设计思想，不依赖于主流框架，如果你了解框架的思想，如果你想好好学习，和修改开发博客源码，你可以选择使用前者。当然对自己足够自信，你可以去研究WordPress源码。</li>
+<li>完善性，如果你只是想搭个稳定完善的个人博客，那么不建议你使用gitblog。如果你自己的diy，探索精神比较强，或者你是个简洁控，你可以试试gitblog。</li>
+</ol>
+<h3 id="如何配置安装gitblog"><a href="#如何配置安装gitblog" class="headerlink" title="如何配置安装gitblog"></a>如何配置安装gitblog</h3><ol>
+<li>去github下载源码</li>
+<li>安装Apache+php环境</li>
+<li>解压到网站根目录</li>
+<li><p>修改配置文件conf.yaml,文件说明[<a href="https://github.com/jockchou/gitblogdoc/blob/master/posts/gitblog/config.md]" target="_blank" rel="noopener">https://github.com/jockchou/gitblogdoc/blob/master/posts/gitblog/config.md]</a><br>(<a href="https://github.com/jockchou/gitblogdoc/blob/master/posts/gitblog/config.md" target="_blank" rel="noopener">https://github.com/jockchou/gitblogdoc/blob/master/posts/gitblog/config.md</a>)</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">/</span> <span class="comment">#域名地址</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">thinkmoon</span> <span class="comment">#站点名称</span></span><br><span class="line"><span class="attr">    subtitle:</span> <span class="comment">#副标题</span></span><br><span class="line"><span class="attr">    theme:</span> <span class="string">quest</span> <span class="comment">#主题名</span></span><br><span class="line"><span class="attr">    enableCache:</span> <span class="literal">false</span> <span class="comment">#是否开启缓存</span></span><br><span class="line"><span class="attr">    highlight:</span> <span class="literal">true</span> <span class="comment">#是否开启代码高亮</span></span><br><span class="line"><span class="attr">    mathjax:</span> <span class="literal">false</span> <span class="comment">#数学公式支持</span></span><br><span class="line"><span class="attr">    katex:</span> <span class="literal">false</span> <span class="comment">#？</span></span><br><span class="line"><span class="attr">    youyan:</span> <span class="comment">#有言ID</span></span><br><span class="line"><span class="attr">    baiduAnalytics:</span> <span class="comment">#百度统计ID</span></span><br><span class="line"><span class="attr">    keywords:</span> <span class="string">thinkmoon</span> <span class="comment">#网站关键字</span></span><br><span class="line"><span class="attr">    description:</span> <span class="string">&amp;gt;</span></span><br><span class="line">        <span class="string">thinkmoon</span> <span class="comment">#网站描述</span></span><br><span class="line"><span class="attr">    version:</span> <span class="number">2.2</span></span><br><span class="line"><span class="attr">    author:</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">醉月思</span> <span class="comment">#作者</span></span><br><span class="line"><span class="attr">        email:</span> <span class="string">tim@thinkmoon.cn</span> <span class="comment">#邮箱</span></span><br><span class="line"><span class="attr">        github:</span> <span class="string">thinkmoon</span> <span class="comment">#github地址</span></span><br><span class="line"><span class="attr">        weibo:</span> <span class="string">your-weibo</span> <span class="comment">#微博地址</span></span><br><span class="line"><span class="attr">        avatar:</span></span><br><span class="line"><span class="attr">    blog:</span></span><br><span class="line"><span class="attr">        recentSize:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">        pageSize:</span> <span class="number">6</span></span><br><span class="line"><span class="attr">        pageBarSize:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">        allBlogsForPage:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    text:</span></span><br><span class="line"><span class="attr">        title:</span> <span class="string">介绍</span></span><br><span class="line"><span class="attr">        intro:</span> <span class="string">&amp;gt;</span></span><br><span class="line">            <span class="string">本博客使用Gitblog搭建,</span></span><br><span class="line">            <span class="string">wordpress博客请访问https://thinkmoonmagic.wordpress.com</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>你可能需要修改的配置参数：</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">修改成你的域名，http://yourdomain.com，注意最后没有杠。</span></span><br><span class="line"><span class="string">title：</span> <span class="string">修改成你的博客标题</span></span><br><span class="line"><span class="string">subtitle：</span> <span class="string">修改成你的副标题</span></span><br><span class="line"><span class="string">duoshuo：</span> <span class="string">GitBlog采用多说评论框，你需要申请多说账号，并在这里填写你的多说ID</span></span><br><span class="line"><span class="string">baiduAnalytics：</span> <span class="string">GitBlog采用百度统计，你需要申请百度统计账号，在这里填写你的统计Key</span></span><br><span class="line"><span class="string">author：修改为你个人的信息即可</span></span><br><span class="line"><span class="string">如果你不需要评论和统计功能，删除duoshuo和baiduAnalytics这两荐即可。其他信息，可根据浏览博客页面的效果进行修改调整。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>5.访问，OK了</p>
+<h3 id="编写一篇博客"><a href="#编写一篇博客" class="headerlink" title="编写一篇博客"></a>编写一篇博客</h3><blockquote>
+<p>在gitblog里面，一篇文章就是markdown文件。所有的文章都在/blog目录下，你把你写好的md文件放到这个文件夹就可以了</p>
+</blockquote>
+<p>博客文章的属性，包括作者，题目，标签，分类目录等，由md文件里面的注释决定。<a href="https://github.com/jockchou/gitblogdoc/blob/master/posts/gitblog/edit.md" target="_blank" rel="noopener">注释规范</a></p>
+<p>例如use_gitblog_setup_blog.md</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1.PNG" alt="gitblog博客文章编"></p>
+<p>上传到blog文件夹之后，主页界面刷新效果</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2.PNG" alt="gitblog效果展示"></p>
+<p>文章页效果</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/3.PNG" alt="gitblog文章页效果展示"></p>
+<blockquote>
+<p>这儿需注意，gitblog默认是开启网站缓存的，如果你的网站更新不够频繁，你可以不用改配置，在配置conf.yaml里面修改。</p>
+</blockquote>
+<h3 id="同步wp博客到gitblog"><a href="#同步wp博客到gitblog" class="headerlink" title="同步wp博客到gitblog"></a>同步wp博客到gitblog</h3><ol>
+<li>首先从wordpress后台中导出xml数据</li>
+<li>重命名为wordpress.xml</li>
+<li><p>使用PHP 网站根目录/index.php wp2gb 命令同步</p>
+<p>例如: php /var/www/html/index.php wp2gb</p>
+<p>运行成功会提示finished！运行后的主页俯视图<br><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/4.PNG" alt="wordpress迁移到gitblog" title="4"></p>
+</li>
+</ol>
+<h3 id="完成gitblog的搭建"><a href="#完成gitblog的搭建" class="headerlink" title="完成gitblog的搭建"></a>完成gitblog的搭建</h3><p>好啦，大功告成啦，一个gitblog博客网站就已经搭建成功了<a href="http://www.thinkmoon.cn" target="_blank" rel="noopener">www.thinkmoon.cn</a></p>
+
+        </div>
+        <!-- id 将作为查询条件 -->
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2017-10-22 - 11:10<br>
+        
+<span class="post-time">
+    最后更新时间：</span><time datetime="2018-09-13T09:08:04.074Z" itemprop="dateUpdated">2018-09-13 17:08:04</time>
+    <br>
+
+
+        
+        <span>原文链接：</span> <a href="https://thinkmoon.cn/78fa.html">https://thinkmoon.cn/78fa.html</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1226894331467822"
+     data-ad-slot="4141601129"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <div class="post-footer">
+          
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitblog/">gitblog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-betweens">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/dc85.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i>上一篇文章</div>
+        <h4 class="title">如何从实验室唤醒在宿舍的关机状态下的电脑</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/836e.html" id="post-next" class="post-nav-link">
+        <div class="tips">下一篇文章<i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">原项目代码分析</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    <div id="container"></div>
+
+
+
+
+
+
+
+
+
+<div id="gitalk-container"></div>
+    <script>
+       const gitalk = new Gitalk({
+  clientID: '3a1b56f27cc225971123',
+  clientSecret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  repo: 'thinkmoon.github.io',
+  owner: 'thinkmoon',
+  admin: ['thinkmoon'],
+  labels: ['gitment'],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p>
+            
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            &nbsp;&nbsp;
+            <a href="https://www.github.com/thinkmoon" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+            </a>
+        </p>
+        <p><span>
+                醉月思 &copy;
+                
+                2017 -
+                
+                2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">
+                    粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo"
+                target="_blank">indigo</a></p>
+        <div>
+            <p style="font-weight: bold">友情链接</p>
+            <p>
+                
+                <a rel="follow" href="https://thinkmoon.cn" title="专注编程技术分享，互联网科技技术交流" target="_blank">
+                        指尖魔法屋</a>&nbsp;
+                
+                <a rel="follow" href="https://blog.psyannabel.cn" title="博客" target="_blank">
+                        ananbel的博客</a>&nbsp;
+                
+                <a rel="follow" href="https://www.shimaisui.com" title="腾讯云专题网" target="_blank">
+                        腾讯云专题网</a>&nbsp;
+                
+            </p>
+        </div>
+       <p id="htmer_time" style="color:#42b983;font-size:14px;">
+    </div>
+              <script>
+                function secondToDate(second) {
+if (!second) {
+return 0;
+}
+var time = new Array(0, 0, 0, 0, 0);
+if (second >= 365 * 24 * 3600) {
+time[0] = parseInt(second / (365 * 24 * 3600));
+second %= 365 * 24 * 3600;
+}
+if (second >= 24 * 3600) {
+time[1] = parseInt(second / (24 * 3600));
+second %= 24 * 3600;
+}
+if (second >= 3600) {
+time[2] = parseInt(second / 3600);
+second %= 3600;
+}
+if (second >= 60) {
+time[3] = parseInt(second / 60);
+second %= 60;
+}
+if (second > 0) {
+time[4] = second;
+}
+return time;
+}
+function setTime() {
+var create_time = Math.round(new Date(Date.UTC(2017, 04, 12, 01, 01, 01)).getTime() / 1000);
+var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+currentTime = secondToDate((timestamp - create_time));
+currentTimeHtml = '本站已顽强运行：' + currentTime[0] + '年' + currentTime[1] + '天'
++ currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
++ '秒';
+document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+}    
+setInterval(setTime, 1000);</script>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

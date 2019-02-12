@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+  	<meta name="robots" content="nofollow" />
+   <link rel="stylesheet" href="https://blog.cdn.thinkmoon.cn/mygitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+    <link rel="canonical" href="https://thinkmoon.cn/e3b8.html">
+    
+    
+    <title>初探JavaFx | 指尖魔法屋 - 醉月思的博客 | 德尚无形，术精无境</title>
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="Java">
+    <meta name="description" content="IDEA下开发JavaFx Application New &amp;gt; project &amp;gt; JavaFx Application  添加SceneBuilder  下载SceneBuilder file | setting &amp;gt; JavaFx &amp;gt; add path   设置自定义图标 primaryStage.getIcons().add(new Image(&amp;quot;file:r">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探JavaFx">
+<meta property="og:url" content="https://thinkmoon.cn/e3b8.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="IDEA下开发JavaFx Application New &amp;gt; project &amp;gt; JavaFx Application  添加SceneBuilder  下载SceneBuilder file | setting &amp;gt; JavaFx &amp;gt; add path   设置自定义图标 primaryStage.getIcons().add(new Image(&amp;quot;file:r">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-09T12:09:18.394Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初探JavaFx">
+<meta name="twitter:description" content="IDEA下开发JavaFx Application New &amp;gt; project &amp;gt; JavaFx Application  添加SceneBuilder  下载SceneBuilder file | setting &amp;gt; JavaFx &amp;gt; add path   设置自定义图标 primaryStage.getIcons().add(new Image(&amp;quot;file:r">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">初探JavaFx</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">初探JavaFx</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-29T13:18:00.000Z" itemprop="datePublished" class="page-time">
+  2018-06-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>文章目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IDEA下开发JavaFx-Application"><span class="post-toc-text">IDEA下开发JavaFx Application</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加SceneBuilder"><span class="post-toc-text">添加SceneBuilder</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设置自定义图标"><span class="post-toc-text">设置自定义图标</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#打包生成exe"><span class="post-toc-text">打包生成exe</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#事件绑定"><span class="post-toc-text">事件绑定</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fx-id-对象属性修改"><span class="post-toc-text">fx:id 对象属性修改</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我的代码"><span class="post-toc-text">我的代码</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-1530278286"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">初探JavaFx</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-29 21:18:00" datetime="2018-06-29T13:18:00.000Z"  itemprop="datePublished">2018-06-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="IDEA下开发JavaFx-Application"><a href="#IDEA下开发JavaFx-Application" class="headerlink" title="IDEA下开发JavaFx Application"></a>IDEA下开发JavaFx Application</h2><blockquote>
+<p>New &gt; project &gt; JavaFx Application</p>
+</blockquote>
+<h2 id="添加SceneBuilder"><a href="#添加SceneBuilder" class="headerlink" title="添加SceneBuilder"></a>添加SceneBuilder</h2><blockquote>
+<ol>
+<li>下载SceneBuilder</li>
+<li>file | setting &gt; JavaFx &gt; add path</li>
+</ol>
+</blockquote>
+<h2 id="设置自定义图标"><a href="#设置自定义图标" class="headerlink" title="设置自定义图标"></a>设置自定义图标</h2><blockquote>
+<p><code>primaryStage.getIcons().add(new Image(&quot;file:res/internet.png&quot;));</code></p>
+</blockquote>
+<h2 id="打包生成exe"><a href="#打包生成exe" class="headerlink" title="打包生成exe"></a>打包生成exe</h2><blockquote>
+<p>File | project structure &gt; Artifacts &gt; JavaFx &gt;(class | title | Navite Bundle)</p>
+</blockquote>
+<p>注意目录文件要能找到</p>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p><code>fxml</code></p>
+<blockquote>
+<p><code>onAction add</code></p>
+</blockquote>
+<p><code>Java</code></p>
+<blockquote>
+<p>添加函数</p>
+</blockquote>
+<h2 id="fx-id-对象属性修改"><a href="#fx-id-对象属性修改" class="headerlink" title="fx:id 对象属性修改"></a>fx:id 对象属性修改</h2><blockquote>
+<ol>
+<li>添加一个fxml成员变量</li>
+<li>调用setText(“”);</li>
+</ol>
+</blockquote>
+<h2 id="我的代码"><a href="#我的代码" class="headerlink" title="我的代码"></a>我的代码</h2><p><code>MainApp.fxml</code><br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.geometry.Insets<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.scene.control.Button<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.scene.control.DialogPane<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.scene.control.Label<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.scene.control.TextArea<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.scene.control.TextField<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.scene.layout.FlowPane<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.scene.layout.Pane<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="php"><span class="meta">&lt;?</span>import javafx.scene.text.Font<span class="meta">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">FlowPane</span> <span class="attr">maxHeight</span>=<span class="string">"-Infinity"</span> <span class="attr">maxWidth</span>=<span class="string">"-Infinity"</span> <span class="attr">minHeight</span>=<span class="string">"-Infinity"</span> <span class="attr">minWidth</span>=<span class="string">"-Infinity"</span> <span class="attr">prefHeight</span>=<span class="string">"400.0"</span> <span class="attr">prefWidth</span>=<span class="string">"800.0"</span> <span class="attr">xmlns</span>=<span class="string">"http://javafx.com/javafx/8.0.121"</span> <span class="attr">xmlns:fx</span>=<span class="string">"http://javafx.com/fxml/1"</span> <span class="attr">fx:controller</span>=<span class="string">"cn.thinkmoon.CSMA_CD.MainApp"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">children</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Pane</span> <span class="attr">prefHeight</span>=<span class="string">"400.0"</span> <span class="attr">prefWidth</span>=<span class="string">"800.0"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">children</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Button</span> <span class="attr">layoutX</span>=<span class="string">"154.0"</span> <span class="attr">layoutY</span>=<span class="string">"206.0"</span> <span class="attr">mnemonicParsing</span>=<span class="string">"false"</span> <span class="attr">onAction</span>=<span class="string">"#handleSendDataPackage"</span> <span class="attr">text</span>=<span class="string">"发送数据包"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Font</span> <span class="attr">size</span>=<span class="string">"14.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Button</span> <span class="attr">layoutX</span>=<span class="string">"283.0"</span> <span class="attr">layoutY</span>=<span class="string">"206.0"</span> <span class="attr">mnemonicParsing</span>=<span class="string">"false"</span> <span class="attr">text</span>=<span class="string">"重置操作"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Font</span> <span class="attr">size</span>=<span class="string">"14.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextArea</span> <span class="attr">layoutX</span>=<span class="string">"500.0"</span> <span class="attr">layoutY</span>=<span class="string">"51.0"</span> <span class="attr">prefHeight</span>=<span class="string">"299.0"</span> <span class="attr">prefWidth</span>=<span class="string">"277.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Label</span> <span class="attr">fx:id</span>=<span class="string">"host1SendNum"</span> <span class="attr">layoutX</span>=<span class="string">"43.0"</span> <span class="attr">layoutY</span>=<span class="string">"70.0"</span> <span class="attr">text</span>=<span class="string">"主机1所需发送的数据包数："</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Font</span> <span class="attr">size</span>=<span class="string">"17.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Label</span> <span class="attr">layoutX</span>=<span class="string">"43.0"</span> <span class="attr">layoutY</span>=<span class="string">"130.0"</span> <span class="attr">text</span>=<span class="string">"主机2所需发送的数据包数："</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Font</span> <span class="attr">size</span>=<span class="string">"17.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Label</span> <span class="attr">layoutX</span>=<span class="string">"52.0"</span> <span class="attr">layoutY</span>=<span class="string">"291.0"</span> <span class="attr">text</span>=<span class="string">"主机1"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Font</span> <span class="attr">size</span>=<span class="string">"18.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Label</span> <span class="attr">layoutX</span>=<span class="string">"410.0"</span> <span class="attr">layoutY</span>=<span class="string">"291.0"</span> <span class="attr">text</span>=<span class="string">"主机2"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Font</span> <span class="attr">size</span>=<span class="string">"18.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"279.0"</span> <span class="attr">layoutY</span>=<span class="string">"71.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"279.0"</span> <span class="attr">layoutY</span>=<span class="string">"130.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Label</span> <span class="attr">layoutX</span>=<span class="string">"292.0"</span> <span class="attr">layoutY</span>=<span class="string">"14.0"</span> <span class="attr">text</span>=<span class="string">"模拟以太网发送过程"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Font</span> <span class="attr">size</span>=<span class="string">"17.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Label</span> <span class="attr">layoutX</span>=<span class="string">"48.0"</span> <span class="attr">layoutY</span>=<span class="string">"327.0"</span> <span class="attr">style</span>=<span class="string">"-fx-border-width: 1; -fx-border-color: #218ada;"</span> <span class="attr">styleClass</span>=<span class="string">"tip"</span> <span class="attr">text</span>=<span class="string">"信道空闲"</span> <span class="attr">textFill</span>=<span class="string">"#218ada"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">padding</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Insets</span> <span class="attr">bottom</span>=<span class="string">"2.0"</span> <span class="attr">left</span>=<span class="string">"2.0"</span> <span class="attr">right</span>=<span class="string">"2.0"</span> <span class="attr">top</span>=<span class="string">"1.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">padding</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Label</span> <span class="attr">layoutX</span>=<span class="string">"406.0"</span> <span class="attr">layoutY</span>=<span class="string">"327.0"</span> <span class="attr">style</span>=<span class="string">"-fx-border-width: 1; -fx-border-color: #218ada;"</span> <span class="attr">styleClass</span>=<span class="string">"tip"</span> <span class="attr">text</span>=<span class="string">"信道空闲"</span> <span class="attr">textFill</span>=<span class="string">"#218ada"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">padding</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Insets</span> <span class="attr">bottom</span>=<span class="string">"2.0"</span> <span class="attr">left</span>=<span class="string">"2.0"</span> <span class="attr">right</span>=<span class="string">"2.0"</span> <span class="attr">top</span>=<span class="string">"1.0"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">padding</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"114.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"140.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"170.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"199.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"226.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"257.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"283.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"311.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"340.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextField</span> <span class="attr">layoutX</span>=<span class="string">"369.0"</span> <span class="attr">layoutY</span>=<span class="string">"292.0"</span> <span class="attr">prefHeight</span>=<span class="string">"23.0"</span> <span class="attr">prefWidth</span>=<span class="string">"19.0"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">children</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Pane</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">DialogPane</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">children</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">FlowPane</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>MainApp.java</code><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.thinkmoon.CSMA_CD;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javafx.application.Application;</span><br><span class="line"><span class="keyword">import</span> javafx.event.ActionEvent;</span><br><span class="line"><span class="keyword">import</span> javafx.fxml.FXML;</span><br><span class="line"><span class="keyword">import</span> javafx.fxml.FXMLLoader;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.Parent;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.Scene;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.control.Label;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.image.Image;</span><br><span class="line"><span class="keyword">import</span> javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApp</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Stage primaryStage;</span><br><span class="line">    <span class="meta">@FXML</span></span><br><span class="line">    <span class="keyword">private</span> Label host1SendNum;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.primaryStage = primaryStage;</span><br><span class="line">        initRootLayout();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化主界面布局</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initRootLayout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Parent root = FXMLLoader.load(getClass().getResource(<span class="string">"view/MainApp.fxml"</span>));</span><br><span class="line">            primaryStage.setTitle(<span class="string">"CSMA/CD协议仿真及演示"</span>);</span><br><span class="line">            primaryStage.setScene(<span class="keyword">new</span> Scene(root, <span class="number">800</span>, <span class="number">400</span>));</span><br><span class="line">            primaryStage.setResizable(<span class="keyword">false</span>);</span><br><span class="line">            primaryStage.getIcons().add(<span class="keyword">new</span> Image(<span class="string">"file:res/internet.png"</span>));</span><br><span class="line">            primaryStage.show();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        launch(args);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@FXML</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleSendDataPackage</span><span class="params">(ActionEvent event)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <!-- id 将作为查询条件 -->
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2018-06-29 - 21:06<br>
+        
+<span class="post-time">
+    最后更新时间：</span><time datetime="2018-09-09T12:09:18.394Z" itemprop="dateUpdated">2018-09-09 20:09:18</time>
+    <br>
+
+
+        
+        <span>原文链接：</span> <a href="https://thinkmoon.cn/e3b8.html">https://thinkmoon.cn/e3b8.html</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1226894331467822"
+     data-ad-slot="4141601129"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <div class="post-footer">
+          
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-betweens">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/69a.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i>上一篇文章</div>
+        <h4 class="title">篆书转换器 | 版本更新2</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/c064.html" id="post-next" class="post-nav-link">
+        <div class="tips">下一篇文章<i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">&lt;运动世界校园&gt;外挂</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    <div id="container"></div>
+
+
+
+
+
+
+
+
+
+<div id="gitalk-container"></div>
+    <script>
+       const gitalk = new Gitalk({
+  clientID: '3a1b56f27cc225971123',
+  clientSecret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  repo: 'thinkmoon.github.io',
+  owner: 'thinkmoon',
+  admin: ['thinkmoon'],
+  labels: ['gitment'],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p>
+            
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            &nbsp;&nbsp;
+            <a href="https://www.github.com/thinkmoon" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+            </a>
+        </p>
+        <p><span>
+                醉月思 &copy;
+                
+                2017 -
+                
+                2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">
+                    粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo"
+                target="_blank">indigo</a></p>
+        <div>
+            <p style="font-weight: bold">友情链接</p>
+            <p>
+                
+                <a rel="follow" href="https://thinkmoon.cn" title="专注编程技术分享，互联网科技技术交流" target="_blank">
+                        指尖魔法屋</a>&nbsp;
+                
+                <a rel="follow" href="https://blog.psyannabel.cn" title="博客" target="_blank">
+                        ananbel的博客</a>&nbsp;
+                
+                <a rel="follow" href="https://www.shimaisui.com" title="腾讯云专题网" target="_blank">
+                        腾讯云专题网</a>&nbsp;
+                
+            </p>
+        </div>
+       <p id="htmer_time" style="color:#42b983;font-size:14px;">
+    </div>
+              <script>
+                function secondToDate(second) {
+if (!second) {
+return 0;
+}
+var time = new Array(0, 0, 0, 0, 0);
+if (second >= 365 * 24 * 3600) {
+time[0] = parseInt(second / (365 * 24 * 3600));
+second %= 365 * 24 * 3600;
+}
+if (second >= 24 * 3600) {
+time[1] = parseInt(second / (24 * 3600));
+second %= 24 * 3600;
+}
+if (second >= 3600) {
+time[2] = parseInt(second / 3600);
+second %= 3600;
+}
+if (second >= 60) {
+time[3] = parseInt(second / 60);
+second %= 60;
+}
+if (second > 0) {
+time[4] = second;
+}
+return time;
+}
+function setTime() {
+var create_time = Math.round(new Date(Date.UTC(2017, 04, 12, 01, 01, 01)).getTime() / 1000);
+var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+currentTime = secondToDate((timestamp - create_time));
+currentTimeHtml = '本站已顽强运行：' + currentTime[0] + '年' + currentTime[1] + '天'
++ currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
++ '秒';
+document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+}    
+setInterval(setTime, 1000);</script>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+  	<meta name="robots" content="nofollow" />
+   <link rel="stylesheet" href="https://blog.cdn.thinkmoon.cn/mygitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+    <link rel="canonical" href="https://thinkmoon.cn/ecbe.html">
+    
+    
+    <title>腾讯云对象存储(调用篇) | 指尖魔法屋 - 醉月思的博客 | 德尚无形，术精无境</title>
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="云">
+    <meta name="description" content="&amp;gt; 接上篇，云对象存储（配置篇)旧版本《篆书转换器》响应网络图">
+<meta name="keywords" content="云">
+<meta property="og:type" content="article">
+<meta property="og:title" content="腾讯云对象存储(调用篇)">
+<meta property="og:url" content="https://thinkmoon.cn/ecbe.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="&amp;gt; 接上篇，云对象存储（配置篇)旧版本《篆书转换器》响应网络图">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E3%80%8A%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E3%80%8B%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%9B%BE-CDN.png">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.png">
+<meta property="og:updated_time" content="2018-09-09T12:09:18.398Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="腾讯云对象存储(调用篇)">
+<meta name="twitter:description" content="&amp;gt; 接上篇，云对象存储（配置篇)旧版本《篆书转换器》响应网络图">
+<meta name="twitter:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">腾讯云对象存储(调用篇)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">腾讯云对象存储(调用篇)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-23T07:41:09.000Z" itemprop="datePublished" class="page-time">
+  2017-11-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/想法/">想法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>文章目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复习一个计组知识（cache“读不命中”的解决办法）"><span class="post-toc-text">复习一个计组知识（cache“读不命中”的解决办法）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原理类比"><span class="post-toc-text">原理类比</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优势"><span class="post-toc-text">优势</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现思路的用例图"><span class="post-toc-text">实现思路的用例图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-腾讯云对象存储(调用篇)"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">腾讯云对象存储(调用篇)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-23 15:41:09" datetime="2017-11-23T07:41:09.000Z"  itemprop="datePublished">2017-11-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/想法/">想法</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <div style="font-family: 'Helvetica Neue' , Helvetica , Tahoma , Arial , 'Hiragino Sans GB' , STHeiti , 'Microsoft YaHei' , '微软雅黑' , 'WenQuanYi Micro Hei' , STXihei , '华文细黑' , Heiti , '黑体' , SimSun , '宋体' , Song , sans-serif; font-size: 18px; line-height: 1.33; font-weight: 100; color: #2f2f2f; word-wrap: break-word;"><br><div class="preview html_preview"><br>&gt; 接上篇，云对象存储（配置篇)<br><br>旧版本《篆书转换器》响应网络图<br><br><a id="more"></a><br><br><div class="story_image_container story_block_image" style="page-break-inside: avoid; text-align: center;"><br><div class="story_image" style="display: inline-block; position: relative; max-width: 80%;"><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png" alt="enter description here" title="响应流程图"></div><br>&nbsp;<br><div class="story_image_caption " style="border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 10px;">响应流程图</div><br></div><br><div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e5a48de4b9a0e4b880e4b8aae8aea1e7bb84e79fa5e8af86efbc88cachee2809ce8afbbe4b88de591bde4b8ade2809de79a84e8a7a3e586b3e58a9ee6b395efbc89_1"></a><a id="e5a48de4b9a0e4b880e4b8aae8aea1e7bb84e79fa5e8af86efbc88cachee2809ce8afbbe4b88de591bde4b8ade2809de79a84e8a7a3e586b3e58a9ee6b395efbc89_1" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="复习一个计组知识cache读不命中的解决办法"></a><a id="复习一个计组知识cache读不命中的解决办法" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+
+
+<h3 id="复习一个计组知识（cache“读不命中”的解决办法）"><a href="#复习一个计组知识（cache“读不命中”的解决办法）" class="headerlink" title="复习一个计组知识（cache“读不命中”的解决办法）"></a>复习一个计组知识（cache“读不命中”的解决办法）</h3><ol>
+<li>将内存中的数据复制到Cache中，然后把这个字传给CPU。</li>
+<li>启动常规的主存读取周期，将字从主存中读出在并送到CPU，同时将这个字送入Cache。<div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e58e9fe79086e7b1bbe6af94_2"></a><a id="e58e9fe79086e7b1bbe6af94_2" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="原理类比"></a><a id="原理类比" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+
+</li>
+</ol>
+<h3 id="原理类比"><a href="#原理类比" class="headerlink" title="原理类比"></a>原理类比</h3><blockquote>
+<p>软件请求 =&gt; CPU运算<br>云对象存储（CDN分发)响应 =&gt; 高速缓存Cache读取<br>服务器带宽响应 =&gt; 主存读取</p>
+</blockquote>
+<p>新的响应网络图（采用解决方法2）</p>
+<div class="story_image_container story_block_image" style="page-break-inside: avoid; text-align: center;"><br><div class="story_image" style="display: inline-block; position: relative; max-width: 80%;"><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E3%80%8A%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E3%80%8B%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%9B%BE-CDN.png" alt="enter description here" title="《篆书转换器》网络拓扑图-CDN"></div><br>&nbsp;<br><div class="story_image_caption " style="border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 10px;">《篆书转换器》网络拓扑图-CDN</div><br></div><br><div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e4bc98e58abf_3"></a><a id="e4bc98e58abf_3" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="优势"></a><a id="优势" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ol>
+<li>提高图片资源响应速度</li>
+<li>减少服务器带宽占用<div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e5ae9ee78eb0e6809de8b7afe79a84e794a8e4be8be59bbe_4"></a><a id="e5ae9ee78eb0e6809de8b7afe79a84e794a8e4be8be59bbe_4" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="实现思路的用例图"></a><a id="实现思路的用例图" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+
+</li>
+</ol>
+<h3 id="实现思路的用例图"><a href="#实现思路的用例图" class="headerlink" title="实现思路的用例图"></a>实现思路的用例图</h3><div class="story_image_container story_block_image" style="page-break-inside: avoid; text-align: center;"><br><div class="story_image" style="display: inline-block; position: relative; max-width: 80%;"><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.png" alt="enter description here" title="实现思路的用例图"></div><br>&nbsp;<br><div class="story_image_caption " style="border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 10px;">实现思路的用例图</div><br></div>
+
+<hr>
+<div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e680bbe7bb93_5"></a><a id="e680bbe7bb93_5" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="总结"></a><a id="总结" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>这只是思路，日访问量没有500+(如果真的到了，这样做也解决不了问题)<br>完全没必要这么做，而且数据，资源重用率低，冗余非常高，几乎没有实现这个的必要。<br>所以这个想法放弃<br></p></blockquote></div><br></div><p></p>
+
+
+        </div>
+        <!-- id 将作为查询条件 -->
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2017-11-23 - 15:11<br>
+        
+<span class="post-time">
+    最后更新时间：</span><time datetime="2018-09-09T12:09:18.398Z" itemprop="dateUpdated">2018-09-09 20:09:18</time>
+    <br>
+
+
+        
+        <span>原文链接：</span> <a href="https://thinkmoon.cn/ecbe.html">https://thinkmoon.cn/ecbe.html</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1226894331467822"
+     data-ad-slot="4141601129"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <div class="post-footer">
+          
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云/">云</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-betweens">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/f4f7.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i>上一篇文章</div>
+        <h4 class="title">推荐一个（神器级）服务器软件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/631a.html" id="post-next" class="post-nav-link">
+        <div class="tips">下一篇文章<i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">爱与性</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    <div id="container"></div>
+
+
+
+
+
+
+
+
+
+<div id="gitalk-container"></div>
+    <script>
+       const gitalk = new Gitalk({
+  clientID: '3a1b56f27cc225971123',
+  clientSecret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  repo: 'thinkmoon.github.io',
+  owner: 'thinkmoon',
+  admin: ['thinkmoon'],
+  labels: ['gitment'],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p>
+            
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            &nbsp;&nbsp;
+            <a href="https://www.github.com/thinkmoon" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+            </a>
+        </p>
+        <p><span>
+                醉月思 &copy;
+                
+                2017 -
+                
+                2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">
+                    粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo"
+                target="_blank">indigo</a></p>
+        <div>
+            <p style="font-weight: bold">友情链接</p>
+            <p>
+                
+                <a rel="follow" href="https://thinkmoon.cn" title="专注编程技术分享，互联网科技技术交流" target="_blank">
+                        指尖魔法屋</a>&nbsp;
+                
+                <a rel="follow" href="https://blog.psyannabel.cn" title="博客" target="_blank">
+                        ananbel的博客</a>&nbsp;
+                
+                <a rel="follow" href="https://www.shimaisui.com" title="腾讯云专题网" target="_blank">
+                        腾讯云专题网</a>&nbsp;
+                
+            </p>
+        </div>
+       <p id="htmer_time" style="color:#42b983;font-size:14px;">
+    </div>
+              <script>
+                function secondToDate(second) {
+if (!second) {
+return 0;
+}
+var time = new Array(0, 0, 0, 0, 0);
+if (second >= 365 * 24 * 3600) {
+time[0] = parseInt(second / (365 * 24 * 3600));
+second %= 365 * 24 * 3600;
+}
+if (second >= 24 * 3600) {
+time[1] = parseInt(second / (24 * 3600));
+second %= 24 * 3600;
+}
+if (second >= 3600) {
+time[2] = parseInt(second / 3600);
+second %= 3600;
+}
+if (second >= 60) {
+time[3] = parseInt(second / 60);
+second %= 60;
+}
+if (second > 0) {
+time[4] = second;
+}
+return time;
+}
+function setTime() {
+var create_time = Math.round(new Date(Date.UTC(2017, 04, 12, 01, 01, 01)).getTime() / 1000);
+var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+currentTime = secondToDate((timestamp - create_time));
+currentTimeHtml = '本站已顽强运行：' + currentTime[0] + '年' + currentTime[1] + '天'
++ currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
++ '秒';
+document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+}    
+setInterval(setTime, 1000);</script>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

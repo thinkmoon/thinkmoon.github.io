@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+  	<meta name="robots" content="nofollow" />
+   <link rel="stylesheet" href="https://blog.cdn.thinkmoon.cn/mygitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+    <link rel="canonical" href="https://thinkmoon.cn/4a59.html">
+    
+    
+    <title>微信小程序svg转canvas | 指尖魔法屋 - 醉月思的博客 | 德尚无形，术精无境</title>
+    
+    <meta name="theme-color" content="#42b983">
+    
+    
+    <meta name="keywords" content="nodejs">
+    <meta name="description" content="首先，为什么我们需要这个？  因为微信小程序虽然可以可以绘制svg图片，但是在真机调试的时候却渲染不出来。所以我们需要一个工具(可以将svg转成微信小程序支持的canvas并绘制出来)。  我使用的是touch-wx + vs code 开发。 Touch WX 是什么？ Touch WX是一套完全免费的微信小程序开发框架，包含丰富的UI控件用于官方组件的补充。与Touch UI开发方式很相似">
+<meta name="keywords" content="nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序svg转canvas">
+<meta property="og:url" content="https://thinkmoon.cn/4a59.html">
+<meta property="og:site_name" content="指尖魔法屋 - 醉月思的博客">
+<meta property="og:description" content="首先，为什么我们需要这个？  因为微信小程序虽然可以可以绘制svg图片，但是在真机调试的时候却渲染不出来。所以我们需要一个工具(可以将svg转成微信小程序支持的canvas并绘制出来)。  我使用的是touch-wx + vs code 开发。 Touch WX 是什么？ Touch WX是一套完全免费的微信小程序开发框架，包含丰富的UI控件用于官方组件的补充。与Touch UI开发方式很相似">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/TIM%E6%88%AA%E5%9B%BE20180620111841.png">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/TIM%E6%88%AA%E5%9B%BE20180620111451.png">
+<meta property="og:image" content="https://blog.cdn.thinkmoon.cn/TIM%E6%88%AA%E5%9B%BE20180620113452.png">
+<meta property="og:updated_time" content="2018-09-09T12:09:18.394Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序svg转canvas">
+<meta name="twitter:description" content="首先，为什么我们需要这个？  因为微信小程序虽然可以可以绘制svg图片，但是在真机调试的时候却渲染不出来。所以我们需要一个工具(可以将svg转成微信小程序支持的canvas并绘制出来)。  我使用的是touch-wx + vs code 开发。 Touch WX 是什么？ Touch WX是一套完全免费的微信小程序开发框架，包含丰富的UI控件用于官方组件的补充。与Touch UI开发方式很相似">
+<meta name="twitter:image" content="https://blog.cdn.thinkmoon.cn/TIM%E6%88%AA%E5%9B%BE20180620111841.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="指尖魔法屋 - 醉月思的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img style="max-width:100%" src="/img/avatar.jpg" alt="醉月思">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">醉月思</h5>
+          <a href="mailto:tim@thinkmoon.cn" title="tim@thinkmoon.cn" class="mail">tim@thinkmoon.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">微信小程序svg转canvas</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">微信小程序svg转canvas</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-20T03:04:00.000Z" itemprop="datePublished" class="page-time">
+  2018-06-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>文章目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Touch-WX-是什么？"><span class="post-toc-text">Touch WX 是什么？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Touch-WX-的特点"><span class="post-toc-text">Touch WX 的特点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#我的理解"><span class="post-toc-text">我的理解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Touch-WX更多操作"><span class="post-toc-text">Touch WX更多操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始流程"><span class="post-toc-text">开始流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装parse-svg-path"><span class="post-toc-text">安装parse-svg-path</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#引入parse-svg-path"><span class="post-toc-text">引入parse-svg-path</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用parse-svg-path"><span class="post-toc-text">使用parse-svg-path</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何获得path值？"><span class="post-toc-text">如何获得path值？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解析后的值"><span class="post-toc-text">解析后的值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#绘制图形"><span class="post-toc-text">绘制图形</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实例代码"><span class="post-toc-text">实例代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-text">后记</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-text">参考文献</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-1529492640"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">微信小程序svg转canvas</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-20 11:04:00" datetime="2018-06-20T03:04:00.000Z"  itemprop="datePublished">2018-06-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<blockquote>
+<p>首先，为什么我们需要这个？</p>
+</blockquote>
+<p>因为微信小程序虽然可以可以绘制svg图片，但是在真机调试的时候却渲染不出来。所以我们需要一个工具(可以将svg转成微信小程序支持的canvas并绘制出来)。</p>
+</blockquote>
+<p>我使用的是touch-wx + vs code 开发。</p>
+<h2 id="Touch-WX-是什么？"><a href="#Touch-WX-是什么？" class="headerlink" title="Touch WX 是什么？"></a>Touch WX 是什么？</h2><p><img src="https://blog.cdn.thinkmoon.cn/TIM%E6%88%AA%E5%9B%BE20180620111841.png" alt="Touch WX"></p>
+<p>Touch WX是一套完全免费的微信小程序开发框架，包含丰富的UI控件用于官方组件的补充。与Touch UI开发方式很相似，也是通过VSCode编辑器+插件的方式开发，经过编译后输出小程序代码。<br>与其他小程序框架最主要的区别在于：Touch UI完全是基于小程序官方的自定义组件机制实现，输出的是小程序原始代码，而不是输出开发者完全无法阅读的编译代码。这样当遇到问题时，开发者可以很方便的定位问题所在，还可以基于输出的原始代码继续开发。<br>当你用Touch UI开发了H5应用，可以直接导入到Touch WX进行转换，稍作调整就能生成小程序。反之也同样，当你Touch WX开发了微信小程序，可以导出为Touch UI工程来生成H5应用。</p>
+<h2 id="Touch-WX-的特点"><a href="#Touch-WX-的特点" class="headerlink" title="Touch WX 的特点"></a>Touch WX 的特点</h2><p><img src="https://blog.cdn.thinkmoon.cn/TIM%E6%88%AA%E5%9B%BE20180620111451.png" alt="Touch WX"></p>
+<h3 id="我的理解"><a href="#我的理解" class="headerlink" title="我的理解"></a>我的理解</h3><blockquote>
+<p>Touch WX 就是一个可以将特定的nodejs项目编译成微信小程序项目的框架</p>
+</blockquote>
+<h3 id="Touch-WX更多操作"><a href="#Touch-WX更多操作" class="headerlink" title="Touch WX更多操作"></a>Touch WX更多操作</h3><blockquote>
+<p>更多操作见<a href="http://www.touchui.io/touchui_doc_wx/" target="_blank" rel="noopener">http://www.touchui.io/touchui_doc_wx/</a></p>
+</blockquote>
+<p>推荐大家看一下，或许会打开新世界的大门哦！</p>
+<blockquote>
+<p>接下来，我默认你已经看了Touch WX的文档，并且拥有一定的nodejs基础</p>
+</blockquote>
+<h2 id="开始流程"><a href="#开始流程" class="headerlink" title="开始流程"></a>开始流程</h2><h3 id="安装parse-svg-path"><a href="#安装parse-svg-path" class="headerlink" title="安装parse-svg-path"></a>安装parse-svg-path</h3><blockquote>
+<p><code>npm install parse-svg-path --save</code></p>
+</blockquote>
+<h3 id="引入parse-svg-path"><a href="#引入parse-svg-path" class="headerlink" title="引入parse-svg-path"></a>引入parse-svg-path</h3><blockquote>
+<p><code>var parse = require(&#39;parse-svg-path&#39;)</code></p>
+</blockquote>
+<h3 id="使用parse-svg-path"><a href="#使用parse-svg-path" class="headerlink" title="使用parse-svg-path"></a>使用parse-svg-path</h3><blockquote>
+<p><code>parse(d)</code></p>
+</blockquote>
+<p><code>d</code>为svg中的path值</p>
+<blockquote>
+<blockquote>
+<p>不了解svg？</p>
+</blockquote>
+<p>请转<code>http://www.w3school.com.cn/svg/svg_intro.asp</code></p>
+</blockquote>
+<h2 id="如何获得path值？"><a href="#如何获得path值？" class="headerlink" title="如何获得path值？"></a>如何获得path值？</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">            url:<span class="string">"svg的URL"</span>,</span><br><span class="line">            success:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">              <span class="keyword">const</span> ctx = wx.createCanvasContext(<span class="string">'myCanvas'</span>)</span><br><span class="line">              ctx.setFillStyle(<span class="string">'black'</span>)</span><br><span class="line">              <span class="keyword">var</span> match = res.data.match(<span class="regexp">/d="(.*?)"/</span>);</span><br><span class="line">              <span class="keyword">var</span> d = match[<span class="number">1</span>];</span><br><span class="line">              <span class="built_in">console</span>.log(d);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    wx.request(options);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上图中d就是path值，我这里使用的是正则表达式查找，而且只有一个path，如不一样，请自行modify</p>
+</blockquote>
+<h2 id="解析后的值"><a href="#解析后的值" class="headerlink" title="解析后的值"></a>解析后的值</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(parse(d));</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog.cdn.thinkmoon.cn/TIM%E6%88%AA%E5%9B%BE20180620113452.png" alt="效果展示"></p>
+<blockquote>
+<p>解析之后是一系列的操作序列数组</p>
+</blockquote>
+<h2 id="绘制图形"><a href="#绘制图形" class="headerlink" title="绘制图形"></a>绘制图形</h2><blockquote>
+<p>根据一系列的操作，找到对应的微信小程序绘制API，进行绘制<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">parse(d).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">element</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(element[<span class="number">0</span>] == <span class="string">"M"</span>)&#123;</span><br><span class="line">                  ctx.moveTo(element[<span class="number">1</span>], element[<span class="number">2</span>])</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element[<span class="number">0</span>] == <span class="string">"Q"</span>)&#123;</span><br><span class="line">                  ctx.quadraticCurveTo(element[<span class="number">1</span>], element[<span class="number">2</span>], element[<span class="number">3</span>], element[<span class="number">4</span>])</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>因为我这里只有M，Q操作所以我只用了两个API，可根据实际情况自行拓展</p>
+</blockquote>
+<h2 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h2><p><code>display.wx</code><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">'page'</span>&gt;</span><br><span class="line">    &lt;canvas canvas-id=<span class="string">"myCanvas"</span> style=<span class="string">"border: 1px solid;"</span>/&gt;</span><br><span class="line">    &lt;!-- <span class="xml"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'content'</span>&gt;</span><span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"zhuan"</span> <span class="attr">style</span>=<span class="string">"font-size:&#123;&#123;fontSize&#125;&#125;pt"</span>&gt;</span>&#123;&#123;display&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span> --&gt;</span></span><br><span class="line"><span class="xml">  <span class="comment">&lt;!-- &lt;/view&gt;</span></span> --&gt;</span><br><span class="line">&lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> parse = <span class="built_in">require</span>(<span class="string">'parse-svg-path'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  config: &#123;</span><br><span class="line">    navigationBarTitleText: <span class="string">'效果展示'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  data: &#123;&#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str = options.display;</span><br><span class="line">    <span class="keyword">if</span>(str != <span class="literal">null</span>)&#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        str=<span class="built_in">decodeURI</span>(str);</span><br><span class="line">        wx.setStorageSync(<span class="string">'display'</span>, str)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"接受到的str："</span>+str);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"设置diaplay值错误"</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面初次渲染完成</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onReady: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">  &#125;,</span><br><span class="line">  saveTemp()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"fdsaf"</span>);</span><br><span class="line">    wx.canvasToTempFilePath(&#123;</span><br><span class="line">      canvasId: <span class="string">'myCanvas'</span>,</span><br><span class="line">      fail: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">      &#125;,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res.tempFilePath)</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;wx.saveImageToPhotosAlbum(&#123;</span><br><span class="line">          filePath:res.tempFilePath,</span><br><span class="line">          fail:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(res);</span><br><span class="line">          &#125;</span><br><span class="line">          </span><br><span class="line">          &#125;);&#125;,<span class="number">5000</span>)</span><br><span class="line">        </span><br><span class="line">      &#125;,</span><br><span class="line">       </span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面显示</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onShow: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> options = &#123;</span><br><span class="line">            url:<span class="string">"http://mp.thinkmoon.cn:39999?str=我&amp;site=0"</span>,</span><br><span class="line">            success:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">              <span class="keyword">const</span> ctx = wx.createCanvasContext(<span class="string">'myCanvas'</span>)</span><br><span class="line">              ctx.setFillStyle(<span class="string">'black'</span>)</span><br><span class="line">              <span class="keyword">var</span> match = res.data.match(<span class="regexp">/d="(.*?)"/</span>);</span><br><span class="line">              <span class="keyword">var</span> d = match[<span class="number">1</span>];</span><br><span class="line">              <span class="built_in">console</span>.log(parse(d))</span><br><span class="line">              parse(d).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">element</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(element[<span class="number">0</span>] == <span class="string">"M"</span>)&#123;</span><br><span class="line">                  ctx.moveTo(element[<span class="number">1</span>], element[<span class="number">2</span>])</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element[<span class="number">0</span>] == <span class="string">"Q"</span>)&#123;</span><br><span class="line">                  ctx.quadraticCurveTo(element[<span class="number">1</span>], element[<span class="number">2</span>], element[<span class="number">3</span>], element[<span class="number">4</span>])</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;);</span><br><span class="line">              ctx.fill();</span><br><span class="line">              ctx.draw(<span class="literal">false</span>,()=&gt;&#123;setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;that.saveTemp()&#125;,<span class="number">5000</span>);&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    wx.request(options); </span><br><span class="line">    <span class="comment">// wx.getStorage(&#123;</span></span><br><span class="line">    <span class="comment">//   key: 'display',</span></span><br><span class="line">    <span class="comment">//   success: function (res) &#123;</span></span><br><span class="line">    <span class="comment">//     console.log("display的值为" + res.data)</span></span><br><span class="line">    <span class="comment">//     that.setData(&#123;</span></span><br><span class="line">    <span class="comment">//       display: res.data,</span></span><br><span class="line">    <span class="comment">//       fontSize: wx.getStorageSync('pt')</span></span><br><span class="line">    <span class="comment">//     &#125;)</span></span><br><span class="line">    <span class="comment">//   &#125;</span></span><br><span class="line">    <span class="comment">// &#125;)</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面隐藏</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onHide: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面卸载</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onUnload: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 页面相关事件处理函数--监听用户下拉动作</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onPullDownRefresh: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 页面上拉触底事件的处理函数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onReachBottom: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 用户点击右上角分享</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onShareAppMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str = <span class="keyword">this</span>.data.display;</span><br><span class="line">    <span class="keyword">var</span> pages = getCurrentPages()    <span class="comment">//获取加载的页面</span></span><br><span class="line">    <span class="keyword">var</span> currentPage = pages[pages.length - <span class="number">1</span>]    <span class="comment">//获取当前页面的对象</span></span><br><span class="line">    <span class="keyword">var</span> url = currentPage.route</span><br><span class="line">    <span class="keyword">var</span> inUrl = url + <span class="string">"?display="</span> + <span class="built_in">encodeURI</span>(str);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"分享的链接为"</span>+inUrl);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title: <span class="string">'您的好友给您分享了一段篆文'</span>,</span><br><span class="line">      path: inUrl,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 转发成功</span></span><br><span class="line">      &#125;,</span><br><span class="line">      fail: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 转发失败</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style lang="less"&gt;</span></span><br><span class="line"><span class="regexp">.content&#123;</span></span><br><span class="line"><span class="regexp">  text-align: center;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">canvas&#123;</span></span><br><span class="line"><span class="regexp">  width: 256px;</span></span><br><span class="line"><span class="regexp">  height: 256px;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><blockquote>
+<p>我这个实例本来是将svg转canvas绘制出来，再转图片，下载到本地的。但是因为draw()函数是异步的所以需要等待。才可以下载成功，否则会出现一片黑的情况，总之感觉各种麻烦。再加上画布的大小难以设置。后我还是选择在服务端生成图片再转发过来。</p>
+</blockquote>
+<p>详情可看<code>https://www.thinkmoon.cn/1525662180.html</code></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="http://www.w3school.com.cn/svg/svg_intro.asp" target="_blank" rel="noopener">SVG简介</a></li>
+<li><a href="http://www.touchui.io/touchui_doc_wx/" target="_blank" rel="noopener">Touch WX开发文档</a></li>
+<li><a href="https://developers.weixin.qq.com/miniprogram/dev/api/canvas/intro.html" target="_blank" rel="noopener">微信开发文档Canvas</a></li>
+</ol>
+
+        </div>
+        <!-- id 将作为查询条件 -->
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        <span>发布时间:</span>
+        2018-06-20 - 11:06<br>
+        
+<span class="post-time">
+    最后更新时间：</span><time datetime="2018-09-09T12:09:18.394Z" itemprop="dateUpdated">2018-09-09 20:09:18</time>
+    <br>
+
+
+        
+        <span>原文链接：</span> <a href="https://thinkmoon.cn/4a59.html">https://thinkmoon.cn/4a59.html</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://thinkmoon.cn"><img src="/img/avatar.jpg" alt="醉月思" 醉月思></a>
+    </footer>
+</blockquote>
+
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1226894331467822"
+     data-ad-slot="4141601129"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <div class="post-footer">
+          
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-betweens">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/5a3b.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i>上一篇文章</div>
+        <h4 class="title">篆书转换器 | 版本更新</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/99b5.html" id="post-next" class="post-nav-link">
+        <div class="tips">下一篇文章<i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">node环境安装canvas写中文并自定义字体生成图片</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    <div id="container"></div>
+
+
+
+
+
+
+
+
+
+<div id="gitalk-container"></div>
+    <script>
+       const gitalk = new Gitalk({
+  clientID: '3a1b56f27cc225971123',
+  clientSecret: '4dd1541cfafbf5a8697de3873ce2c51d097a8326',
+  repo: 'thinkmoon.github.io',
+  owner: 'thinkmoon',
+  admin: ['thinkmoon'],
+  labels: ['gitment'],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p>
+            
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            &nbsp;&nbsp;
+            <a href="https://www.github.com/thinkmoon" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+            </a>
+        </p>
+        <p><span>
+                醉月思 &copy;
+                
+                2017 -
+                
+                2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">
+                    粤ICP备17055617号</a><br>
+                
+                
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<font color="#42b983"><span id="busuanzi_value_site_uv"></span></font>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<font color="#42b983"><span id="busuanzi_value_site_pv"></span></font>
+    </span>
+</p>
+
+
+            </span>
+        </p>
+        <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo"
+                target="_blank">indigo</a></p>
+        <div>
+            <p style="font-weight: bold">友情链接</p>
+            <p>
+                
+                <a rel="follow" href="https://thinkmoon.cn" title="专注编程技术分享，互联网科技技术交流" target="_blank">
+                        指尖魔法屋</a>&nbsp;
+                
+                <a rel="follow" href="https://blog.psyannabel.cn" title="博客" target="_blank">
+                        ananbel的博客</a>&nbsp;
+                
+                <a rel="follow" href="https://www.shimaisui.com" title="腾讯云专题网" target="_blank">
+                        腾讯云专题网</a>&nbsp;
+                
+            </p>
+        </div>
+       <p id="htmer_time" style="color:#42b983;font-size:14px;">
+    </div>
+              <script>
+                function secondToDate(second) {
+if (!second) {
+return 0;
+}
+var time = new Array(0, 0, 0, 0, 0);
+if (second >= 365 * 24 * 3600) {
+time[0] = parseInt(second / (365 * 24 * 3600));
+second %= 365 * 24 * 3600;
+}
+if (second >= 24 * 3600) {
+time[1] = parseInt(second / (24 * 3600));
+second %= 24 * 3600;
+}
+if (second >= 3600) {
+time[2] = parseInt(second / 3600);
+second %= 3600;
+}
+if (second >= 60) {
+time[3] = parseInt(second / 60);
+second %= 60;
+}
+if (second > 0) {
+time[4] = second;
+}
+return time;
+}
+function setTime() {
+var create_time = Math.round(new Date(Date.UTC(2017, 04, 12, 01, 01, 01)).getTime() / 1000);
+var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+currentTime = secondToDate((timestamp - create_time));
+currentTimeHtml = '本站已顽强运行：' + currentTime[0] + '年' + currentTime[1] + '天'
++ currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
++ '秒';
+document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+}    
+setInterval(setTime, 1000);</script>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
