@@ -1,7 +1,0 @@
-User-agent: * 
-Disallow: /vendors/
-Disallow: /js/
-Disallow: /css/
-Disallow: /fonts/
-
-Sitemap: https://thinkmoon.cn/sitemap.xml
