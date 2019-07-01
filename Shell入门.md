@@ -74,5 +74,3 @@ read: read [-ers] [-a array] [-d delim] [-i text] [-n nchars] [-N nchars] [-p pr
 
 ```
 不翻译了，反正都是很简单的英语
-
-
