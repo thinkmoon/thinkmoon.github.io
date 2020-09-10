@@ -102,3 +102,31 @@ Vue.directive('bug', {
   </div>
 </template>
 ```
+
+### 指定是否追加`锟斤拷`
+
+> main.js
+
+```javascript
+...
+Vue.directive('bug', {
+  inserted: function (el, binding) {
+    let html = Array(binding.value).fill("烫").join("")
+    if(binding.modifiers.suffix){
+      html += "锟斤拷"
+    }
+    el.innerHTML = html
+  }
+})
+...
+```
+
+> App.vue
+
+```html
+<template>
+  <div id="app">
+    <HelloWorld v-bug.suffix="12" />
+  </div>
+</template>
+```
