@@ -134,3 +134,58 @@ Vue.directive('bug', {
 但是此时的代码有个非常严重的问题，从上文代码中可看出，内容的改变只在inserted的时候执行。如果我们将指令后面设置为变量，变量值的改变却不会影响到`烫`个数（这一点都不Vue），所有我们应再监听一下指令的updated钩子函数。
 
 ### 4. 数据驱动（动态改变）
+
+> App.vue
+
+```html
+<script>
+import HelloWorld from "./components/HelloWorld.vue";
+
+let interval = null
+export default {
+    name: "App",
+    components: {
+        HelloWorld
+    },
+    data() {
+        return {
+            num: 12
+        };
+    },
+    created() {
+        interval = setInterval(() => {
+            this.num++;
+        }, 1000);
+    },
+    beforeDestroy(){
+      clearInterval(interval)
+    }
+};
+</script>
+
+```
+
+> main.js
+
+```javascript
+...
+function generateHtml(binding){
+  let html = Array(binding.value).fill("烫").join("")
+  if (binding.modifiers.suffix) {
+    html += "锟斤拷"
+  }
+  return html
+}
+Vue.directive('bug', {
+  inserted: function (el, binding) {
+    el.innerHTML = generateHtml(binding)
+  },
+  update: function (el, binding) {
+    if (binding.oldValue !== binding.value) {
+      el.innerHTML = generateHtml(binding)
+    }
+  },
+})
+...
+```
+
