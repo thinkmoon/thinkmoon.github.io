@@ -27,7 +27,7 @@ Vue中的指令形如`v-*`，如v-if，v-show，v-model等。同时，除了Vue�
 
 1. 先将内容替换为一个`烫`
 
-main.js
+> main.js
 
 ```javascript
 import Vue from 'vue'
@@ -44,5 +44,38 @@ Vue.directive('bug', {
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+```
+
+> app.vue
+
+```html
+<template>
+  <div id="app">
+    <HelloWorld v-bug />
+  </div>
+</template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+
 ```
 
