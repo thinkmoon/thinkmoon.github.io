@@ -46,7 +46,7 @@ new Vue({
 }).$mount('#app')
 ```
 
-> app.vue
+> App.vue
 
 ```html
 <template>
@@ -81,3 +81,26 @@ export default {
 
 效果展示
 
+2. 生成指定个数的`烫`
+
+> main.js
+
+```javascript
+...
+Vue.directive('bug', {
+  inserted: function (el, binding) {
+    el.innerHTML = Array(binding.value).fill("烫").join("")
+  }
+})
+...
+```
+
+> App.vue
+
+```html
+<template>
+  <div id="app">
+    <HelloWorld v-bug="12" />
+  </div>
+</template>
+```
