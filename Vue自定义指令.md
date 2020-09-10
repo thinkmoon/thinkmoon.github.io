@@ -28,7 +28,8 @@ Vue中的指令形如`v-*`，如v-if，v-show，v-model等。同时，除了Vue�
 1. 先将内容替换为一个`烫`
 
 main.js
-```
+
+```javascript
 import Vue from 'vue'
 import App from './App.vue'
 
