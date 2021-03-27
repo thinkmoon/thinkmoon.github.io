@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/post/443", {data:[{article:"\u003C!--markdown--\u003E## 水平案例\n\u003Cp\u003E\u003Cimg src=\"https:\u002F\u002Fblog.cdn.thinkmoon.cn\u002Fblog\u002Ftypecho\u002Fscroll.gif\" alt=\"scroll.gif\"\u003E\u003C\u002Fp\u003E\n"}],fetch:{},mutations:void 0});
