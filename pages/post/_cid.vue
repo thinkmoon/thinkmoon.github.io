@@ -6,7 +6,7 @@
 
 <script>
 import axios from "@/plugins/axios";
-import { marked } from "@/plugins/marked"
+import { marked } from "@/plugins/marked";
 export default {
   validate({ params }) {
     // 必须是number类型
@@ -19,7 +19,7 @@ export default {
   },
   async asyncData({ params }) {
     let data = await axios.get(`/post/${params.cid}`);
-    let text = data.text;
+    let text = data.text.replace("<!--markdown-->", "");
     return { article: marked(text) };
   }
 };
