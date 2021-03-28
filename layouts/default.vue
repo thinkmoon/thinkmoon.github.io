@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style lang='less'>
 html {
   font-family:
     'Source Sans Pro',

@@ -20,7 +20,7 @@ export default {
     // return { text: res.data[0].text.substring(15) }
   },
   created(){
-    this.$router.push('page/1')
+    this.$router.replace('page/1')
   }
 };
 </script>

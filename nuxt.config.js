@@ -21,7 +21,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '~assets/style.css',
   ],
   generate: {
     dir: 'docs',
@@ -44,8 +45,8 @@ export default {
           routes = routes.concat(list.map(item => {
             return '/post/' + item.cid
           }))
-          console.log(routes)
         }
+        console.log(routes)
         resolve(routes)
       })
     }
@@ -60,8 +61,8 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/style-resources',
   ],
-
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
   ],

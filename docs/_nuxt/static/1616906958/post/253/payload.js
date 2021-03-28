@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/post/253", {data:[{article:"\u003Col\u003E\n\u003Cli\u003E类名必须以\u003Ccode\u003E_Plugin\u003C\u002Fcode\u003E结尾\u003C\u002Fli\u003E\n\u003Cli\u003E更新时先禁用插件\u003C\u002Fli\u003E\n\u003C\u002Fol\u003E\n"}],fetch:{},mutations:void 0});
