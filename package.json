@@ -10,12 +10,13 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "core-js": "^3.9.1",
-    "marked": "^1.2.9",
+    "core-js": "^3.11.1",
     "element-ui": "^2.15.1",
-    "nuxt": "^2.15.3"
+    "marked": "^1.2.9",
+    "nuxt": "^2.15.4"
   },
   "devDependencies": {
+    "@nuxt/types": "^2.15.4",
     "@nuxtjs/style-resources": "^1.0.0",
     "less": "^4.1.1",
     "less-loader": "5.0.0"

@@ -5,7 +5,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'blog',
+    title: '指尖魔法屋',
     htmlAttrs: {
       lang: 'en'
     },
@@ -15,7 +15,11 @@ export default {
       { hid: 'description', name: 'description', content: '指尖魔法屋' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet',  href: 'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.0.0-alpha0/styles/github.min.css' }
+    ],
+    script: [
+      { src: 'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.0.0-alpha0/highlight.min.js' }
     ]
   },
 

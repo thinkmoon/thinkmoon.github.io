@@ -1,10 +1,14 @@
 <template>
   <div>
+    <script>hljs.highlightAll();</script>
     <Nuxt />
   </div>
 </template>
 
 <style lang='less'>
+pre, code {
+  white-space: pre-wrap;
+}
 html {
   font-family:
     'Source Sans Pro',

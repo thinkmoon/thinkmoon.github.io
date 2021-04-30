@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-html="article"></div>
+    <div v-html="content"></div>
   </div>
 </template>
 
@@ -12,17 +12,31 @@ export default {
     // 必须是number类型
     return /^\d+$/.test(params.cid);
   },
+  head() {
+    return {
+      title: this.article.title,
+    }
+  },
+  computed:{
+    content() {
+      return marked(this.article.text.replace("<!--markdown-->", ""), {breaks: true})
+    }
+  },
   data() {
     return {
-      article: ""
+      article: {
+
+      }
     };
   },
   async asyncData({ params }) {
     let data = await axios.get(`/post/${params.cid}`);
-    let text = data.text.replace("<!--markdown-->", "");
-    return { article: marked(text) };
+    console.log(data)
+    return { article: data };
   }
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
