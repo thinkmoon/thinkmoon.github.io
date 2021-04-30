@@ -6,7 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate && cp CNAME ./docs"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "axios": "^0.21.1",

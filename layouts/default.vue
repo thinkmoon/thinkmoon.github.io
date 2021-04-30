@@ -1,6 +1,5 @@
 <template>
   <div>
-    <script>hljs.highlightAll();</script>
     <Nuxt />
   </div>
 </template>

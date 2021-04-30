@@ -27,15 +27,22 @@ export default {
   },
   data() {
     return {
+      params:{},
       article: {
-
+        text:''
       }
     };
   },
   async asyncData({ params }) {
-    let data = await axios.get(`/post/${params.cid}`);
-    console.log(data)
-    return { article: data };
+    return { params: params };
+  },
+  created() {
+    axios.get(`/post/${this.params.cid}`).then(res => {
+      this.article = res;
+      this.$nextTick(() => {
+        hljs.highlightAll();
+      })
+    });
   }
 };
 </script>

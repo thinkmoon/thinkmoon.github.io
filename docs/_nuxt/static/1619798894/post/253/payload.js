@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/post/253", (function(a,b){return {data:[{article:{cid:253,title:"typecho插件开发坑",slug:"253",created:1552534320,modified:1576331580,text:"\u003C!--markdown--\u003E1. 类名必须以`_Plugin`结尾\r\n2. 更新时先禁用插件",order:a,authorId:1,type:"post",status:"publish",commentsNum:2,allowComment:b,allowPing:b,allowFeed:b,parent:a,views:1319,likes:a}}],fetch:{},mutations:void 0}}(0,"1")));
