@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <div v-html="content"></div>
+    <div class="article-content">
+      <h1 class="article-title">{{ article.title }}</h1>
+      <div v-html="content"></div>
+    </div>
   </div>
 </template>
 
@@ -37,6 +40,6 @@ export default {
 };
 </script>
 
-<style>
+<style >
 
 </style>

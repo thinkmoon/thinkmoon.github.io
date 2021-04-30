@@ -7,7 +7,7 @@ export default {
   head: {
     title: '指尖魔法屋',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'zh-CN'
     },
     meta: [
       { charset: 'utf-8' },
@@ -27,6 +27,8 @@ export default {
   css: [
     'element-ui/lib/theme-chalk/index.css',
     '~assets/style.css',
+    '~assets/index.css',
+    '~assets/max-767.css',
   ],
   generate: {
     dir: 'docs',
