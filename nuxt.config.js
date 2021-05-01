@@ -2,7 +2,6 @@ import axios from './plugins/axios'
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-  rootDir: '.',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: '指尖魔法屋',
@@ -30,6 +29,9 @@ export default {
     '~assets/index.css',
     '~assets/max-767.css',
   ],
+  router: {
+    base: process.env.NODE_ENV === 'development' ? '/' : '/nuxt-blog/',
+  },
   generate: {
     dir: 'docs',
     routes() {
