@@ -40,9 +40,7 @@ export default {
     axios.get(`/post/${this.params.cid}`).then(res => {
       this.article = res;
       this.$nextTick(() => {
-        if (window){
-          window?.hljs.highlightAll();
-        }
+          hljs.highlightAll();
       })
     });
   }

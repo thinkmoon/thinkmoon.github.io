@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/post/516", {data:[{params:{cid:"516"}}],fetch:{},mutations:void 0});
