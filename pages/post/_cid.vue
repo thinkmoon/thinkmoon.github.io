@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="article-content">
+    <div class="article-content" v-loading="!article.title">
       <h1 class="article-title">{{ article.title }}</h1>
       <div v-html="content"></div>
     </div>
@@ -40,7 +40,9 @@ export default {
     axios.get(`/post/${this.params.cid}`).then(res => {
       this.article = res;
       this.$nextTick(() => {
-        hljs.highlightAll();
+        if (window){
+          window?.hljs.highlightAll();
+        }
       })
     });
   }
