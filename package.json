@@ -18,7 +18,9 @@
   "devDependencies": {
     "@nuxt/types": "^2.15.4",
     "@nuxtjs/style-resources": "^1.0.0",
+    "file-loader": "^6.2.0",
     "less": "^4.1.1",
-    "less-loader": "5.0.0"
+    "less-loader": "5.0.0",
+    "url-loader": "^4.1.1"
   }
 }
