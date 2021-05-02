@@ -1,9 +1,63 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/313/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/313/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/313/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>uni-app使用v-model</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/313/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/313/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">uni-app使用v-model</h1> <div><h2 id="v-model-介绍">v-model 介绍</h2>
+<p>首先明确一点，v-model仅仅是语法糖。</p>
+<pre><code>&lt;input type="text" v-model="something">
+</code></pre>
+<p>等价于</p>
+<pre><code>  &lt;input
+                type="text"
+                v-bind:value="something"
+                v-on:input="something = $event.target.value">
+</code></pre>
+<p>它将一个较复杂的input双向数据绑定简化了他的书写方式。</p>
+<h2 id="微信小程序绑定input">微信小程序绑定input</h2>
+<p>最开始我是使用微信推荐的写法</p>
+<pre><code>&lt;input bindtap="input" />
+</code></pre>
+<p>然后在js里面解析event，然后再setData</p>
+<h2 id="uni-app下v-model的写法">uni-app下v-model的写法</h2>
+<blockquote>
+<p>本文采用<code>uni-app</code>自定义组件模式</p>
+</blockquote>
+<p>wxml</p>
+<pre><code>...
+&lt;form @submit="formSubmit" @reset="formReset" :model="formItem" class="tm-every-center padding bg-white">
+                    &lt;view class="section flex align-center">
+                        &lt;view class="section__title">姓名：&lt;/view>
+                        &lt;input name="name" placeholder="请填写您的姓名" class="bg-gray" v-model="formItem.name" />
+                    &lt;/view>
+                    &lt;view class="section flex align-center">
+                        &lt;view class="section__title">手机：&lt;/view>
+                        &lt;input name="name" placeholder="请填写您的姓名" class="bg-gray" v-model="formItem.phone" />
+                    &lt;/view>
+                    &lt;view class="section flex align-center">
+                        &lt;view class="section__title">赛点：&lt;/view>
+                        &lt;input name="name" placeholder="请填写您的姓名" class="bg-gray" v-model="formItem.competition" />
+                    &lt;/view>
+                    &lt;view class="btn-area margin-top">&lt;button formType="submit" class="cu-btn">提交&lt;/button>&lt;/view>
+                &lt;/form>
+                ...
+</code></pre>
+<p>然后在data里面设置</p>
+<pre><code>formItem: {
+                name:'',
+                phone:'',
+                competition: ''
+            }
+</code></pre>
+<p>在submit事件回调里面就可以这样写</p>
+<pre><code>submit(){
+    this.$api.post(formItem).then(res => {
+    })
+}
+</code></pre>
+<p>完美解决微信小程序input书写过程冗余的情况。</p>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/313/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

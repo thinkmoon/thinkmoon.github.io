@@ -1,9 +1,204 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/530/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/530/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/530/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>自建网站对接微信公众号</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/530/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/530/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">自建网站对接微信公众号</h1> <div><blockquote>
+<p>平常我们有些写各种网站, 个人博客系统, 物流管理系统, 通信录管理系统, 校园二手网站. 我们都知道, 只需要租用一个服务器, 再配置一个备案好的域名, 就可以在浏览器上进行访问了.<br>不知大家, 不知大家有没有想过, 将你搭的网站对接微信公众号, 利用微信这个大用户软件, 来为你引流呢? </p>
+</blockquote>
+<!-- more -->
+<hr>
+<table>
+<thead>
+<tr>
+<th>本文环境</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作系统</td>
+<td>Ubuntu 16.04.03</td>
+</tr>
+<tr>
+<td>运行方式</td>
+<td>VMware虚拟机</td>
+</tr>
+<tr>
+<td>编程语言</td>
+<td>PHP</td>
+</tr>
+<tr>
+<td>项目局域网地址</td>
+<td><a href="http://192.168.253.1/audit">http://192.168.253.1/audit</a></td>
+</tr>
+</tbody></table>
+<hr>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523606408034.jpg" alt="enter description here"></p>
+<p> Q: 你在搞笑吗? 不是直接在微信里面打开的吗?</p>
+<blockquote>
+<p>A: 直接用微信打开是可以, 然后你在微信里面让用户再注册一个账号? 对于大部分不想麻烦的小伙伴来说, 他们会对此忘而却步. 其实微信是提供接口, 让你可以获取到微信的用户名,和用户头像的. </p>
+</blockquote>
+<h2 id="一般来说分为三种情况">一般来说分为三种情况</h2>
+<ol>
+<li><p>使用通过的微信<strong>开放</strong>平台( 注意,不是微信公众平台) </p>
+<blockquote>
+<p>需要开发者认证</p>
+</blockquote>
+</li>
+<li><p>使用认证过的订阅号.</p>
+<blockquote>
+<p>需要微信认证</p>
+</blockquote>
+</li>
+<li><p>使用认证过的服务号</p>
+</li>
+</ol>
+<blockquote>
+<p>需要微信认证</p>
+</blockquote>
+<h2 id="额-那其实不是没认证就没得玩">额, 那其实不是没认证就没得玩?</h2>
+<blockquote>
+<p>好吧, 实际是的确如此, 不过. 如果你真的只是想玩玩. 你可以去这儿. <a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</a></p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523712185351.jpg" alt="enter description here"></p>
+<blockquote>
+<p>微信测试号</p>
+<h3 id="优点">优点</h3>
+<ul>
+<li> 拥有几乎所有接口, </li>
+<li> 以及享受局域网IP回调(意思就是说,可以支持局域网, 这是正式微信平台号所不具备的)</li>
+<li>发送模板消息, 不用审核.<h3 id="缺点">缺点</h3>
+</li>
+<li>只支持最多100个用户</li>
+<li>不能设置名称, 头像.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>对于一些只是想玩玩, 或者小规模用户的是没有问题的.</p>
+</blockquote>
+<h3 id="跟我一起操作">跟我一起操作</h3>
+<h4 id="登录">登录</h4>
+<blockquote>
+<p>扫码登录就好了;</p>
+</blockquote>
+<h4 id="微信token">微信token</h4>
+<blockquote>
+<p>新建php文件(啥语言都可以,自行修改)</p>
+</blockquote>
+<pre><code class="language-php">public function token()
+    {
+        $nonce = $_GET['nonce'];
+        $token = 'weixin';
+        $timestamp = $_GET['timestamp'];
+        $echostr = $_GET['echostr'];
+        $signature = $_GET['signature'];
+        //形成数组，然后按字典序排序
+        $array = array();
+        $array = array($nonce, $timestamp, $token);
+        sort($array);
+        //拼接成字符串,sha1加密 ，然后与signature进行校验
+        $str = sha1(implode($array));
+        if ($str == $signature && $echostr) {
+            //第一次接入weixin api接口的时候
+            echo $echostr;
+            exit;
+        }
+    }
+</code></pre>
+<blockquote>
+<p>然后在测试号里填写路径和token, 认证成功后就可以继续操作了</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523713636476.jpg" alt="enter description here"></p>
+<blockquote>
+<p>TIP: 这个链接并不需要一直可访问,<strong>只需要第一次认证通过就OK</strong>, 甚至认证过可以直接删掉.</p>
+</blockquote>
+<h3 id="修改回调域名-接口-网页授权获取用户基本信息--修改">修改回调域名, 接口> 网页授权获取用户基本信息 > 修改</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523781481068.jpg" alt="enter description here"></p>
+<blockquote>
+<p><strong>只有测试号支持ip</strong></p>
+</blockquote>
+<h3 id="微信的接口">微信的接口</h3>
+<blockquote>
+<p>接口详情可在<em><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141013">https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141013</a></em>里查看</p>
+</blockquote>
+<blockquote>
+<p><strong>注意</strong>: </p>
+<ol>
+<li>这些接口不是简单的对接就好了, 每次请求都需要携带access_token,</li>
+<li> 而获取access_token, 每天有获取上限.</li>
+<li>access-token具有有效期(7200s) , 过期需要重新获取. </li>
+</ol>
+</blockquote>
+<blockquote>
+<p>获取access_token的方法<em><a href="https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&type=%E5%9F%BA%E7%A1%80%E6%94%AF%E6%8C%81&form=%E8%8E%B7%E5%8F%96access_token%E6%8E%A5%E5%8F%A3%20/token">https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&type=%E5%9F%BA%E7%A1%80%E6%94%AF%E6%8C%81&form=%E8%8E%B7%E5%8F%96access_token%E6%8E%A5%E5%8F%A3%20/token</a></em></p>
+</blockquote>
+<h3 id="获取用户信息-实现免登录的效果">获取用户信息, 实现免登录的效果</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523714004736.jpg" alt="enter description here"></p>
+<blockquote>
+<p>在这儿我们需要三个接口</p>
+</blockquote>
+<h4 id="所用接口">所用接口:</h4>
+<blockquote>
+<p>接口一:<br><em><code>https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect</code></em><br>接口二:<br><em><code>https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code</code></em><br>接口三:<br><em><code>https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN</code></em><br>接口四: 刷新access_token<br><em><code>https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&grant_type=refresh_token&refresh_token=REFRESH_TOKEN</code></em></p>
+</blockquote>
+<blockquote>
+<p>接口返回数据, 详见<em><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842">https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842</a></em></p>
+</blockquote>
+<ol>
+<li><p>第一步：用户同意授权，获取code</p>
+<blockquote>
+<p>示例:( 注意appid, redirect_url是变量)</p>
+</blockquote>
+<pre><code class="language-php">$str = 'http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx20874ebf2ea1fc7f&redirect_uri=' . urlencode("http://192.168.253.1/audit/client/") . '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+</code></pre>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523714822433.jpg" alt="enter description here"></p>
+</li>
+<li><p>第二步：通过code换取网页授权access_token</p>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<pre><code class="language-php">$data = json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . $this->appid . "&secret=" . $this->secret . "&code=" . $_GET['code'] . "&grant_type=authorization_code"));
+</code></pre>
+<blockquote>
+<p><strong>注意</strong>: 此处的access_token与上面的access_token不是同一个东西</p>
+</blockquote>
+</li>
+<li><p>第三步: 通过access_token换取userinfo</p>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<pre><code class="language-php">$userInfo = json_decode(file_get_contents("https://api.weixin.qq.com/sns/userinfo?access_token=" . $data->access_token . "&openid=" . $data->openid . "&lang=zh_CN"));
+</code></pre>
+</li>
+<li><p>刷新access_token, 如果需要</p>
+</li>
+</ol>
+<blockquote>
+<p>这是我画的一个请求过程图, 可以帮助理解</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.svg" alt="enter description here" title="未命名文件 (1)"></p>
+<h3 id="测试演示">测试演示</h3>
+<h4 id="1-将授权url发给手机">1. 将授权url发给手机</h4>
+<blockquote>
+<p>非必需, 也可以在电脑上, 也可以写到公众号子菜单中点击进入. </p>
+</blockquote>
+<h4 id="2-关注测试号">2. 关注测试号</h4>
+<blockquote>
+<p>不然会这样</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523781959421.jpg" alt="enter description here"></p>
+<h4 id="关注后点击">关注后点击</h4>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523782005232.jpg" alt="enter description here"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523782015976.jpg" alt="enter description here"></p>
+<h4 id="测试号访问成功">测试号访问成功.</h4>
+<blockquote>
+<p>额, 关于后台代码原理就不讲了.<br>类似于一个从微信服务器发来的表单, 登录进了系统, 然后再把这些数据存入数据库就好了.</p>
+</blockquote>
+<h3 id="正式号运行效果">正式号运行效果</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523890856126.jpg" alt="enter description here"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523890881266.jpg" alt="enter description here"></p>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/530/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

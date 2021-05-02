@@ -1,9 +1,131 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/528/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/528/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/528/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>给你的网站加一个2.5D悬浮小人</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/528/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/528/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">给你的网站加一个2.5D悬浮小人</h1> <div><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520662717979.jpg" alt="live2d-widget-model-chitose"><br>我们平常访问某些网站的时候,会发现在网站上总是悬浮者一个可爱的小人.而且还可以跟用户进行各种互动(说话?).<br>一般这种小人都是通过js加载出来的, 搜索关键词网上有教程. 不过我今天在这里记录的是,如何添加2.5D互动小人</p>
+<!-- more -->
+
+<blockquote>
+<p>平台: hexo + hexo-plugins(live2d-widget-models)<br>同时也支持jekyll, wordpress, etc.</p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<pre><code class="language-shell">sudo npm install --save hexo-helper-live2d
+</code></pre>
+<h2 id="项目github地址">项目github地址</h2>
+<p><a href="https://github.com/xiazeyu/live2d-widget-models">https://github.com/xiazeyu/live2d-widget-models</a></p>
+<h2 id="然后在_configymlhexo或者主题的都行中添加">然后在_config.yml(hexo或者主题的都行)中添加</h2>
+<pre><code class="language-yml">live2d:
+  enable: true
+  scriptFrom: local
+  model:
+    use: live2d-widget-model-wanko //使用的模型名,下面会详细讲
+  display: //如果觉得默认定位不满意可在此微调,bottom
+    position: right
+    width: 150
+    height: 300
+    bottom:-30
+  mobile:
+    show: true
+</code></pre>
+<h2 id="自定义模型的使用点我">自定义模型的使用<a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md">点我</a></h2>
+<h2 id="hexo下现有模型的安装">hexo下现有模型的安装</h2>
+<pre><code class="language-shell">npm install {packagename}
+</code></pre>
+<blockquote>
+<p>安装示例</p>
+</blockquote>
+<pre><code class="language-shell">sudo npm install live2d-widget-model-chitose
+</code></pre>
+<h2 id="最新版现有模型测试与预览">最新版现有模型测试与预览</h2>
+<blockquote>
+<p>OK, 这是重点[哭笑不得],<br>现实效果是会动的, 由于截gif过于麻烦, 我就只好截屏了. 现实效果绝对比这帅.</p>
+</blockquote>
+<h3 id="live2d-widget-model-chitose">live2d-widget-model-chitose</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520649793712.jpg" alt="live2d-widget-model-chitose"></p>
+<blockquote>
+<p>唔, 这是一个美少年. 比较适合女生. 我就不用这个了.</p>
+</blockquote>
+<h3 id="live2d-widget-model-epsilon2_1">live2d-widget-model-epsilon2_1</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520650098369.jpg" alt="live2d-widget-model-epsilon2_1"></p>
+<blockquote>
+<p>一个夏装妹子, 比较适合宅男</p>
+</blockquote>
+<h3 id="live2d-widget-model-gf">live2d-widget-model-gf</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520650344036.jpg" alt="live2d-widget-model-gf"></p>
+<blockquote>
+<p>一个卡通人物(废话), 很炫酷</p>
+</blockquote>
+<h3 id="live2d-widget-model-haru">live2d-widget-model-haru</h3>
+<blockquote>
+<p>这个模型需要两点注意, </p>
+</blockquote>
+<ol>
+<li>它的安装方式是</li>
+</ol>
+<pre><code class="language-shell">npm install live2d-widget-model-haru
+</code></pre>
+<blockquote>
+<p>模型的使用却是<br>use:  live2d-widget-model-haru/01 或者<br>use: live2d-widget-model-haru/02<br>这是因为他这个包里有两个模型的原因</p>
+</blockquote>
+<ol start="2">
+<li>它在子模型下的json文件是空的,</li>
+</ol>
+<blockquote>
+<p>所以你要将/博客路径/node_modules/live2d-widget-model-haru/package.json复制进01, 02 文件夹.</p>
+</blockquote>
+<h4 id="live2d-widget-model-haru01">live2d-widget-model-haru/01</h4>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651227707.jpg" alt="live2d-widget-model-haru/01"></p>
+<h4 id="live2d-widget-model-haru02">live2d-widget-model-haru/02</h4>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651346521.jpg" alt="live2d-widget-model-haru/02"></p>
+<h3 id="live2d-widget-model-haruto">live2d-widget-model-haruto</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651513850.jpg" alt="live2d-widget-model-haruto"></p>
+<h3 id="live2d-widget-model-hibiki">live2d-widget-model-hibiki</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651678626.jpg" alt="live2d-widget-model-hibiki"></p>
+<blockquote>
+<p>吐槽一句, 这位同学太高了,已经把我电脑屏幕高快全占了</p>
+</blockquote>
+<h3 id="live2d-widget-model-izumi">live2d-widget-model-izumi</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651875989.jpg" alt="live2d-widget-model-izumi"></p>
+<h3 id="live2d-widget-model-koharu">live2d-widget-model-koharu</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520651983137.jpg" alt="live2d-widget-model-koharu"></p>
+<blockquote>
+<p>是不是有些熟悉? 这妹妹跟haruto是情侣啊!</p>
+</blockquote>
+<h3 id="live2d-widget-model-miku">live2d-widget-model-miku</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652150254.jpg" alt="live2d-widget-model-miku"></p>
+<h3 id="live2d-widget-model-ni-j">live2d-widget-model-ni-j</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652261768.jpg" alt="live2d-widget-model-ni-j"></p>
+<h3 id="live2d-widget-model-nico">live2d-widget-model-nico</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652378111.jpg" alt="live2d-widget-model-nico"></p>
+<h3 id="live2d-widget-model-nietzsche">live2d-widget-model-nietzsche</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652485684.jpg" alt="live2d-widget-model-nietzsche"></p>
+<h3 id="live2d-widget-model-nipsilon">live2d-widget-model-nipsilon</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652604333.jpg" alt="live2d-widget-model-nipsilon"></p>
+<h3 id="live2d-widget-model-nito">live2d-widget-model-nito</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652707543.jpg" alt="live2d-widget-model-nito"></p>
+<h3 id="live2d-widget-model-shizuku">live2d-widget-model-shizuku</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652801662.jpg" alt="live2d-widget-model-shizuku"></p>
+<h3 id="live2d-widget-model-tororo">live2d-widget-model-tororo</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652903977.jpg" alt="live2d-widget-model-tororo"></p>
+<h3 id="live2d-widget-model-tsumiki">live2d-widget-model-tsumiki</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520652987458.jpg" alt="live2d-widget-model-tsumiki"></p>
+<h3 id="live2d-widget-model-unitychan">live2d-widget-model-unitychan</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653074078.jpg" alt="live2d-widget-model-unitychan"></p>
+<h3 id="live2d-widget-model-wanko">live2d-widget-model-wanko</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653136634.jpg" alt="live2d-widget-model-wanko"></p>
+<h3 id="live2d-widget-model-z16">live2d-widget-model-z16</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018_3/1520653226268.jpg" alt="live2d-widget-model-z16"></p>
+<h3 id="总结">总结</h3>
+<blockquote>
+<p>我把官网所有的模型都装了一次, 最后发现一个规律, 那就是模型妹子偏多. 看来技术宅喜欢动漫少女的说法基本正确. 由于我装了一个多小时的模型, 已经对此有些反感了, 所以就保留最后一个不换了. 想看效果的可以电脑端访问<a href="https://www.thinkmoon.cn">https://www.thinkmoon.cn</a> 看效果</p>
+</blockquote>
+<h3 id="mobile-的值决定了在手机端是否显示">mobile 的值决定了在手机端是否显示</h3>
+<blockquote>
+<p>由于显示会影响阅读,我这儿设为false </p>
+</blockquote>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/528/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

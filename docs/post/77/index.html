@@ -1,9 +1,108 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/77/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/77/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/77/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>C++11新特性之auto的妙用</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/77/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/77/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">C++11新特性之auto的妙用</h1> <div><blockquote>
+<p>C++11引入了auto和decltype关键字实现类型推导，通过这两个关键字不仅能方便地获得复杂的类型，还能简化书写，提高编码效率。下面说一下C++中的auto</p>
+</blockquote>
+<h3 id="旧标准">旧标准</h3>
+<p>auto其实并不是一个新的关键字，在旧的标准C++98/03中，它代表着“具有自动存储周期的局部变量”。啥意思呢？就是我们平常所说的变量，他与static相对。就是说所有非static类型的都是“具有自动存储期的”。也就是说在旧的标准下。</p>
+<pre><code class="language-C++">autoint i =3;//等价于int i=3;
+</code></pre>
+<h3 id="新标准">新标准</h3>
+<p>在C++11中，auto作为一个新的类型指示符（如int，double）来指示编译器的，但是auto申明的变量的类型必须由编译器在编译时期推导出来，也称类型推导。这种类型推导不是C++所独有的，还有很多具备这种能力的语言（如Python，Javascript）。我们先来看一段Python代码</p>
+<pre><code class="language-python">name ="thinkmoon"print"hello,"+ name 
+</code></pre>
+<p>在这里的name是不需要定义类型的，因为这个类型很容易被推导为字符串性，如过要想在C++中实现这种效果，我们可以这样。</p>
+<pre><code class="language-C++">#include&lt;iostream>
+int main(){
+    auto name ="thinkmoon"; 
+    std::cout &lt;&lt;"hello,"&lt;&lt; name &lt;&lt; std::endl;
+    return0;
+}
+</code></pre>
+<p>效果是一样的，是不是觉得写起来特别的方便呢？</p>
+<p>但是需要注意的是，在C++中这种静态类型推导是发生在编译期间的。而像Python这种动态类型推导却是发生在运行期间的。</p>
+<h3 id="auto的基本用法">auto的基本用法</h3>
+<pre><code class="language-C++">#include&lt;iostream>
+usingnamespace std;
+int main(){
+auto x =5; 
+cout &lt;&lt; x &lt;&lt; endl;//x被推导为intauto p =newauto(1);    
+cout &lt;&lt;"*"&lt;&lt; p &lt;&lt;"="&lt;&lt;*p &lt;&lt; endl;//p被推导为
+int *constauto*v =&x, u =6; 
+cout &lt;&lt;"*"&lt;&lt; v &lt;&lt;"="&lt;&lt;*v &lt;&lt;"\n u="&lt;&lt; u &lt;&lt; endl;//v被推导为const int *，u被推导const int
+}
+</code></pre>
+<p>对于最后一个类型推导有几个需要注意</p>
+<ol>
+<li> v被推导为const int *而这里auto代替int，但是u等于6还是要写的，否则编译器会报错。</li>
+<li> u的等号后面只能写整型的变量，否则会报错，因为不能让编译器产生具有二义性的推断。<blockquote>
+<p>其实我们学习的时候可以把auto理解为占位符，它只是占着一个位置并不做其它的事情，由编译器将其类型推导出来再用对应的类型去运行，所以这个时候auto的类型推导是不能让编译器产生二义性的。  </p>
+</blockquote>
+</li>
+</ol>
+<h3 id="auto的推导规则">auto的推导规则</h3>
+<pre><code class="language-C++">int x =0;auto* a =&ampx;//auto推导为int，
+auto b =&ampx;//auto推导为int *，即使不申明为指针也能推断为指针
+auto& c = x;//auto推导为int，等价于int 
+auto d = c;//auto推导为int，auto会抛弃右值的引用类型
+const auto e = x;//e是const int类型，
+auto f = e;//f是int型constauto&g = x;//g是const 
+int & auto & h = g;  //h是const int & 
+</code></pre>
+<blockquote>
+<p>总结：</p>
+</blockquote>
+<ol>
+<li> 当不申明为引用或者指针时，auto的推导规则会抛弃对应右值的cv限定符（cv-qualifier，const，volatile限定符的总称）。</li>
+<li> 当申明为引用或者指针时，auto推导规则会保留右值的cv属性。</li>
+</ol>
+<h3 id="auto的限制">auto的限制</h3>
+<ol>
+<li><p> auto s</p>
+<blockquote>
+<p>错误原因:s没有明确的类型，auto无法推断。</p>
+</blockquote>
+</li>
+<li><p> void fun(auto a=1){….}</p>
+<blockquote>
+<p>错误原因：auto类型推导不能用作函数参数。</p>
+</blockquote>
+</li>
+<li><p> auto不能用于非静态成员函数</p>
+</li>
+</ol>
+<pre><code class="language-C++">struct Foo
+{
+    auto var_1=0;//错误，auto不能用于非静态成员函数
+    static const auto var_2=0;//OK，var_2为static const int
+}
+</code></pre>
+<h3 id="4--auto无法定义数组">4.  auto无法定义数组</h3>
+<pre><code>int main()
+{
+    int arr[10]={0};
+    auto aa    = arr; //OK,aa为int *
+    auto bb[10]=arr;//error,auto无法定义数组
+}
+</code></pre>
+<h3 id="5--auto无法推导出模板参数">5.  auto无法推导出模板参数</h3>
+<pre><code class="language-C++">Bar&lt;int> bar;
+Bar&lt;auto> bb = bar;//error,auto无法推导出模板参数
+</code></pre>
+<h3 id="auto的优势">auto的优势</h3>
+<p>既然auto的功能特性这么方便，那么它的优势在哪？或者说，我们什么时候使用它能达到神效呢？</p>
+<ol>
+<li> 遍历vector<blockquote>
+<p>这是一个简单的遍历。<br><code>vector&lt;int> vs;for(auto i = vs.begin(); i &lt; vs.end(); i++){......}</code><br>其实还可以更简单<br><code>for(auto var : vs){.......}</code></p>
+</blockquote>
+</li>
+<li> 待补充。。。。。。。嘿嘿！</li>
+</ol>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/77/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

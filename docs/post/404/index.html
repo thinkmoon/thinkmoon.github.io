@@ -1,9 +1,35 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/404/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/404/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/404/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>《方舟:生存进化》本地服务器内网穿透及端口转发</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/404/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/404/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">《方舟:生存进化》本地服务器内网穿透及端口转发</h1> <div><h1 id="写在前面">写在前面</h1>
+<h2 id="1-游戏服务器简介">1. 游戏/服务器简介</h2>
+<p>略</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-14T08:16:02.png" alt="2019-10-14T08:16:02.png"></p>
+<h2 id="2-为什么要这么做？">2. 为什么要这么做？</h2>
+<p>众所周知，游戏服务器一般来说非常吃性能，对内存和CPU要求颇高。如（方舟：生存进化):</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-09-30T02:16:40.png" alt="2019-09-30T02:16:40.png"></p>
+<p>以上是游戏官网原话。但其实我亲测过一下</p>
+<ul>
+<li>腾讯云（1核2G）能带两个用户，但是很卡会人物回退（不装mod）。</li>
+<li>华为云（2核4G）能装mod，并且不卡，就是启动会很慢。</li>
+</ul>
+<p>以上都是在最久的windows系统服务器下测试的，应该和Windows xp同等级的服务器系统，再高就很难启动了，时不时报内存不够。所以，在我的理智思考下，我决定用家用电脑做服务器。</p>
+<p>但是在实际搭建过程中，我遇到了一个问题，那就是移动宽带公网IP无解啊！一般没有公网ip的时候，我们第一时间想到的肯定是就是内网穿透了，而且一般游戏服务器使用的是UDP协议，也就是说我们需要搭建一个支持udp协议的内网穿透平台，我第一时间想到了<a href="https://github.com/fatedier/frp">frp</a>。</p>
+<h2 id="3-所需设备">3. 所需设备</h2>
+<ul>
+<li>具有公网IP的服务器一台（不要问我为什么有公网服务器还用内网穿透的问题，那只能说明你没看懂上面内容）</li>
+<li>家用能联网的服务器一台（两台服务器的地理位置尽可能近）</li>
+</ul>
+<p>实验环境，我使用的是阿里云的云翼计划（1核2G，5M带宽）</p>
+<h2 id="4-大致思路">4. 大致思路</h2>
+<p>就是在本地搭一台服务器，然后做个内网穿透，这样搜索公网IP的那个服务器就可以连接到你本地服务器了。<br>转发udp: 7777，7778，27015。tcp：27016</p>
+<blockquote>
+<p>注意事项：内网穿透版的在搜索中搜不到，但是可以直接在steam->视图->添加服务器<br><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-03-06T03:36:14.png" alt="2020-03-06T03:36:14.png"></p>
+</blockquote>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/404/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

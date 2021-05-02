@@ -1,9 +1,26 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/314/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/314/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/314/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>微信小程序通过uni-app实现v-html渲染视图</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/314/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/314/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">微信小程序通过uni-app实现v-html渲染视图</h1> <div><h2 id="v-html介绍">v-html介绍</h2>
+<p>如果不使用v-html而是直接将html标签加入视图层会出现html标签不解析的情况，如果我们想实现解析的效果。vue中提供了v-html指令。使用 v-html 指令，你可以将html标签解析渲染到视图层。</p>
+<h2 id="微信小程序如何使用？">微信小程序如何使用？</h2>
+<p>由于微信小程序只是类vue的，与vue存在着很多不同点。但是为了秉承将vue进行到底的宗旨，很多微信小程序开发框架如雨后春笋。在我使用的过程中，感觉uni-app与vue最为贴近，而且适配了很多vue的特性，如：v-model，filters，v-html等。官网是这样介绍的。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2019/5/1559181160577.png" alt="uni-app支持的vue特性"></p>
+<p>其中，他们是通过微信小程序rich-text的属性来实现v-html的效果的。所以，我们想知道支持什么标签，就得移步至<a href="https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html">rich-text | 微信开发文档</a></p>
+<h2 id="开始实现demo">开始实现Demo</h2>
+<blockquote>
+<p>demo 中的需求是一个赛事报名list，其中赛事状态有，预报名，报名成功，正在进行，已结束等。</p>
+</blockquote>
+<p>预实现方法：由于微信小程序的rich-text组件会禁用所有的节点事件，所以想通过@click绑定v-html节点事件，filter渲染界面。但是在实现过程中发现不支持在v-html中使用filter, 故后来采用methods的返回值来实现视图层的渲染。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2019/5/1559181971369.png" alt="methods实现v-html渲染"></p>
+<p>效果如下：至此效果，v-html解析成功</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2019/5/1559182060169.png" alt="v-html 渲染效果"></p>
+<p>添加状态判断</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2019/5/1559186150310.png" alt="最终效果"></p>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/314/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

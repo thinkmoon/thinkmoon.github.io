@@ -9,9 +9,10 @@
 
 <script>
 import axios from "@/plugins/axios";
-import { marked } from "@/plugins/marked";
+import {marked} from "@/plugins/marked";
+
 export default {
-  validate({ params }) {
+  validate({params}) {
     // 必须是number类型
     return /^\d+$/.test(params.cid);
   },
@@ -20,33 +21,32 @@ export default {
       title: this.article.title,
     }
   },
-  computed:{
+  computed: {
     content() {
       return marked(this.article.text.replace("<!--markdown-->", ""), {breaks: true})
     }
   },
   data() {
     return {
-      params:{},
       article: {
-        text:''
+        text: ''
       }
     };
   },
-  async asyncData({ params }) {
-    return { params: params };
+  async asyncData({params}) {
+    let res = await axios.get(`/post/${params.cid}`)
+    return {article: res};
   },
   created() {
-    axios.get(`/post/${this.params.cid}`).then(res => {
-      this.article = res;
+    if(process.browser){
       this.$nextTick(() => {
-          hljs.highlightAll();
+        hljs.highlightAll();
       })
-    });
+    }
   }
 };
 </script>
 
-<style >
+<style>
 
 </style>

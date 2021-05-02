@@ -1,9 +1,97 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/15/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/15/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/15/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>（超详细）快速搭建一个简易微信小程序后台网站（上）</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/15/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/15/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">（超详细）快速搭建一个简易微信小程序后台网站（上）</h1> <div><blockquote>
+<p>本文实践平台：腾讯云（qcloud.com)</p>
+</blockquote>
+<p>首先我们来看看腾讯云官方的解决方案示意图<br><img src="https://www.thinkmoon.cn/usr/uploads/2018/12/2496184131.png" alt="0.png"></p>
+<p>看懂了吗？看没看懂都没关系我们开始走一遍就好了。大致步骤如下：</p>
+<ol>
+<li> 购买腾讯云微信小程序解决方案</li>
+<li> 部署 mysql 实例到云数据库</li>
+<li> 部署网站到服务器，使网站外网可访问</li>
+<li> 将网站与数据库连接起来</li>
+<li> 配置 SSL 证书，使网站可 https 访问</li>
+<li> 构建负载均衡，使用户可以通过负载均衡的方式访问</li>
+<li> 制作服务器镜像，将可成功访问的服务器复制</li>
+<li> 新建 N（N>0)台服务器，将服务器重装为自定义镜像</li>
+<li> test</li>
+</ol>
+<p>详细如下：</p>
+<ul>
+<li><strong>购买腾讯云微信小程序解决方案</strong></li>
+</ul>
+<ol>
+<li> 进入腾讯云官网（<a href="https://www.qcloud.com">https://www.qcloud.com</a>)</li>
+</ol>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT81w3Mv9yBTGgmSvKcBju1uadFd3HxkIsmC3JStepdwjwJ1Q8owjzybw/0?wx_fmt=png" alt=""></p>
+<ol start="2">
+<li>选择解决方案>微信小程序解决方案</li>
+</ol>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT8ViaAk15f8kAEyhAJuTfIr9vltggTKgXo39qmF5JBvnM8PFEhngfzODg/0?wx_fmt=png" alt=""></p>
+<p>就选择 3 元新购活动吧，我已经购买过了，就不再这儿演示怎么购买了。<br>3. 购买成功之后腾讯云会下发资源。</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT8Kb5lBHGuphzvRAX6CEqiayoPW51UTINIaDswGyfGqWRV9xF2oPWGO9w/0?wx_fmt=png" alt=""></p>
+<blockquote>
+<p>succeed：此过程成功标志为资源下发成功，以及收到如下站内信。<br><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT8RVq3z8fPKpnGYa1qc0FBx5HpXxQVlNV0Uodz9kkibrEJfWl86GqgWRg/0?wx_fmt=png" alt=""></p>
+</blockquote>
+<ul>
+<li><strong>部署 mysql 实例到云数据库</strong></li>
+</ul>
+<hr>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT8DyOIhBzvCORgORmgwG4fGAYTkaxHfQcQgkFpajkyXSNlNhQ2MSsRNA/0?wx_fmt=png" alt=""></p>
+<ol>
+<li> 根据上图所提供的地址，使用数据库连接工具（如 Navicat）连接数据库进行数据传输。_<br><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT8qbsBibSriaB8fI7XcO5URGINWEiceic9wFVDX10bQHzK2m1s0tcyBeIqww/0?wx_fmt=png" alt=""> </li>
+<li>数据传输_<br><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT8gaORVyxXSoAibF5uR0nTCP6NtxdzBTUGcWVgjTaVpDOl4JInyyjm8PA/0?wx_fmt=png" alt=""><blockquote>
+<p>succeed：此过程的成功标志为，在远程数据库中可查看到相应的表和数据</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><strong>部署网站到服务器，使网站外网可访问</strong></li>
+</ul>
+<ol>
+<li> 首先我们对腾讯云下发的 demo 服务器进行重装系统（精神洁癖，不重装不舒服）_<blockquote>
+<p><em>注:不重装的话，网站的根目录在/data/release/php_weapp_demo</em> > _ > * > ** > <img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT8XAaD0icW796pZ17iccHBr3UtfQ7xcWLRzLMbledO0iaxtKISV0eehT3Qw/0?wx_fmt=png" alt=""> > **<br>我这儿装的是 centOS 6.5。版本不同可能会对应的软件安装方式不同。 2.*为服务器安装 apache_ #安装 apache<br>root@localhost ~]# yum -y install httpd</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="开机自启动">开机自启动</h1>
+<p>[root@localhost ~]# chkconfig httpd on</p>
+<h1 id="启动-httpd-服务">启动 httpd 服务</h1>
+<p>[root@localhost ~]# service httpd start</p>
+<h3 id="安装-apache-一些扩展">安装 apache 一些扩展</h3>
+<p>root@localhost ~]# yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql</p>
+<blockquote>
+<p>succeed：此步骤成功标志为访问<a href="http://localhost">http://localhost</a>  或 http://本机IP  ，应该会看到 Apache 的测试页面</p>
+<p>这里需要注意 iptables 的设置哦。</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT871Nw7tFgLxAUBJ7IB2hO0ekbdHa62nickEEHURhxPUHqpKMRR9UOnng/0?wx_fmt=png" alt=""> </p>
+</blockquote>
+<h3 id="安装-phprootlocalhost--yum--y-install-php-php-mysql">安装 php[root@localhost ~]# yum -y install php php-mysql</h3>
+<h3 id="安装-php-常用扩展">安装 php 常用扩展</h3>
+<pre><code class="language-shell">[root@localhost ~]# yum search php
+[root@localhost ~]# yum -y install gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap
+ ### 重启 httpd 服务，这一步很重要
+[root@localhost ~]# service httpd restart
+然后，我们提供 php 页面，测试
+[root@localhost ~]# cd /var/www/html/
+[root@localhost html]# vi index.php
+</code></pre>
+<pre><code>&lt;?php
+    phpinfo();
+&lt;php>
+</code></pre>
+<blockquote>
+<p>succeed：此步骤成功标志为,出现传说中的 phpinfo()界面</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/snMia4gXEkc0qunE7hIzVaWicvcdDTdqT83PHV8PEhKTO5YqhMTKdLhQsKfv1WYelrev4eMPqwKkgZ6vbfImcjAA/0?wx_fmt=png" alt=""></p>
+</blockquote>
+<blockquote>
+<p>后记：不知不觉，已经写了有这么多了！本来想一篇写完的，看了一下可能篇幅实在是太长了。先这样吧。敬请期待下一篇吧！</p>
+<p>到了这步的时候，你只需要把网站源代码（例如博客，或者自己开发的网站）上传到目录/var/www/html/就好了。windows 操作系统可以利用工具（如 winscp）上传。觉得有用的就点赞收藏一下吧。谢谢大家的支持。</p>
+</blockquote>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/15/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

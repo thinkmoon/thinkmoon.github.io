@@ -1,9 +1,68 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/515/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/515/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/515/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>vue的相关问题</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/515/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/515/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">vue的相关问题</h1> <div><h3 id="安装nodejs">安装nodejs</h3>
+<pre><code class="language-bash">sudo apt-get install nodejs
+</code></pre>
+<h3 id="安装npm">安装npm</h3>
+<pre><code class="language-bash">sudo apt install npm
+</code></pre>
+<h3 id="改镜像源">改镜像源</h3>
+<pre><code>sudo npm config set registry https://registry.npm.taobao.org
+sudo npm config list
+</code></pre>
+<h3 id="升级node">升级node</h3>
+<pre><code class="language-bash">sudo npm i -g n
+sudo n stable
+</code></pre>
+<h3 id="安装vue">安装Vue</h3>
+<pre><code class="language-Bash">npm install -g @vue/cli
+</code></pre>
+<h3 id="引入less文件失败">引入less文件失败</h3>
+<p>安装less，和less-loader<br><code>npm i --save less less-loader</code></p>
+<h3 id="iview自定义主题失败">iview自定义主题失败</h3>
+<p>两个解决方案</p>
+<ol>
+<li>less降级为3以下，比如2.7.3</li>
+<li><blockquote>
+<p>配置vue.config.js(未实践）</p>
+</blockquote>
+<pre><code class="language-javascript">module.exports = {
+ css: { // 配置css模块
+     loaderOptions: { // 向预处理器 Loader 传递配置选项
+         less: { // 配置less（其他样式解析用法一致）
+                 javascriptEnabled: true // 设置为true
+         }
+     }
+ }
+}
+</code></pre>
+</li>
+<li>报错<pre><code>ERROR in ./~/less-loader!./~/autoprefixer-loader!./src/styles/mytheme.less Module parse failed:
+E:\ProjectDemo\vue\IVIEW\node_modules\less-loader\index.js!
+E:\ProjectDemo\vue\IVIEW\node_modules\autoprefixer-loader\index.js
+!E:\ProjectDemo\vue\IVIEW\src\styles\mytheme. less Unexpected token (1:0) 
+You may need an appropriate loader to handle this file type. | .ivu-load-loop {
+| animation: ani-load-loop 1s linear infinite; |
+}
+</code></pre>
+<blockquote>
+<p>修改webpack配置</p>
+</blockquote>
+</li>
+</ol>
+<pre><code> {
+                test: /\.less/,
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader?minimize', 'autoprefixer-loader', 'less-loader'],
+                    fallback: 'style-loader'
+                })
+            },
+</code></pre>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/515/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

@@ -1,9 +1,85 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/145/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/145/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/145/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>毕业设计思路篇(五)之交通流量模拟</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/145/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/145/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">毕业设计思路篇(五)之交通流量模拟</h1> <div><pre><code class="language-c++">runSimulation(Graph &G)
+</code></pre>
+<h2 id="1-遍历每条道路">1. 遍历每条道路</h2>
+<h2 id="2-遍历该道路的车辆">2. 遍历该道路的车辆</h2>
+<h3 id="a-计算特定时间间隔后的位置">a. 计算特定时间间隔后的位置</h3>
+<h3 id="b-若应行驶至其他道路">b. 若应行驶至其他道路</h3>
+<p>进入对应的路口缓冲区，根据路口类的红绿灯对象判断是否能通行。</p>
+<blockquote>
+<p>若能通行，则填至目标道路</p>
+<p>若不能，则继续停留在路口缓冲区</p>
+</blockquote>
+<h3 id="c-若仍停留在原道路">c. 若仍停留在原道路</h3>
+<p>改变该车在当前道路的位置。</p>
+<pre><code class="language-c++">  for (auto &road:G.m_Road_v) {
+        auto src = road.m_queVehicle;
+        decltype(road.m_queVehicle) obj;
+        //路内车的遍历
+        while (!src.empty()) {
+            //弹出一辆车
+            auto it = src.front();
+            src.pop_front();
+            // 当车的时间戳小于实际时间时，才模拟运行
+            if (it.time &lt; SYSTEM_TIME) {
+                it.fSpec = (100 - road.get_Congestion() - 20) / 3.6;
+                dist = it.dDistance + it.fSpec * 10;
+                it.time++;
+
+                it.showself();
+                //如果车十秒后不在此路
+                if (dist >= road.m_dLength) {
+                    //路径擦除
+                    auto route = it.queRoute;
+                    int site = it.m_nSiteRoadID;
+                    route.pop();
+                    //如果抵达终点
+                    if (route.empty()) {
+                        cout &lt;&lt; "it is be shutdown" &lt;&lt; endl;
+                        exit(0);
+                        // 否侧没有抵达终点
+                    } else {
+                        //获取所在路和下一条路的ID
+                        int next = route.front();
+                        //判断红绿灯情况
+                        cout &lt;&lt; site &lt;&lt; endl;
+                        G.m_CrossRoad_v[site].m_CTrafficLight_Light.clock(SYSTEM_TIME);
+                        //如果可以通行
+                        if (G.m_CrossRoad_v[site].m_CTrafficLight_Light.getStatus(it.m_nSiteRoadID, next)) {
+                            cout &lt;&lt; GREEN &lt;&lt; "绿灯通行:" &lt;&lt; endl;
+                            it.queRoute = route;
+                            it.dDistance = 0;
+                            it.m_nSiteRoadID = next;
+                            auto *site_road = &G.m_Road_v[next].m_queVehicle;
+                            site_road->push_back(it);
+                            //如果不能通行
+                        } else {
+                            //将距离置为道路长度，表示正在等候红灯
+                            it.dDistance = G.m_Road_v[it.m_nSiteRoadID].m_dLength;
+                            cout &lt;&lt; YELLOW &lt;&lt; "等待红灯" &lt;&lt; endl;
+                            //车辆塞回去
+                            obj.push_back(it);
+                        }
+                    }
+                    //否则，当车十秒后还在此路时
+                } else {
+                    it.dDistance = dist;
+                    obj.push_back(it);
+                }
+                //否则直接填入
+            } else {
+                obj.push_back(it);
+            }
+        }
+        road.m_queVehicle = obj;
+    }
+</code></pre>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/145/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

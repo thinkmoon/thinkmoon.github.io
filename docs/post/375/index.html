@@ -1,9 +1,108 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/375/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/375/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/375/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>微信小程序自定义tabBar在uni-app的适配</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/375/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/375/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">微信小程序自定义tabBar在uni-app的适配</h1> <div><blockquote>
+<p>引言：此方法可用作大部分微信小程序支持，但uni-app文档中却找不到相关说明的API</p>
+</blockquote>
+<h2 id="需求">需求</h2>
+<p>需要在微信小程序中，实现一个中间图标突出显示的异形导航栏。</p>
+<h3 id="如下图">如下图</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-14T09:17:36.png" alt="2019-08-14T09:17:36.png"></p>
+<h2 id="实现方法设计">实现方法设计</h2>
+<p>要做这种异形的导航栏，用直接在配置文件里面写list的方法肯定做不到。那么，就有以下两种可替代方法。</p>
+<ol>
+<li>在每一个页面都加载一个tabBar组件，与页面同时渲染。</li>
+<li>设置自定义tabBar,修改tabBar的样式。</li>
+</ol>
+<p>优缺点分析：方法1实现起来略为简单，但是会出现代码可重用率低，降低性能，已经界面跳动等问题。方法2则是微信官方提供的，自定义方式，相信在性能方面也会有很大的优势。故选择方法2。</p>
+<h2 id="1-查看文档及官方demo">1. 查看文档及官方Demo</h2>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html">官方文档</a></p>
+<p>简要描述一下就是需要在根目录中加入一个<code>custom-tab-bar</code>目录，里面的文件结构与自定义组件的结构一致。然后再在小程序配置文件中修改tabbar为custom模式。</p>
+<p><a href="https://developers.weixin.qq.com/s/jiSARvmF7i55">官方代码</a></p>
+<p>主要重点为三个部分</p>
+<ul>
+<li>配置文件</li>
+</ul>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-14T09:23:22.png" alt="配置文件"></p>
+<ul>
+<li>custom-tab-bar目录</li>
+</ul>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-14T09:25:15.png" alt="2019-08-14T09:25:15.png"></p>
+<ul>
+<li>页面生命周期中的设置索引方法</li>
+</ul>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-14T09:26:43.png" alt="2019-08-14T09:26:43.png"></p>
+<blockquote>
+<p>这段代码其实很容易理解，pageLifetimes就是监听组件所在页面的生命周期。上述代码就是监听页面显示。当页面显示后，获取到tabBar的对象，然后再设置tabBar中的index索引。</p>
+</blockquote>
+<h2 id="2-迁移到uni-app框架">2. 迁移到uni-app框架</h2>
+<p>上面的方法是使用微信小程序的开发方式，而我使用的是uni-app框架开发微信小程序的。所以我们需要把它们移植到uni-app框架内。</p>
+<ul>
+<li>配置文件的修改<br>uni-app中，page.json被编译为微信小程序的app.json。所以，我们直接修改page.json</li>
+</ul>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-14T09:32:50.png" alt="page.json所需要的修改"></p>
+<ul>
+<li>custom-tab-bar目录的适配<br>我们知道，uni-app使用的是类Vue开发，将一个Vue文件编译为四个微信页面文件（wxml，wxss，json，js）。那么，是否可以直接写一个<code>custom-tab-bar.vue</code>的文件呢？刚开始我也是这么想的，后来发现uni-app只会编译page目录和component目录下的vue文件。而微信小程序要求<code>custom-tab-bar</code>必须在项目的根目录下。那么就只能在uni-app下创建一个<code>custom-tab-bar</code>目录，并老老实实写微信四件套了。</li>
+</ul>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-14T09:39:45.png" alt="custom-tab-bar目录的适配"></p>
+<blockquote>
+<p>写完后，uni-app会将该目录完美的复制至微信小程序项目的根目录。</p>
+</blockquote>
+<ul>
+<li>tab页面内的适配方法<br>这个在我实际开发中，是最令我头痛的了。因为微信小程序的<code>this</code>引用与uni-app的<code>this</code>引用并不相同。所以如果直接复制代码是会编译出错的。而另一个问题则是，uni-app并未提供<code>pageLifetimes</code>的事件监听。</li>
+</ul>
+<p>在我经过一番摸索之后，发现将设置索引方法写在onShow事件里面，效果是等效的。接下来便只剩下this的问题了。</p>
+<p>如果直接复制的话，会出现无任何效果的情况</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-14T09:48:14.png" alt="直接复制设置方法"></p>
+<p>因为uni-app的this引用不一样，所以它在判断<code>getTabBar</code>的时候，获取的是“undefined”所以不会执行下面的操作。如果你将判断去掉，则会直接报“undefined”错误。</p>
+<p>难道实现不了？其实不然，万变不离其宗。uni-app也是编译到小程序的，所以绝对有迹可循。</p>
+<p>我们首先看看uni-app里面this的内容。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-20T02:41:06.png" alt="this的指向内容"></p>
+<p>我们可以很明显的看到里面有个<code>$mp</code>的对象，说明这应该是微信小程序专用的对象。接下来我们继续分析<code>$mp</code>。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-20T03:00:18.png" alt="$mp的指向内容"></p>
+<p>这里面有一个隐藏很深的<code>getTabBar</code>方法，我们直接调用它，和在微信小程序里面调用<code>this.getTabBar</code>是等效的。</p>
+<p>所以我们就可以把<code>onShow</code>里面的内容写成这样。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-08-20T03:03:40.png" alt="设置索引方法"></p>
+<h2 id="一些优雅点的封装">一些优雅点的封装</h2>
+<h3 id="设置索引方法独立出来">设置索引方法独立出来</h3>
+<p>在methods对象中，添加</p>
+<pre><code class="language-JavaScript">setTabBarIndex(index){
+            if (typeof this.$mp.page.getTabBar === 'function' &&
+                this.$mp.page.getTabBar()) {
+                this.$mp.page.getTabBar().setData({
+                    selected:index
+                })
+            }
+        }
+</code></pre>
+<h3 id="使用mixin避免重复书写复制">使用<code>mixin</code>避免重复书写复制</h3>
+<p>在<code>main.js</code>中，添加</p>
+<pre><code class="language-JavaScript">Vue.mixin({
+    methods:{
+        setTabBarIndex(index){
+            if (typeof this.$mp.page.getTabBar === 'function' &&
+                this.$mp.page.getTabBar()) {
+                this.$mp.page.getTabBar().setData({
+                    selected:index
+                })
+            }
+        }
+    }
+})
+</code></pre>
+<h3 id="混入后的使用">混入后的使用</h3>
+<p>在页面文件中</p>
+<pre><code class="language-JavaScript">onShow() {
+            this.setTabBarIndex(0) //index为当前tab的索引
+        }
+</code></pre>
+<blockquote>
+<p>over!</p>
+</blockquote>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/375/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

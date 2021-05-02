@@ -1,9 +1,134 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/849/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/849/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/849/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>gitlab中vue前端项目CI/CD部署笔记</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/849/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/849/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">gitlab中vue前端项目CI/CD部署笔记</h1> <div><h2 id="持续集成">持续集成</h2>
+<p>略</p>
+<h2 id="gitlab的持续集成">Gitlab的持续集成</h2>
+<p>我们可以将整个运行机制，看作一个赏金猎人接任务，执行任务，并完成任务的过程。</p>
+<h3 id="gitlab-ci">GitLab-CI</h3>
+<p>简单来说，这就是一个任务发布平台。运行在gitlab服务器，监听代码状态变化，并发布对应的任务。</p>
+<h3 id="gitlab-runner">GitLab-Runner</h3>
+<p>而每个runner就是一位赏金猎人，是任务的执行者。</p>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-05-22T06:04:52.png" alt="2020-05-22T06:04:52.png"></p>
+<h3 id="gitlab-ciyml">.gitlab-ci.yml</h3>
+<p>任务的发布者，规定什么时候触发任务，任务的具体内容。</p>
+<h2 id="配置流程">配置流程</h2>
+<p>经过前面的解释，整个思路就很清晰了。我们需要做的有三件事。</p>
+<ol>
+<li>编写<code>.gitlab-ci.yml</code>文件，设置对应的任务</li>
+<li>部署Runner，激活赏金猎人</li>
+<li>配置ci，邀请赏金猎人加入系统</li>
+</ol>
+<h3 id="部署runner">部署Runner</h3>
+<p>这一步需要一个服务器，能run起来赏金猎人。</p>
+<h4 id="安装">安装</h4>
+<p>请务必安装最新版，不然会出现很多未知的问题</p>
+<ol>
+<li>下载二进制文件<br>```bash<h1 id="linux-x86-64">Linux x86-64</h1>
+sudo curl -L --output /usr/local/bin/gitlab-runner <a href="https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64">https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64</a></li>
+</ol>
+<h1 id="linux-x86">Linux x86</h1>
+<p>sudo curl -L --output /usr/local/bin/gitlab-runner <a href="https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-386">https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-386</a></p>
+<h1 id="linux-arm">Linux arm</h1>
+<p>sudo curl -L --output /usr/local/bin/gitlab-runner <a href="https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-arm">https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-arm</a></p>
+<h1 id="linux-arm64">Linux arm64</h1>
+<p>sudo curl -L --output /usr/local/bin/gitlab-runner <a href="https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-arm64">https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-arm64</a></p>
+<pre><code>
+2. 授予执行权限
+
+```bash
+sudo chmod +x /usr/local/bin/gitlab-runner
+</code></pre>
+<ol start="3">
+<li>Create a GitLab CI user:</li>
+</ol>
+<pre><code class="language-bash">sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
+</code></pre>
+<ol start="4">
+<li>Install and run as service:</li>
+</ol>
+<pre><code class="language-bash">sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner
+sudo gitlab-runner start
+</code></pre>
+<h4 id="加入任务系统">加入任务系统</h4>
+<p>注册</p>
+<pre><code class="language-bash">sudo gitlab-runner register
+</code></pre>
+<p>然后就是一些简单的配置，配置完成后就将该Runner注册到任务发布平台了，然后就可以接任务了。详细见参考文献【1】</p>
+<h4 id="编写gitlab-ciyml任务">编写.gitlab-ci.yml任务</h4>
+<p>本机部署版本<br>.gitlab-ci.yml</p>
+<pre><code class="language-yml">stages:
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+    - public/
+
+deployJob:
+  stage: deploy 
+  script:
+    - npm install 
+    - npm run build
+    - rm -rf /home/data/three_miju_shopper_manager_system_front/*
+    - cp -rf ./dist/* /home/data/three_miju_shopper_manager_system_front/
+    - sh ./bot.sh ${CI_COMMIT_REF_SLUG} ${CI_COMMIT_SHA:0:8} ${CI_COMMIT_MESSAGE}
+  tags:
+    - shared_test_machine_runner
+  only:
+    - dev
+</code></pre>
+<p>这个版本具有企业微信群机器人推送功能，需要配置<code>./bot.sh</code></p>
+<pre><code class="language-shell">#!/usr/bin/env bash
+curl '群机器人地址' \
+      -H 'Content-Type: application/json' \
+      -d '
+      {
+        "msgtype": "markdown",
+        "markdown": {
+          "content": "商户端代码已更新，分支:'$1' 提交:'$2'
+          更新：'$3'
+          已发布，[点击测试](http://test.shop.gileey.cn)"
+        }
+      }'
+</code></pre>
+<p>远程推送版本</p>
+<pre><code class="language-shell">stages:
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+    - public/
+
+deployJob:
+  stage: deploy 
+  script:
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_dsa
+    - chmod 600 ~/.ssh/id_dsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - rsync -avzu --progress ./dist/* root@thinkmoon.cn:/www/wwwroot/3ju.psyannabel.cn/
+  tags:
+    - shared_test_machine_runner
+  only:
+    - dev
+</code></pre>
+<p>该版本在gitlab-runner机器上执行编译等工作，编译完成后使用rsync同步到云服务器，需要配置私钥变量<code>$SSH_PRIVATE_KEY</code></p>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-05-30T14:20:12.png" alt="2020-05-30T14:20:12.png"></p>
+<h2 id="遇到的问题">遇到的问题</h2>
+<p>导入自定义组件时一直报错：<code>This dependency was not found:</code></p>
+<p>出现背景：由于以前命名组件是"clickImg",后改成"ClickImg",由于linux的区分大小写，所以会一直没找到。</p>
+<p>解决方案：换个名字？？？</p>
+<h2 id="参考文献">参考文献</h2>
+<ol>
+<li><a href="https://juejin.im/post/5b03963a51882542821ca56a">前端的gitlab的ci初尝试</a></li>
+<li><a href="https://docs.gitlab.com/runner/install/linux-manually.html">Install GitLab Runner manually on GNU/Linux</a></li>
+</ol>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/849/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

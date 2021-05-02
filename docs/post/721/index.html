@@ -1,9 +1,56 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/721/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/721/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/721/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>【leetcode】3. Longest Substring Without Repeating Characters无重复字符的最长子串</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/721/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/721/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">【leetcode】3. Longest Substring Without Repeating Characters无重复字符的最长子串</h1> <div><p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-15T06:37:26.png" alt="题目描述"></p>
+<h2 id="思路">思路</h2>
+<p>查找无重复的字符子串，然后滑动窗口</p>
+<h2 id="初次解">初次解</h2>
+<p>每次滑动一格窗口</p>
+<pre><code class="language-python">class Solution:
+    def isUnique(self, s: str) -> bool:
+        for ch in s:
+            if s.count(ch) > 1:
+                return False
+            else:
+                continue
+        return True
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        i,j,Max=0,0,0
+        j+=1
+        while j &lt;= len(s):
+            if self.isUnique(s[i:j]):
+                print(s[i:j],"is Unique",i,j)
+                Max=max(j-i,Max)
+                j+=1
+            else:
+                i+=1
+        return Max
+</code></pre>
+<h2 id="成果">成果</h2>
+<h2 id="第一次优化">第一次优化</h2>
+<pre><code class="language-python">class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if(len(s)==1): 
+            return 1
+        i,j,Max=0,0,0
+        while j &lt;= len(s):
+            st = s[i:j+1]
+            if(j+1 &lt; len(s)):
+                index = st.find(s[j+1])
+                if index > -1:
+                    i+=(index+1)
+                j+=1
+                Max=max(j-i+1,Max)
+            else:
+                break
+        return Max
+</code></pre>
+<h2 id="成果-1">成果</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-15T07:27:31.png" alt="2020-01-15T07:27:31.png"></p>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/721/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

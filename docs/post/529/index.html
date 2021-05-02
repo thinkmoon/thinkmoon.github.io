@@ -1,9 +1,63 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/529/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/529/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/529/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>腾讯云对象存储(调用篇)</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/529/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/529/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">腾讯云对象存储(调用篇)</h1> <div><div style="font-family:'Helvetica Neue',Helvetica,Tahoma,Arial,'Hiragino Sans GB',STHeiti,'Microsoft YaHei','微软雅黑','WenQuanYi Micro Hei',STXihei,'华文细黑',Heiti,'黑体',SimSun,'宋体',Song,sans-serif;font-size:18px;line-height:1.33;font-weight:100;color:#2f2f2f;word-wrap:break-word">
+<div class="preview html_preview">
+> 接上篇，云对象存储（配置篇)
+
+<p>旧版本《篆书转换器》响应网络图</p>
+<!-- more -->
+
+<div class="story_image_container story_block_image" style="page-break-inside:avoid;text-align:center">
+<div class="story_image" style="display:inline-block;position:relative;max-width:80%">![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png "响应流程图")</div>
+ 
+<div class="story_image_caption" style="border-bottom:1px solid #d9d9d9;display:inline-block;color:#999;padding:10px">响应流程图</div>
+</div>
+<div class="xiaoshujiang_element xsj_anchor" style="position:absolute"><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="e5a48de4b9a0e4b880e4b8aae8aea1e7bb84e79fa5e8af86efbc88cachee2809ce8afbbe4b88de591bde4b8ade2809de79a84e8a7a3e586b3e58a9ee6b395efbc89_1"></a><a id="e5a48de4b9a0e4b880e4b8aae8aea1e7bb84e79fa5e8af86efbc88cachee2809ce8afbbe4b88de591bde4b8ade2809de79a84e8a7a3e586b3e58a9ee6b395efbc89_1" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="复习一个计组知识cache读不命中的解决办法"></a><a id="复习一个计组知识cache读不命中的解决办法" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a></div>
+
+
+<h3 id="复习一个计组知识（cache读不命中的解决办法）">复习一个计组知识（cache“读不命中”的解决办法）</h3>
+<ol>
+<li> 将内存中的数据复制到Cache中，然后把这个字传给CPU。</li>
+<li> 启动常规的主存读取周期，将字从主存中读出在并送到CPU，同时将这个字送入Cache。<div class="xiaoshujiang_element xsj_anchor" style="position:absolute"><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="e58e9fe79086e7b1bbe6af94_2"></a><a id="e58e9fe79086e7b1bbe6af94_2" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="原理类比"></a><a id="原理类比" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a></div></li>
+</ol>
+<h3 id="原理类比">原理类比</h3>
+<blockquote>
+<p>软件请求 => CPU运算<br>云对象存储（CDN分发)响应 => 高速缓存Cache读取<br>服务器带宽响应 => 主存读取</p>
+</blockquote>
+<p>新的响应网络图（采用解决方法2）</p>
+<div class="story_image_container story_block_image" style="page-break-inside:avoid;text-align:center">
+<div class="story_image" style="display:inline-block;position:relative;max-width:80%">![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E3%80%8A%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E3%80%8B%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%9B%BE-CDN.png "《篆书转换器》网络拓扑图-CDN")</div>
+ 
+<div class="story_image_caption" style="border-bottom:1px solid #d9d9d9;display:inline-block;color:#999;padding:10px">《篆书转换器》网络拓扑图-CDN</div>
+</div>
+<div class="xiaoshujiang_element xsj_anchor" style="position:absolute"><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="e4bc98e58abf_3"></a><a id="e4bc98e58abf_3" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="优势"></a><a id="优势" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a></div>
+
+<h3 id="优势">优势</h3>
+<ol>
+<li> 提高图片资源响应速度</li>
+<li> 减少服务器带宽占用<div class="xiaoshujiang_element xsj_anchor" style="position:absolute"><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="e5ae9ee78eb0e6809de8b7afe79a84e794a8e4be8be59bbe_4"></a><a id="e5ae9ee78eb0e6809de8b7afe79a84e794a8e4be8be59bbe_4" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="实现思路的用例图"></a><a id="实现思路的用例图" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a></div></li>
+</ol>
+<h3 id="实现思路的用例图">实现思路的用例图</h3>
+<div class="story_image_container story_block_image" style="page-break-inside:avoid;text-align:center">
+<div class="story_image" style="display:inline-block;position:relative;max-width:80%">![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.png "实现思路的用例图")</div>
+ 
+<div class="story_image_caption" style="border-bottom:1px solid #d9d9d9;display:inline-block;color:#999;padding:10px">实现思路的用例图</div>
+</div>
+
+<hr>
+<div class="xiaoshujiang_element xsj_anchor" style="position:absolute"><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="e680bbe7bb93_5"></a><a id="e680bbe7bb93_5" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a><a class="blank_anchor_name" style="color:#08c;text-decoration:none" target="_blank" name="总结"></a><a id="总结" class="blank_anchor_id" style="color:#08c;text-decoration:none;float:left;visibility:hidden" target="_blank"></a></div>
+
+<h3 id="总结">总结</h3>
+<blockquote>
+<p>这只是思路，日访问量没有500+(如果真的到了，这样做也解决不了问题)<br>完全没必要这么做，而且数据，资源重用率低，冗余非常高，几乎没有实现这个的必要。<br>所以这个想法放弃</p>
+</blockquote>
+</div>
+</div>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/529/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

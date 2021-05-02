@@ -1,9 +1,61 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/20/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/20/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/20/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>微信公众平台开发笔记</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/20/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/20/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">微信公众平台开发笔记</h1> <div><ol>
+<li><p>URL跳转,<br>链接跳转<br><code>https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=".urlencode("http://192.168.43.46/auit/index.php?c=app&m=oauth")."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect</code></p>
+</li>
+<li><p>用户进入页面,拿code换取ACCESS_TOKEN, 请求代码</p>
+</li>
+</ol>
+<pre><code class="language-php">file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$this->appid."&secret=".$this->secret."&code=".$_GET['code']."&grant_type=authorization_code");
+</code></pre>
+<ol start="2">
+<li>用ACCESS_TOKEN换取用户数据,请求代码</li>
+</ol>
+<pre><code class="language-php">file_get_contents("https://api.weixin.qq.com/sns/userinfo?access_token=".$data->access_token."&openid=".$data->openid."&lang=zh_CN")
+</code></pre>
+<blockquote>
+<p>流程示例代码</p>
+</blockquote>
+<pre><code class="language-php">public function oauth(){
+      if (isset($_GET['code'])){
+          $data=json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$this->appid."&secret=".$this->secret."&code=".$_GET['code']."&grant_type=authorization_code"));
+          $userInfo=json_decode(file_get_contents("https://api.w
+         eixin.qq.com/sns/userinfo?access_token=".$data->access_token."&openid=".$data->openid."&lang=zh_CN"));
+          $user = array(
+              'openid'  => $userInfo->openid,
+              'nickname'     => $userInfo->nickname,
+              'headimgurl' => $userInfo->headimgurl
+          );
+          $this->session->set_userdata($user);
+          $this->db->replace('user', $user);
+          redirect('client');
+      }else{
+          echo "出现未知错误，如果重复出现该错误，请联系开发者。错误代码:Oauth:10203";
+      }
+  }
+</code></pre>
+<h3 id="php密码操作php-5--550-php-7">php密码操作(PHP 5 >= 5.5.0, PHP 7)</h3>
+<ol>
+<li>加密操作:<code>string password_hash ( string $password , int $algo [, array $options ] )</code><blockquote>
+<p>示例: </p>
+</blockquote>
+</li>
+</ol>
+<pre><code class="language-php">password_hash("admin", PASSWORD_DEFAULT); 
+</code></pre>
+<ol start="2">
+<li>判断操作: <code>bool password_verify ( string $password , string $hash )</code><blockquote>
+<p>示例: </p>
+</blockquote>
+</li>
+</ol>
+<pre><code class="language-php">password_verify($password, $admin_data->row()->password)
+</code></pre>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/20/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

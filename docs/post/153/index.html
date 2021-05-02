@@ -1,9 +1,81 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/153/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/153/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/153/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>毕业设计番外篇(一)之车辆路径的计算</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/153/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/153/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">毕业设计番外篇(一)之车辆路径的计算</h1> <div><blockquote>
+<p>目前，我采用的是迪杰斯特拉算法计算所有点的最短路径（感觉弗洛伊德算法会更好些？）。迪杰斯特拉算法算的是单源（V_begin)到所有点的最短距离，也就是说需要遍历一次所有的点。</p>
+</blockquote>
+<h2 id="遍历v_begin">遍历V_begin</h2>
+<pre><code class="language-C++">for (int V_begin = 0; V_begin &lt; G->m_CrossRoad_v.size(); V_begin++) {
+}
+</code></pre>
+<blockquote>
+<p>下面是迪杰斯特拉算法的流程</p>
+</blockquote>
+<h2 id="1-声明dist数组">1. 声明dist数组</h2>
+<pre><code class="language-C++">vector&lt;double> Determined_dist(G->m_CrossRoad_v.size(), 0.0);
+</code></pre>
+<h2 id="2-初始化顶点集">2. 初始化顶点集</h2>
+<pre><code class="language-C++">void calcShortestPath(Graph *G) {
+    int currentPointSite,nextPointSite;
+    ofstream PointPathFile(DIR_RES"PointPath.txt"),RoadPathFile(DIR_RES"RoadPath.txt");
+    //对点进行的一级遍历
+    for (int V_begin = 0; V_begin &lt; G->m_CrossRoad_v.size(); V_begin++) {
+        // =================== 迪杰斯特拉算法开始 ===============================
+        vector&lt;bool> S(G->m_CrossRoad_v.size(), false); //判断是否选中
+        vector&lt;double> dist(G->m_CrossRoad_v.size(), DBL_MAX/2);// dist
+        vector&lt;double> compare_dist(G->m_CrossRoad_v.size(), DBL_MAX/2);// 辅助dist用来取最短距离点
+        vector&lt;int> path(G->m_CrossRoad_v.size(),-2); // path
+        S[V_begin] = true;
+        path[V_begin] = -1;
+        for(auto crossroad : G->m_CrossRoad_v[V_begin].JunctionRoad){
+            nextPointSite = G->m_Road_v[crossroad.outRoadID].m_CrossRoadToSite;
+            dist[nextPointSite] = G->m_Road_v[crossroad.outRoadID].m_dLength;
+            compare_dist[nextPointSite] = dist[nextPointSite];
+        }
+        auto min = min_element(compare_dist.begin(), compare_dist.end());
+        int min_element_index = distance(compare_dist.begin(), min);
+        compare_dist[min_element_index] = DBL_MAX/2;
+        // 循环size-1次
+        for(int i = 0; i &lt; G->m_CrossRoad_v.size()-1; i++){
+            for(auto crossroad : G->m_CrossRoad_v[min_element_index].JunctionRoad){
+                currentPointSite = min_element_index;
+                nextPointSite = G->m_Road_v[crossroad.outRoadID].m_CrossRoadToSite;
+                if(S[nextPointSite]){
+                    continue;
+                }
+                if(dist[nextPointSite] > dist[currentPointSite] + G->m_Road_v[crossroad.outRoadID].m_dLength) {
+                    dist[nextPointSite] = dist[currentPointSite] + G->m_Road_v[crossroad.outRoadID].m_dLength;
+                    compare_dist[nextPointSite] = dist[nextPointSite];
+                    path[nextPointSite] = currentPointSite;
+                }
+            }
+            min = min_element(compare_dist.begin(), compare_dist.end());
+            min_element_index = distance(compare_dist.begin(), min);
+            S[min_element_index] = true;
+            compare_dist[min_element_index] = DBL_MAX/2;
+        }
+        for(int i = 0;i&lt;path.size();i++){
+            int j = i;
+            bool flag = false;
+            while( path[j] >= 0) {
+                flag = true;
+                PointPathFile &lt;&lt; path[j] &lt;&lt; " ";
+                for(auto node:G->m_CrossRoad_v[j].JunctionRoad){
+                    if(G->m_Road_v[node.outRoadID].m_CrossRoadToSite == path[j]){
+                        RoadPathFile &lt;&lt; node.outRoadID &lt;&lt; " ";
+                    }
+                }
+                j = path[j];
+            }
+            if(flag){RoadPathFile &lt;&lt; endl;PointPathFile &lt;&lt; endl ;}
+        }
+    }
+}
+</code></pre>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/153/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

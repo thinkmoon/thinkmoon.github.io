@@ -1,9 +1,37 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/843/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/843/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/843/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title> Vue按需引入element ui笔记</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/843/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/843/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"> Vue按需引入element ui笔记</h1> <div><blockquote>
+<p>按官网文档一键配置按需引入总是无法生效，目测可能是激进式预设没有选babel的原因。故写此文详细记录折腾过程，望有效！</p>
+</blockquote>
+<h2 id="vue-ui创建新项目">vue ui创建新项目</h2>
+<p>选择预设，bable，eslint，vuex，vue-router(历史模式)</p>
+<h2 id="vue-ui安装element插件">vue ui安装element插件</h2>
+<p>选择配置</p>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-05-01T03:05:01.png" alt="2020-05-01T03:05:01.png"></p>
+<h2 id="改动的内容">改动的内容</h2>
+<ol>
+<li>自动创建了<code>bable.config.js</code>,并添加了内容。</li>
+<li>创建了`@/src/plugins/element.js,设置了按需引入</li>
+<li>改写了<code>app.vue</code>,添加了element按钮组件</li>
+</ol>
+<h2 id="运行测试">运行测试</h2>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-05-01T03:10:21.png" alt="2020-05-01T03:10:21.png"></p>
+<p>加载成功</p>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-05-01T03:11:11.png" alt="2020-05-01T03:11:11.png"></p>
+<h2 id="qa">Q&A</h2>
+<ol>
+<li><p>为什么需要bable来支持按需加载<br>如果不使用bable转码，那你按需引入会找不到该组件。这是由于bable在将组件库转码的过程中把element整个组件库编译成了各种独立的组件模块，进而实现按需加载的功能</p>
+</li>
+<li><p>如何添加需要的组件<br>使用vue ui添加后的组件会在plugins目录下创建element.js文件，然后在main.js中引入该文件。文件内容如下：<br>```javascript<br>import Vue from "vue";<br>import { Button } from "element-ui";</p>
+</li>
+</ol>
+<p>Vue.use(Button);</p>
+<p>```<br>这就是只引入Button的方法，如果要按需添加，只需要依葫芦画瓢即可！</p>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/843/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>

@@ -1,9 +1,166 @@
 <!doctype html>
 <html data-n-head-ssr lang="zh-CN" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh-CN%22%7D%7D">
-  <head>
-    <title>指尖魔法屋</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/3d75e64.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/ae38078.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619941132/post/26/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/post/26/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619941132/manifest.js" as="script">
-  </head>
-  <body>
-    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title"></h1> <div></div></div></div></div></div></div><script defer src="/_nuxt/static/1619941132/post/26/state.js"></script><script src="/_nuxt/3d75e64.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/ae38078.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
-  </body>
+<head>
+  <title>ubuntu安装后需要做的事情</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta data-n-head="ssr" data-hid="description" name="description" content="指尖魔法屋"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="stylesheet" href="/highlight/atom-one-dark.min.css"><link data-n-head="ssr" rel="stylesheet" href="/style.css"><script data-n-head="ssr" src="/highlight/highlight.min.js"></script><link rel="preload" href="/_nuxt/b0f8911.js" as="script"><link rel="preload" href="/_nuxt/fc6b942.js" as="script"><link rel="preload" href="/_nuxt/css/a5b6cb0.css" as="style"><link rel="preload" href="/_nuxt/a1b9b3d.js" as="script"><link rel="preload" href="/_nuxt/02b3e78.js" as="script"><link rel="stylesheet" href="/_nuxt/css/a5b6cb0.css"><link rel="preload" href="/_nuxt/static/1619942794/post/26/state.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/post/26/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1619942794/manifest.js" as="script">
+</head>
+<body>
+<div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div><div class="container"><div class="article-content"><h1 class="article-title">ubuntu安装后需要做的事情</h1> <div><h2 id="1-安装chrome">1. 安装chrome</h2>
+<pre><code class="language-shell">sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
+sudo apt update
+sudo apt install google-chrome-stable
+</code></pre>
+<blockquote>
+<p>19年12月18日：现在觉得火狐也不错</p>
+</blockquote>
+<h2 id="2-安装shadowsocks">2. 安装Shadowsocks</h2>
+<p>不然美化界面太慢了</p>
+<h2 id="3-美化界面参考链接">3. 美化界面<a href="https://www.cnblogs.com/feipeng8848/p/8970556.html">参考链接</a></h2>
+<blockquote>
+<p>安装工具</p>
+</blockquote>
+<pre><code class="language-shell">sudo apt-get update
+sudo apt-get install gnome-tweak-tool
+sudo apt-get install gnome-shell-extensions
+sudo apt-get install  gnome-shell-extension-dashtodock
+</code></pre>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2018/12/3369720455.png" alt="2018-12-24 14-21-29 的屏幕截图.png"></p>
+<h2 id="3-安装搜狗输入法ubuntu-1804-lts-安装搜狗输入法">3. 安装搜狗输入法<a href="https://www.jianshu.com/p/c936a8a2180e">ubuntu 18.04 LTS 安装搜狗输入法</a></h2>
+<p>实在是不喜欢默认输入法</p>
+<h2 id="4-换阿里源">4. 换阿里源</h2>
+<h3 id="1-先备份源">1. 先备份源</h3>
+<pre><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+</code></pre>
+<h3 id="2-删除原文件">2. 删除原文件</h3>
+<pre><code>sudo rm -f /etc/apt/sources.list
+</code></pre>
+<h3 id="3-新建源文件">3. 新建源文件</h3>
+<pre><code>sudo vi /etc/apt/sources.list
+</code></pre>
+<h3 id="4-添加内容">4. 添加内容</h3>
+<pre><code class="language-vim">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+</code></pre>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2019/03/3073265614.png" alt="2019-03-28T03:03:08.png"></p>
+<blockquote>
+<p>其中<code>bionic</code>是系统版本代号，可使用<code>lsb_release -cs</code>查询，添加内容时需要更换为对应的版本代号</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-18T06:29:35.png" alt="查看ubuntu系统版本代号"></p>
+<h2 id="5-安装v2ray">5. 安装V2ray</h2>
+<pre><code class="language-shell">sudo bash &lt; &lt;( curl -L -s https://install.direct/go.sh)
+</code></pre>
+<h3 id="配置">配置</h3>
+<pre><code class="language-shell">gedit /etc/v2ray/config.json
+</code></pre>
+<p>修改内容</p>
+<pre><code class="language-json">{
+  "log": {
+    "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "port": 1080,
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {
+        "udp": true // 开启 UDP 协议支持
+      }
+    },
+    {
+      "port": 8080,
+      "protocol": "http",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy-vmess",
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "8.8.8.8", // 服务器的 IP
+            "port": 443, // 服务器的端口
+            "users": [
+              {
+                // id 就是 UUID，相当于用户密码
+                "id": "7d4c4078-e129-416b-a483-cf5713a96a66",
+                "alterId": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "tag": "direct",
+      "settings": {},
+      "protocol": "freedom"
+    }
+  ],
+  "dns": {
+    "server": [
+      "8.8.8.8",
+      "1.1.1.1"
+    ],
+    // 你的 IP 地址，用于 DNS 解析离你最快的 CDN
+    "clientIp": "203.208.40.63"
+  },
+  // 配置路由功能，绕过局域网和中国大陆地址
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          // 默认跳过国内网站，如果想要代理某个国内网站可以添加到下列列表中
+          "cnblogs.com"
+        ],
+        "outboundTag": "proxy-vmess"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "geosite:cn"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "geoip:cn",
+          "geoip:private"
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<h2 id="运行">运行</h2>
+<pre><code class="language-bash">systemctl start v2ray
+</code></pre>
+</div></div></div></div></div></div><script defer src="/_nuxt/static/1619942794/post/26/state.js"></script><script src="/_nuxt/b0f8911.js" defer></script><script src="/_nuxt/fc6b942.js" defer></script><script src="/_nuxt/a1b9b3d.js" defer></script><script src="/_nuxt/02b3e78.js" defer></script>
+</body>
+<script defer>hljs.highlightAll()</script>
 </html>
