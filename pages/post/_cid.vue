@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "@/plugins/axios";
 import {marked} from "@/plugins/marked";
 
@@ -38,7 +38,7 @@ export default {
     return {article: res};
   },
   created() {
-    if(process.browser){
+    if (process.browser) {
       this.$nextTick(() => {
         hljs.highlightAll();
       })

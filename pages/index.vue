@@ -4,8 +4,7 @@
   </div>
 </template>
 
-<script>
-
+<script lang="ts">
 export default {
   data() {
     return {
@@ -17,7 +16,7 @@ export default {
       this.$router.replace('page/1')
     }
   }
-};
+}
 </script>
 
 <style></style>

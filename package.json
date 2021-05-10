@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.4",
+    "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "file-loader": "^6.2.0",
     "less": "^4.1.1",

@@ -12,7 +12,8 @@ export default {
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no'},
-      {hid: 'description', name: 'description', content: '指尖魔法屋'}
+      {hid: 'keywords', name: 'keywords', content: 'thinkmoon,醉月思,指尖魔法屋'},
+      {hid: 'description', name: 'description', content: '总结与记录是两个极其优秀的学习习惯！'},
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
@@ -50,7 +51,7 @@ export default {
           current = data.current;
           let list = data.records;
           routes.push(`/page/${current}`)
-          routes = routes.concat(list.map(item => {
+          routes = routes.concat(list.map((item) => {
             return '/post/' + item.cid
           }))
         }
@@ -70,6 +71,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/style-resources',
+    '@nuxt/typescript-build'
   ],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],

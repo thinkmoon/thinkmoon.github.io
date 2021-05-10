@@ -71,16 +71,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "@/plugins/axios";
 
 export default {
-  validate({params}) {
+  validate({params: any}) {
     // 必须是number类型
     return /^\d+$/.test(params.page);
   },
   async asyncData({params}) {
-    console.log("page load",params);
+    console.log("page load", params);
     let data = await axios.get("/post/list", {
       params: {
         current: params.page
