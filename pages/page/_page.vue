@@ -6,10 +6,10 @@
           <a :href="`/post/${item.cid}`" :title="item.title">
             <div class="overlay"></div>
             <img
-              class="lazy thumbnail"
-              :src='item.thumb'
-              :alt="item.title"
-              style="display: inline;"
+                class="lazy thumbnail"
+                :src="item.thumb"
+                :alt="item.title"
+                style="display: inline;"
             />
           </a>
         </div>
@@ -17,9 +17,9 @@
           <div class="posts-default-title">
             <div class="post-entry-categories" v-if="item.tag">
               <a
-                v-for="tagItem in item.tag.split(',')"
-                :key="tagItem"
-                rel="tag"
+                  v-for="tagItem in item.tag.split(',')"
+                  :key="tagItem"
+                  rel="tag"
               >{{ tagItem }}</a
               >
             </div>
@@ -38,11 +38,11 @@
                 <li class="post-author">
                   <div class="avatar">
                     <img
-                      alt=""
-                      src="https://www.thinkmoon.cn/usr/uploads/2018/12/55979974.jpg"
-                      class="avatar avatar-96 photo"
-                      height="96"
-                      width="96"
+                        alt=""
+                        src="https://www.thinkmoon.cn/usr/uploads/2018/12/55979974.jpg"
+                        class="avatar avatar-96 photo"
+                        height="96"
+                        width="96"
                     />
                   </div>
                   <a href="https://xposed.appkg.com/author/xposed" target="_blank"
@@ -63,10 +63,11 @@
       </div>
     </div>
     <el-pagination
-      layout="prev, pager, next"
-      :current-page="pageData.current"
-      :total="pageData.total"
-      @current-change="changePage">
+        layout="prev, pager, next"
+        :current-page="pageData.current"
+        :total="pageData.total"
+        @current-change="changePage"
+    >
     </el-pagination>
   </div>
 </template>
@@ -75,7 +76,7 @@
 import axios from "@/plugins/axios";
 
 export default {
-  validate({params: any}) {
+  validate({params}) {
     // 必须是number类型
     return /^\d+$/.test(params.page);
   },
@@ -98,7 +99,7 @@ export default {
     };
   },
   methods: {
-    changePage(page) {
+    changePage(page: any) {
       this.$router.replace(`/page/${page}`)
     }
   }
