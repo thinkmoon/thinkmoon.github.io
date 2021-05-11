@@ -2,7 +2,7 @@ import axios from 'axios'; //引用axios
 import Vue from 'vue';
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://39.107.235.165:9447',
+  baseURL: 'http://localhost:8080',
   timeout: 50000, // request timeout,
 });
 
