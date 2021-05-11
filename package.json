@@ -17,8 +17,10 @@
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.4",
-    "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/style-resources": "^1.0.0",
+    "eslint": "^7.26.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^7.9.0",
     "file-loader": "^6.2.0",
     "less": "^4.1.1",
     "less-loader": "5.0.0",

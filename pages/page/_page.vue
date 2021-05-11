@@ -1,30 +1,30 @@
 <template>
   <div class="page-content">
     <div class="blog-posts">
-      <div class="content-box" :key="item.cid" v-for="item in pageData.records">
+      <div v-for="item in pageData.records" :key="item.cid" class="content-box">
         <div class="posts-default-img">
           <a :href="`/post/${item.cid}`" :title="item.title">
-            <div class="overlay"></div>
-            <img
-                class="lazy thumbnail"
-                :src="item.thumb"
-                :alt="item.title"
-                style="display: inline;"
-            />
+            <div class="overlay"/>
+            <img class="lazy thumbnail" v-if="item.thumb" :src="item.thumb" :alt="item.title" style="display: inline;">
           </a>
         </div>
         <div class="posts-default-box">
           <div class="posts-default-title">
-            <div class="post-entry-categories" v-if="item.tag">
+            <div
+                v-if="item.tag"
+                class="post-entry-categories"
+            >
               <a
                   v-for="tagItem in item.tag.split(',')"
                   :key="tagItem"
                   rel="tag"
-              >{{ tagItem }}</a
-              >
+              >{{ tagItem }}</a>
             </div>
             <h2>
-              <a :href="`/post/${item.cid}`" :title="item.title">{{
+              <a
+                  :href="`/post/${item.cid}`"
+                  :title="item.title"
+              >{{
                   item.title
                 }}</a>
             </h2>
@@ -34,29 +34,32 @@
               {{ item.desc }}
             </div>
             <div class="posts-default-info">
-              <ul>
-                <li class="post-author">
-                  <div class="avatar">
-                    <img
-                        alt=""
-                        src="https://www.thinkmoon.cn/usr/uploads/2018/12/55979974.jpg"
-                        class="avatar avatar-96 photo"
-                        height="96"
-                        width="96"
-                    />
-                  </div>
-                  <a href="https://xposed.appkg.com/author/xposed" target="_blank"
-                  >醉月思</a
-                  >
-                </li>
-                <li class="ico-cat">
-                  <i class="icon-list-2"></i>
-                  <a>{{ item.category }}</a>
-                </li>
-                <li class="ico-time"><i class="icon-clock-1"></i> 2019-11-08</li>
-                <li class="ico-eye"><i class="icon-eye-4"></i> 138,666</li>
-                <li class="ico-like"><i class="icon-heart"></i> 114</li>
-              </ul>
+              <div class="post-author">
+                <img
+                    style="border-radius:50% "
+                    src="https://www.thinkmoon.cn/usr/uploads/2018/12/55979974.jpg"
+                    height="16"
+                    width="16"
+                >
+                <a
+                    href="https://thinkmoon.github.io"
+                    target="_blank"
+                >醉月思</a>
+              </div>
+              <div class="ico-cat">
+                <i class="el-icon-folder-opened"/>
+                <a>{{ item.category }}</a>
+              </div>
+              <div class="ico-time">
+                <i class="el-icon-time"/>
+                <a> {{ '2019-11-08' }} </a>
+              </div>
+              <div class="ico-eye">
+                <i class="el-icon-view"/> 138,666
+              </div>
+              <div class="ico-like">
+                <i class="el-icon-star-off"/> 114
+              </div>
             </div>
           </div>
         </div>
@@ -67,47 +70,59 @@
         :current-page="pageData.current"
         :total="pageData.total"
         @current-change="changePage"
-    >
-    </el-pagination>
+    />
   </div>
 </template>
 
-<script lang="ts">
-import axios from "@/plugins/axios";
+<script>
+import Vue from 'vue';
+import axios from '@/plugins/axios';
 
-export default {
+export default Vue.extend({
   validate({params}) {
     // 必须是number类型
     return /^\d+$/.test(params.page);
   },
   async asyncData({params}) {
-    console.log("page load", params);
-    let data = await axios.get("/post/list", {
+    console.log('page load', params);
+    let data = await axios.get('/post/list', {
       params: {
-        current: params.page
-      }
+        current: params.page,
+      },
     });
-    console.log(data)
+    console.log(data);
     return {pageData: data};
   },
   data() {
     return {
       pageData: {
         total: 0,
-        current: 0
-      }
+        current: 0,
+      },
     };
   },
   methods: {
-    changePage(page: any) {
-      this.$router.replace(`/page/${page}`)
-    }
-  }
-};
+    changePage(page) {
+      this.$router.replace(`/page/${page}`);
+    },
+  },
+});
 </script>
 
 <style lang="less" scoped>
 .el-pagination {
   text-align: center;
+}
+
+.posts-default-info {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  div {
+    margin: 0 2px;
+  }
+  a {
+    line-height: 14px;
+  }
 }
 </style>

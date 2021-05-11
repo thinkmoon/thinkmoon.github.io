@@ -1,22 +1,27 @@
 <template>
   <div class="container">
-    <div>博客整改中 <el-button @click="navigatePage">点击跳转nuxt.thinkmoon.cn</el-button> </div>
+    <div> 欢迎来到，指尖魔法屋</div>
   </div>
 </template>
 
-<script lang="ts">
-export default {
+<script>
+import Vue from 'vue';
+
+export default Vue.extend({
   data() {
     return {
-      article: ""
+      article: "",
     };
   },
+  created() {
+    this.navigatePage();
+  },
   methods: {
-    navigatePage(){
-      this.$router.replace('page/1')
-    }
-  }
-}
+    navigatePage() {
+      this.$router.replace('page/1');
+    },
+  },
+});
 </script>
 
 <style></style>

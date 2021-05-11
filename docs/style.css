@@ -491,14 +491,6 @@ select {
   float: left;
 }
 
-#header .primary-menu ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: inline-block;
-  float: right
-}
-
 #header .primary-menu ul > li {
   margin: 0 15px;
   padding: 17px 0;
@@ -836,10 +828,6 @@ select {
   padding: 32px 27px;
 }
 
-.posts-default-title {
-  position: relative;
-  margin: 0 0 30px
-}
 
 .posts-default-title h2 {
   position: relative;
@@ -870,51 +858,9 @@ select {
   color: #566573;
 }
 
-.posts-default-info {
-  position: relative;
-  display: inline-block
-}
-
 .posts-gallery-info {
   position: absolute;
   bottom: 32px;
-}
-
-.posts-default-info ul {
-}
-
-.posts-default-info ul li {
-  font-size: 12px;
-  letter-spacing: -0.2px;
-  float: left;
-  padding: 0;
-  margin: 0 10px 0 0;
-  color: #748594;
-  position: relative;
-  line-height: 1.5;
-}
-
-.posts-default-info ul li a {
-  color: #748594
-}
-
-.posts-default-info ul li.post-author {
-  padding-left: 30px
-}
-
-.posts-default-info ul li .avatar {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 20px
-}
-
-.posts-default-info ul li .avatar img {
-  border: 1px solid #e5e5e5;
-  border-radius: 50%;
-  padding: 1px;
-  width: 20px;
-  height: 20px
 }
 
 .posts-gallery-img {
@@ -2573,21 +2519,6 @@ select {
   color: #9A9A9A
 }
 
-.widget_suxingme_comment ul li .meta .avatar {
-  position: absolute;
-  top: 1px;
-  left: 0;
-  width: 30px
-}
-
-.widget_suxingme_comment ul li .meta .avatar img {
-  border: 1px solid #e5e5e5;
-  border-radius: 50%;
-  padding: 1px;
-  width: 16px;
-  height: 16px
-}
-
 .widget_suxingme_comment ul li .meta .link {
   font-size: 12px;
   color: #9A9A9A
@@ -2729,12 +2660,6 @@ select {
   position: relative
 }
 
-.authors_profile .avatar-panel {
-  position: relative;
-  background-size: cover;
-  height: 140px;
-  margin: -27px -27px 46px;
-}
 
 .authors_profile .author_pic {
   width: 84px;
@@ -3009,19 +2934,6 @@ select {
   margin-bottom: 20px
 }
 
-.commentlist li .comment-avatar {
-  position: absolute;
-  left: -65px
-}
-
-.commentlist li .comment-avatar .avatar {
-  margin-top: 4px;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  width: 50px;
-  height: 50px
-}
 
 .commentlist li .comment_author {
   position: relative
@@ -3085,17 +2997,6 @@ select {
   background-color: #fbfbfb;
   margin-bottom: 10px;
   margin-top: 0
-}
-
-.commentlist li ul.children li .comment-avatar {
-  position: relative;
-  left: initial;
-  float: left
-}
-
-.commentlist li ul.children li .comment-avatar .avatar {
-  width: 40px;
-  height: 40px
 }
 
 .commentlist li ul.children li .comment-body {
@@ -5788,9 +5689,6 @@ header.header-02 .burger-menu {
     padding: 2px 8px;
   }
 
-  .posts-default-title {
-    margin-bottom: 20px;
-  }
 
   .posts-default-title h2 {
     margin-bottom: 15px;

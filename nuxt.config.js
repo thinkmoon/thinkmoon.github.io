@@ -1,4 +1,4 @@
-import axios from './plugins/axios'
+import axios from './plugins/axios';
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -7,7 +7,7 @@ export default {
   head: {
     title: '指尖魔法屋',
     htmlAttrs: {
-      lang: 'zh-CN'
+      lang: 'zh-CN',
     },
     meta: [
       {charset: 'utf-8'},
@@ -19,11 +19,10 @@ export default {
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
       {rel: 'stylesheet', href: '/highlight/atom-one-dark.min.css'},
       {rel: 'stylesheet', href: '/style.css'},
-      // {rel: 'stylesheet', href: require('~assets/index.less')},
     ],
     script: [
-      {src: '/highlight/highlight.min.js'}
-    ]
+      {src: '/highlight/highlight.min.js'},
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -31,7 +30,7 @@ export default {
     'element-ui/lib/theme-chalk/index.css',
     '~assets/index',
     '~assets/max-767',
-    '~assets/min-1230'
+    '~assets/min-1230',
   ],
   generate: {
     dir: 'docs',
@@ -44,21 +43,21 @@ export default {
           current++;
           let data = await axios.get('/post/list', {
             params: {
-              current
-            }
+              current,
+            },
           });
           pageNum = data.pages;
           current = data.current;
           let list = data.records;
-          routes.push(`/page/${current}`)
+          routes.push(`/page/${current}`);
           routes = routes.concat(list.map((item) => {
-            return '/post/' + item.cid
-          }))
+            return '/post/' + item.cid;
+          }));
         }
-        console.log(routes)
-        resolve(routes)
-      })
-    }
+        console.log(routes);
+        resolve(routes);
+      });
+    },
   },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -71,7 +70,6 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/style-resources',
-    '@nuxt/typescript-build'
   ],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],
@@ -87,10 +85,10 @@ export default {
             name: 'styles',
             test: /\.(less|css|vue)$/,
             chunks: 'all',
-            enforce: true
-          }
-        }
-      }
+            enforce: true,
+          },
+        },
+      },
     },
     html: {
       minify: {
@@ -102,8 +100,8 @@ export default {
         removeEmptyAttributes: true,
         removeRedundantAttributes: true,
         trimCustomFragments: true,
-        useShortDoctype: true
-      }
-    }
-  }
-}
+        useShortDoctype: true,
+      },
+    },
+  },
+};

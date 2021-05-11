@@ -5,7 +5,7 @@ module.exports = {
     node: true,
   },
   extends: [
-    'eslint:recommended', 'plugin:vue/recommended',
+
   ],
   plugins: ['prettier'],
   'rules': {
@@ -15,7 +15,7 @@ module.exports = {
     'indent': ['error', 2],
     'no-multiple-empty-lines': ['error', {'max': 2, 'maxEOF': 1}],
     'comma-dangle': ['error', 'always-multiline'],
-    'array-element-newline': ['error', {'multiline': true}],
+    'array-element-newline': ["error", "consistent"],
     'object-curly-spacing': ['error', 'never'],
     'block-spacing': ['error', 'always'],
   },
