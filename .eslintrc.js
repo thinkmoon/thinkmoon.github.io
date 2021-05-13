@@ -1,22 +1,28 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
     node: true,
+    jquery: true,
   },
-  extends: [
-
+  plugins: [
+    'html',
   ],
-  plugins: ['prettier'],
-  'rules': {
+  'extends': [
+    'plugin:vue/essential',
+    'eslint:recommended',
+  ],
+  rules: {
+    'no-console': 'warn',
+    'no-debugger': 'error',
     'semi': ['error', 'always'],
-    'no-multi-spaces': 'error',
-    'comma-spacing': ['error', {'before': false, 'after': true}],
     'indent': ['error', 2],
-    'no-multiple-empty-lines': ['error', {'max': 2, 'maxEOF': 1}],
-    'comma-dangle': ['error', 'always-multiline'],
-    'array-element-newline': ["error", "consistent"],
-    'object-curly-spacing': ['error', 'never'],
-    'block-spacing': ['error', 'always'],
+    'quotes': ['error', 'single'],
+    'object-curly-spacing': ['error', 'always'],
+    'comma-dangle': [2, 'always-multiline'],
+    'no-multiple-empty-lines': [1, { 'max': 1 }],
+    'padded-blocks': 0,
+  },
+  parserOptions: {
+    parser: 'babel-eslint',
   },
 };
