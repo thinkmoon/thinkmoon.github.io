@@ -5,20 +5,22 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   data() {
     return {
-      article: "",
+      article: '',
     };
   },
   created() {
-    this.navigatePage();
+    setTimeout(() => {
+      this.navigatePage();
+    }, 3000);
   },
   methods: {
     navigatePage() {
-      this.$router.replace('page/1');
+      this.$router.replace('/1');
     },
   },
 });

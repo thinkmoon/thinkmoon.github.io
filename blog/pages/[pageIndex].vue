@@ -75,23 +75,12 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import axios from '@/plugins/axios';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
   validate({params}) {
     // 必须是number类型
-    return /^\d+$/.test(params.page);
-  },
-  async asyncData({params}) {
-    console.log('page load', params);
-    let data = await axios.get('/post/list', {
-      params: {
-        current: params.page,
-      },
-    });
-    console.log(data);
-    return {pageData: data};
+    return /^\d+$/.test(params.pageIndex);
   },
   data() {
     return {
@@ -103,7 +92,7 @@ export default Vue.extend({
   },
   methods: {
     changePage(page) {
-      this.$router.replace(`/page/${page}`);
+      this.$router.replace(`/${page}`);
     },
   },
 });
@@ -118,9 +107,11 @@ export default Vue.extend({
   display: flex;
   align-content: center;
   align-items: center;
+
   div {
     margin: 0 2px;
   }
+
   a {
     line-height: 14px;
   }
