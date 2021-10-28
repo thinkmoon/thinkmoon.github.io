@@ -20,15 +20,15 @@
       <el-scrollbar>
 
         <el-main>
-            <el-table :data="tableData" height="560" stripe>
-              <el-table-column prop="date" label="标题" width="140">
-              </el-table-column>
-              <el-table-column prop="name" label="摘要" width="120">
-              </el-table-column>
-              <el-table-column prop="createTime" label="创建时间"></el-table-column>
-              <el-table-column prop="updateTime" label="更新时间"></el-table-column>
-              <el-table-column prop="operation" label="操作"></el-table-column>
-            </el-table>
+          <el-table :data="tableData" height="560" stripe>
+            <el-table-column prop="title" label="标题" width="140">
+            </el-table-column>
+            <el-table-column prop="name" label="摘要" width="120">
+            </el-table-column>
+            <el-table-column prop="createTime" label="创建时间"></el-table-column>
+            <el-table-column prop="updateTime" label="更新时间"></el-table-column>
+            <el-table-column prop="operation" label="操作"></el-table-column>
+          </el-table>
           <el-pagination
               v-model:currentPage="currentPage4"
               :page-sizes="[100, 200, 300, 400]"
@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-
+import Post from '@/api/Post';
 export default defineComponent({
   setup() {
     const item = {
@@ -64,6 +64,14 @@ export default defineComponent({
       tableData,
     }
   },
+  created() {
+    Post.getList({
+
+    }).then(res => {
+      console.log(res);
+      this.tableData = res.records;
+    });
+  }
 })
 </script>
 <style lang="less">
