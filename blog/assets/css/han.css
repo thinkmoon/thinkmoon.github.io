@@ -26,7 +26,6 @@ html {
   padding-top: 2em;
   padding-left: 60px;
   padding-right: 60px;
-  min-height: calc(100vh - 6em);
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
 }
@@ -67,9 +66,8 @@ pre.md-meta-block {
 
     #write {
       max-width: 1000px;
-      padding: 40px 60px;
+      padding: 6px 8px;
       background: #fff;
-      margin: 3em auto 3em;
       border: 1px solid #ddd;
       border-width: 0 1px;
     }
@@ -99,7 +97,6 @@ pre.md-meta-block {
       max-width: 1000px;
       padding: 40px 60px;
       background: #fff;
-      margin: 3em auto 3em;
       border: 1px solid #ddd;
       border-width: 0 1px;
     }
