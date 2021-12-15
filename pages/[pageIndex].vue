@@ -24,9 +24,7 @@
               <a
                   :href="`/post/${item.cid}`"
                   :title="item.title"
-              >{{
-                  item.title
-                }}</a>
+              >{{ item.title }}</a>
             </h2>
           </div>
           <div class="posts-default-content">
@@ -71,6 +69,8 @@
         :total="pageData.total"
         @current-change="changePage"
     />
+    网站持续搭建中，感谢关注
+    <a href="http://beian.miit.gov.cn/">粤ICP备17055617号</a>
   </div>
 </template>
 
