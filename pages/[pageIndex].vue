@@ -67,6 +67,7 @@
         layout="prev, pager, next"
         :current-page="pageData.current"
         :total="pageData.total"
+        :page-size="10"
         @current-change="changePage"
     />
     网站持续搭建中，感谢关注

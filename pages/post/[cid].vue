@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div
-        v-loading="!article.title"
         class="article-content"
     >
       <h1 class="article-title">
@@ -13,11 +12,9 @@
 </template>
 
 <script>
-import axios from "@/plugins/axios";
-import {marked} from "@/plugins/marked";
-import Vue from 'vue';
+import axios from "axios";
 
-export default Vue.extend({
+export default {
   validate({params}) {
     // 必须是number类型
     return /^\d+$/.test(params.cid);
@@ -41,7 +38,7 @@ export default Vue.extend({
   },
   computed: {
     content() {
-      return marked(this.article.text.replace("<!--markdown-->", ""), {breaks: true});
+      return this.article.text;
     },
   },
   created() {
@@ -51,7 +48,7 @@ export default Vue.extend({
       });
     }
   },
-});
+};
 </script>
 
 <style>
