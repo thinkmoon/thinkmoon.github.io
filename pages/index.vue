@@ -5,9 +5,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
+export default {
   data() {
     return {
       article: '',
@@ -23,7 +21,7 @@ export default defineComponent({
       this.$router.replace('/1');
     },
   },
-});
+}
 </script>
 
 <style></style>

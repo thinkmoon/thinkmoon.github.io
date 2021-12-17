@@ -63,40 +63,41 @@
         </div>
       </div>
     </div>
-    <el-pagination
-        layout="prev, pager, next"
-        :current-page="pageData.current"
-        :total="pageData.total"
-        :page-size="10"
-        @current-change="changePage"
-    />
+    <el-pagination layout="prev, pager, next"
+                   v-model:currentPage="pageData.current"
+                   :page-size="10" :total="pageData.total"
+                   @current-change="changePage">
+    </el-pagination>
     网站持续搭建中，感谢关注
     <a href="http://beian.miit.gov.cn/">粤ICP备17055617号</a>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import Post from '~/api/Post';
 
-export default defineComponent({
-  validate({params}) {
-    // 必须是number类型
-    return /^\d+$/.test(params.pageIndex);
-  },
+export default {
   data() {
     return {
       pageData: {
         total: 0,
         current: 0,
       },
+      postList:[],
     };
+  },
+  created() {
+    let pageIndex = this.$route.params.pageIndex;
+    if(!/\d+/.test(pageIndex)){
+      return;
+    }
   },
   methods: {
     changePage(page) {
       this.$router.replace(`/${page}`);
     },
   },
-});
+};
 </script>
 
 <style lang="less" scoped>
