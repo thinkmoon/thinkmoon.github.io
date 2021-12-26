@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     navigatePage() {
-      this.$router.replace('/1');
+      this.$router.replace('/page/1');
     },
   },
 }

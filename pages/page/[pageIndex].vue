@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <div class="blog-posts">
-      <div v-for="item in pageData.records" :key="item.cid" class="content-box">
+      <div v-for="item in postList" :key="item.cid" class="content-box">
         <div class="posts-default-img">
           <a :href="`/post/${item.cid}`" :title="item.title">
             <div class="overlay"/>
@@ -91,10 +91,17 @@ export default {
     if(!/\d+/.test(pageIndex)){
       return;
     }
+    this.pageData.current = Number(pageIndex);
+    Post.getList({
+      current: pageIndex
+    }).then((res:any) => {
+      this.postList = res.records;
+      this.pageData.total = res.total;
+    })
   },
   methods: {
     changePage(page) {
-      this.$router.replace(`/${page}`);
+      this.$router.replace(`/page/${page}`);
     },
   },
 };

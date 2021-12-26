@@ -8,4 +8,11 @@ export default class Post {
       params
     })
   }
+  static getDetail(params){
+    return request({
+      method: 'get',
+      url: `/post/${params.cid}`,
+      params
+    })
+  }
 }
