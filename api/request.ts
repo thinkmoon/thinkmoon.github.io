@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-axios.defaults.baseURL = "http://service.thinkmoon.cn/api";
+axios.defaults.baseURL = "https://service.thinkmoon.cn/api";
 
 function request(options: AxiosRequestConfig) {
   return new Promise(resolve => {
