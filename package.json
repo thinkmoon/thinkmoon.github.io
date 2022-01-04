@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "start": "node .output/server/index.mjs"
+    "start": "npm run build && node .output/server/index.mjs"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.176",
