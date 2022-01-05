@@ -44101,7 +44101,7 @@ const editor$1 = /* @__PURE__ */ Object.freeze({
   [Symbol.toStringTag]: "Module",
   "default": editor
 });
-axios.defaults.baseURL = "https://service.thinkmoon.cn/api";
+axios.defaults.baseURL = "//service.thinkmoon.cn/api";
 function request(options) {
   return new Promise((resolve) => {
     axios(options).then((res) => {
@@ -44109,6 +44109,8 @@ function request(options) {
       if (((_a = res == null ? void 0 : res.data) == null ? void 0 : _a.code) === 200) {
         resolve((_b = res.data) == null ? void 0 : _b.data);
       }
+    }).catch((err) => {
+      console.error("\u8BF7\u6C42\u51FA\u9519", err);
     });
   });
 }
