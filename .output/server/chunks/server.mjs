@@ -77629,7 +77629,9 @@ const _sfc_main = {
   __ssrInlineRender: true,
   async setup(__props) {
     let __temp, __restore;
-    const { data } = ([__temp, __restore] = vue_cjs_prod.withAsyncContext(() => useAsyncData("article", () => Post.getDetail({ cid: "936" }))), __temp = await __temp, __restore(), __temp);
+    const route = vueRouter_cjs_prod.useRoute();
+    console.log(route);
+    const { data } = ([__temp, __restore] = vue_cjs_prod.withAsyncContext(() => useAsyncData("article", () => Post.getDetail({ cid: route.params.cid }))), __temp = await __temp, __restore(), __temp);
     const content = vue_cjs_prod.computed(() => `# ${data.value.title} \r
  ${data.value.text}`);
     console.log("data:", data);
