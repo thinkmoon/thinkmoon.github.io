@@ -12,7 +12,10 @@
     "nuxt3": "latest"
   },
   "dependencies": {
+    "@codemirror/view": "^0.19.38",
+    "@kangc/v-md-editor": "^2.3.13",
     "axios": "^0.24.0",
+    "editor.md": "^1.5.0",
     "element-plus": "latest",
     "lodash": "^4.17.21",
     "marked": "^4.0.7"

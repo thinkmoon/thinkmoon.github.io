@@ -1,41 +1,36 @@
 <template>
   <div class="container">
     <div class="article-content">
-      <h1 class="article-title">
-        {{ article.title }}
-      </h1>
-      <div id="write" v-html="content"/>
+      <v-md-preview :text="content" />
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import Post from '../../api/Post';
-import { marked } from 'marked';
+const { data } = await useAsyncData('article', () => Post.getDetail({cid: '936'}))
 
-export default {
-  data() {
-    return {
-      article: {},
-    };
-  },
-  computed: {
-    content() {
-      return marked(this.article.text || '',{breaks: true});
-    },
-  },
-  created() {
-    Post.getDetail({cid: this.$route.params.cid}).then(res => {
-      this.article = res;
-      if(process.client){
-        this.$nextTick(()=>{
-          hljs.highlightAll();
-        })
-      }
-    });
-  },
-};
+const content = computed(() => `# ${data.value.title} \r\n ${data.value.text}`)
+console.log('data:', data)
 </script>
+<!--<script>-->
+<!--export default {-->
+<!--  // data(){-->
+<!--  //   return {-->
+<!--  //     text:'',-->
+<!--  //     article: '',-->
+<!--  //   }-->
+<!--  // },-->
+<!--  computed:{-->
+<!--    content(){-->
+<!--      return `#${this.article} \r\n ${this.text}`;-->
+<!--    }-->
+<!--  },-->
+<!--  created(){-->
+<!--    console.log(this.data)-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
 
 <style>
 

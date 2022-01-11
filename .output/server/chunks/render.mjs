@@ -1,7 +1,7 @@
 import destr from 'destr';
 import defu from 'defu';
 
-const _runtimeConfig = {"public":{"app":{"basePath":"/","assetsPath":"/_nuxt/","cdnURL":null}},"private":{}};
+const _runtimeConfig = {public:{app:{basePath:"\u002F",assetsPath:"\u002F_nuxt\u002F",cdnURL:null}},private:{}};
 for (const type of ["private", "public"]) {
   for (const key in _runtimeConfig[type]) {
     _runtimeConfig[type][key] = destr(process.env[key] || _runtimeConfig[type][key]);
@@ -527,7 +527,7 @@ const htmlTemplate = (params) => `<!DOCTYPE html>
 </html>
 `;
 
-const STATIC_ASSETS_BASE = "D:/project/thinkmoon.github.io/dist" + "/" + "1641391130";
+const STATIC_ASSETS_BASE = "D:/project/thinkmoon.github.io/dist" + "/" + "1641916135";
 const PAYLOAD_JS = "/payload.js";
 const getClientManifest = cachedImport(() => import('./client.manifest.mjs'));
 const getSSRApp = cachedImport(() => import('./server.mjs'));

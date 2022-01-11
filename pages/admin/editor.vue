@@ -46,8 +46,6 @@ export default defineComponent({
 })
 </script>
 <style lang="less">
-@import '~/assets/css/han.css';
-@import '~/assets/css/atom-one-dark.min.css';
 
 .editor-container {
   display: flex;

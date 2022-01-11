@@ -2,7 +2,7 @@ globalThis.entryURL = import.meta.url;import 'unenv/runtime/polyfill/fetch.node'
 import { Server } from 'http';
 import destr from 'destr';
 import { createApp, useBase } from 'h3';
-import { createFetch as createFetch$1 } from 'ohmyfetch';
+import { createFetch as createFetch$1, Headers } from 'ohmyfetch';
 import { createCall, createFetch } from 'unenv/runtime/fetch/index';
 
 const globalTiming = globalThis.__timing__ || {
@@ -113,7 +113,7 @@ app.stack;
 const handle = useBase("/", app);
 const localCall = createCall(handle);
 const localFetch = createFetch(localCall, globalThis.fetch);
-const $fetch = createFetch$1({ fetch: localFetch });
+const $fetch = createFetch$1({ fetch: localFetch, Headers });
 globalThis.$fetch = $fetch;
 
 const server = new Server(handle);
