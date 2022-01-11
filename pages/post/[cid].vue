@@ -8,7 +8,10 @@
 
 <script setup>
 import Post from '../../api/Post';
-const { data } = await useAsyncData('article', () => Post.getDetail({cid: '936'}))
+import { useRoute } from 'vue-router';
+const route = useRoute();
+console.log(route)
+const { data } = await useAsyncData('article', () => Post.getDetail({cid: route.params.cid}))
 
 const content = computed(() => `# ${data.value.title} \r\n ${data.value.text}`)
 console.log('data:', data)

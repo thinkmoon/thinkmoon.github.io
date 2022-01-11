@@ -3,3 +3,4 @@ node_modules
 .idea
 .nuxt
 nuxt.d.ts
+/yarn.lock
