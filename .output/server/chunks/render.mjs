@@ -527,7 +527,7 @@ const htmlTemplate = (params) => `<!DOCTYPE html>
 </html>
 `;
 
-const STATIC_ASSETS_BASE = "D:/project/thinkmoon.github.io/dist" + "/" + "1641917082";
+const STATIC_ASSETS_BASE = "D:/project/thinkmoon.github.io/dist" + "/" + "1641917475";
 const PAYLOAD_JS = "/payload.js";
 const getClientManifest = cachedImport(() => import('./client.manifest.mjs'));
 const getSSRApp = cachedImport(() => import('./server.mjs'));

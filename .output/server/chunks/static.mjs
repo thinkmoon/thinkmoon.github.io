@@ -8,85 +8,85 @@ const assets = {
   "/_nuxt/admin-aba909ed.mjs": {
     "type": "application/javascript",
     "etag": "\"39f-fpPa8cVFSb37muGoKBfJ0XFRr2Q\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/admin-aba909ed.mjs"
   },
   "/_nuxt/bootstrap-6415f761.mjs": {
     "type": "application/javascript",
     "etag": "\"1da548-GPnNfd473yliZbweV8PYUtBqBqE\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/bootstrap-6415f761.mjs"
   },
   "/_nuxt/editor-6990b1cc.mjs": {
     "type": "application/javascript",
     "etag": "\"1ae32-u2WXsu1Gp+Lyr089ylPnN5r4VS4\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/editor-6990b1cc.mjs"
   },
   "/_nuxt/entry-17445d54.mjs": {
     "type": "application/javascript",
     "etag": "\"65-ILTtz0fPKYO4igSTQD67AFJjfV4\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/entry-17445d54.mjs"
   },
   "/_nuxt/index-cab63016.mjs": {
     "type": "application/javascript",
     "etag": "\"20b-Pqpf/9Q1mV6kDsXe11RpeHF0Qro\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/index-cab63016.mjs"
   },
   "/_nuxt/manifest.json": {
     "type": "application/json",
     "etag": "\"7f4-xZPGPW9ENH8qXOgm7z/Xibrqq7s\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/manifest.json"
   },
   "/_nuxt/Post-574e22f0.mjs": {
     "type": "application/javascript",
     "etag": "\"3fa5-pYWBLWymZxxcWqScZsKU7TT+ijE\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/Post-574e22f0.mjs"
   },
   "/_nuxt/post-list-72b1f3c0.mjs": {
     "type": "application/javascript",
     "etag": "\"688-aNsh7s/R3RRaswAdm4INdgfz4ds\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/post-list-72b1f3c0.mjs"
   },
   "/_nuxt/_cid_-db020cc3.mjs": {
     "type": "application/javascript",
     "etag": "\"9f0-Vlmt+kjvyOEfFXnvliAfOZNhQEI\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/_cid_-db020cc3.mjs"
   },
   "/_nuxt/_pageIndex_-7800b819.mjs": {
     "type": "application/javascript",
     "etag": "\"a96-OYBhd2KeeUXyp637YTFRfefFito\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/_pageIndex_-7800b819.mjs"
   },
   "/_nuxt/assets/admin.87f2a328.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"72-PUgaPUOZxVRCOAh+3N9/rvlY5NU\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/assets/admin.87f2a328.css"
   },
   "/_nuxt/assets/bootstrap.02e2ffd9.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"4fdcf-RhjBqPEi1QeQemX3S9tSzQgGNDY\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/assets/bootstrap.02e2ffd9.css"
   },
   "/_nuxt/assets/editor.09771dd1.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"d6-sYzdoL4jAkBWgh4kvK6amjWnD5M\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/assets/editor.09771dd1.css"
   },
   "/_nuxt/assets/_pageIndex_.8e548ad6.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"fb-o/sWcCmiQMgepKpUpPAwd5dVKRw\"",
-    "mtime": "2022-01-11T16:04:50.919Z",
+    "mtime": "2022-01-11T16:11:23.240Z",
     "path": "../public/_nuxt/assets/_pageIndex_.8e548ad6.css"
   }
 };
@@ -104,7 +104,7 @@ function getAsset (id) {
 const METHODS = ["HEAD", "GET"];
 const PUBLIC_PATH = "/_nuxt/";
 const TWO_DAYS = 2 * 60 * 60 * 24;
-const STATIC_ASSETS_BASE = "D:/project/thinkmoon.github.io/dist" + "/" + "1641917082";
+const STATIC_ASSETS_BASE = "D:/project/thinkmoon.github.io/dist" + "/" + "1641917475";
 async function serveStatic(req, res) {
   if (!METHODS.includes(req.method)) {
     return;
