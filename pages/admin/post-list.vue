@@ -24,7 +24,7 @@
   </el-pagination>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 import Post from '~/api/Post';
 
 export default defineComponent({
@@ -36,7 +36,7 @@ export default defineComponent({
         index: 0,
         size: 10
       }
-    }
+    };
   },
   created() {
     this.loadData();
@@ -66,10 +66,10 @@ export default defineComponent({
         query: {
           cid: row.cid
         }
-      })
+      });
     }
   }
-})
+});
 </script>
 <style lang="less" scoped>
 </style>

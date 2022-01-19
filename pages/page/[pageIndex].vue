@@ -73,37 +73,24 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Post from '~/api/Post';
+import { useRoute, useRouter } from 'vue-router';
 
-export default {
-  data() {
-    return {
-      pageData: {
-        total: 0,
-        current: 0,
-      },
-      postList:[],
-    };
-  },
-  created() {
-    let pageIndex = this.$route.params.pageIndex;
-    if(!/\d+/.test(pageIndex)){
-      return;
-    }
-    this.pageData.current = Number(pageIndex);
-    Post.getList({
-      current: pageIndex
-    }).then((res:any) => {
-      this.postList = res.records;
-      this.pageData.total = res.total;
-    })
-  },
-  methods: {
-    changePage(page) {
-      this.$router.replace(`/page/${page}`);
-    },
-  },
+const route = useRoute();
+const router = useRouter();
+let pageData = {
+  total: 0,
+  current: 0,
+};
+let pageIndex = route.params.pageIndex;
+pageData.current = Number(pageIndex);
+const { data } = await useAsyncData('res', () => Post.getList({ current: pageIndex }));
+
+let postList = data.value.records;
+pageData.total = data.value.total;
+const changePage = (page) => {
+  router.replace(`/page/${page}`);
 };
 </script>
 

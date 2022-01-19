@@ -10,30 +10,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 import _ from 'lodash';
-import { marked } from 'marked';
 
 export default defineComponent({
   data() {
     return {
       input: '# hello 1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n'
-    }
+    };
   },
   computed: {
     compiledMarkdown() {
-      return marked(this.input, { breaks: true});
+      return '';
     }
   },
   created() {
     this.$nextTick(() => {
-      var l=document.querySelector('.left .el-textarea textarea')
-      var r=document.querySelector('.right .el-scrollbar__wrap')
-      l.addEventListener('scroll',function(e){
-        console.log(e)
-        r.scrollTop = l.scrollTop
-      })
-    })
+      var l = document.querySelector('.left .el-textarea textarea');
+      var r = document.querySelector('.right .el-scrollbar__wrap');
+      l.addEventListener('scroll', function (e) {
+        console.log(e);
+        r.scrollTop = l.scrollTop;
+      });
+    });
   },
   methods: {
     update: _.debounce(function (e) {
@@ -43,7 +42,7 @@ export default defineComponent({
       });
     }, 300)
   }
-})
+});
 </script>
 <style lang="less">
 
