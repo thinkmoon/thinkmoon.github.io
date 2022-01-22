@@ -5,7 +5,7 @@
         <div class="posts-default-img">
           <a :href="`/post/${item.cid}`" :title="item.title">
             <div class="overlay"/>
-            <img class="lazy thumbnail" v-if="item.thumb" :src="item.thumb" :alt="item.title" style="display: inline;">
+            <el-image v-if="item.thumb" :src="item.thumb" fit="cover"></el-image>
           </a>
         </div>
         <div class="posts-default-box">
@@ -14,18 +14,18 @@
                 v-if="item.tag"
                 class="post-entry-categories"
             >
-              <a
+              <el-tag
                   v-for="tagItem in item.tag.split(',')"
                   :key="tagItem"
                   rel="tag"
-              >{{ tagItem }}</a>
+                  class="post-tag"
+              >{{ tagItem }}
+              </el-tag>
             </div>
-            <h2>
-              <a
-                  :href="`/post/${item.cid}`"
-                  :title="item.title"
-              >{{ item.title }}</a>
-            </h2>
+            <el-link :href="`/post/${item.cid}`" :underline="false" class="post-title">{{
+                item.title
+              }}
+            </el-link>
           </div>
           <div class="posts-default-content">
             <div class="posts-text">
@@ -35,14 +35,15 @@
               <div class="post-author">
                 <img
                     style="border-radius:50% "
-                    src="https://www.thinkmoon.cn/usr/uploads/2018/12/55979974.jpg"
+                    src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
                     height="16"
                     width="16"
                 >
-                <a
+                <el-link
                     href="https://thinkmoon.github.io"
                     target="_blank"
-                >醉月思</a>
+                >醉月思
+                </el-link>
               </div>
               <div class="ico-cat">
                 <i class="el-icon-folder-opened"/>
@@ -68,8 +69,6 @@
                    :page-size="10" :total="pageData.total"
                    @current-change="changePage">
     </el-pagination>
-    网站持续搭建中，感谢关注
-    <a href="http://beian.miit.gov.cn/">粤ICP备17055617号</a>
   </div>
 </template>
 
@@ -95,11 +94,50 @@ const changePage = (page) => {
 </script>
 
 <style lang="less" scoped>
+.page-content {
+  margin: auto;
+  width: 60%;
+
+  .blog-posts {
+    width: 70%;
+  }
+
+  .content-box {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+
+    .el-image {
+      height: 256px;
+      width: 100%;
+    }
+
+    .post-title {
+      font-size: 24px;
+      color: #000;
+
+      &:hover {
+        color: var(--el-link-default-active-color);
+      }
+    }
+
+    .posts-text {
+      color: #606266;
+      font-size: 14px;
+    }
+
+    .post-tag {
+      margin: 4px 6px;
+    }
+  }
+}
+
 .el-pagination {
   text-align: center;
 }
 
 .posts-default-info {
+  margin-top: 6px;
   display: flex;
   align-content: center;
   align-items: center;

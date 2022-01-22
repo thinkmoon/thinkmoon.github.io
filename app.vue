@@ -1,55 +1,25 @@
 <template>
-  <div>
-      <NuxtPage/>
-  </div>
+  <NuxtPage/>
+  <footer>
+    <span>网站持续搭建中，感谢关注</span>
+    <el-link href="http://beian.miit.gov.cn/" type="primary">粤ICP备17055617号</el-link>
+  </footer>
 </template>
-<style>
-::-webkit-scrollbar{display:none}
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
+<style lang="less">
+html {
+  background: #f6f6f6;
 }
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-
 body {
-  line-height: 1;
+  margin: 0;
 }
-
-ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+footer {
+  text-align: center;
+  background: #303133;
+  color: #909399;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  justify-content: center;
 }
 </style>

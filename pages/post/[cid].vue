@@ -15,6 +15,10 @@ const { data } = await useAsyncData('article', () => Post.getDetail({ cid: route
 const content = computed(() => `# ${data.value.title} \r\n ${data.value.text}`);
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.article-content {
+  width: 70%;
+  margin: auto;
+  background: #fff;
+}
 </style>
