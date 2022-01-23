@@ -5,7 +5,7 @@
         <div class="posts-default-img">
           <a :href="`/post/${item.cid}`" :title="item.title">
             <div class="overlay"/>
-            <el-image v-if="item.thumb" :src="item.thumb" fit="cover"></el-image>
+            <el-image v-if="item.thumb" :src="item.thumb" fit="cover" lazy></el-image>
           </a>
         </div>
         <div class="posts-default-box">
