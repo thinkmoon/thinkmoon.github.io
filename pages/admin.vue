@@ -31,8 +31,6 @@
 </script>
 <style lang="less" scoped>
 .app-container {
-  height: 100vh;
-
   .el-header {
     background-color: #b3c0d1;
   }
