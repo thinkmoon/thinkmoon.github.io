@@ -1,22 +1,18 @@
 <template>
-  <div class="editor-container" height="560px">
-    <el-scrollbar class="left">
-      <el-input v-model="input" rows="26" type="textarea"></el-input>
-    </el-scrollbar>
-    <el-scrollbar class="right" height="560px">
-      <div id="write" v-html="compiledMarkdown"></div>
-    </el-scrollbar>
+  <div class="editor-container">
+    <v-md-editor v-model="text" height="560px" @save="saveArticle"></v-md-editor>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import _ from 'lodash';
+import Post from '~/api/Post';
 
 export default defineComponent({
   data() {
     return {
-      input: '# hello 1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n'
+			text:'',
     };
   },
   computed: {
@@ -25,22 +21,15 @@ export default defineComponent({
     }
   },
   created() {
-    this.$nextTick(() => {
-      var l = document.querySelector('.left .el-textarea textarea');
-      var r = document.querySelector('.right .el-scrollbar__wrap');
-      l.addEventListener('scroll', function (e) {
-        console.log(e);
-        r.scrollTop = l.scrollTop;
-      });
-    });
+    Post.getDetail({ cid: this.$route.query.cid }).then((res: any) => {
+			this.text = res.text
+			console.log(res)
+		})
   },
   methods: {
-    update: _.debounce(function (e) {
-      this.input = e.target.value;
-      this.$nextTick(() => {
-        hljs.highlightAll();
-      });
-    }, 300)
+   saveArticle() {
+		 
+	 }
   }
 });
 </script>
