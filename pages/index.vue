@@ -6,9 +6,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
-
-useRouter().replace('/page/1');
+definePageMeta({
+  middleware(...rest) {
+    return navigateTo('/page/1');
+  }
+})
 </script>
 
 <style></style>
