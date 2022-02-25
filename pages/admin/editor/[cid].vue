@@ -9,8 +9,6 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const { data } = await useAsyncData('article', () => Post.getDetail({ cid: route.params.cid }));
-const str = 'aaa'
-console.log(data)
 </script>
 <style lang="less">
 

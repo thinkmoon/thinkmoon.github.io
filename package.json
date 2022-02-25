@@ -9,12 +9,12 @@
     "@types/lodash": "^4.14.176",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
-    "nuxt3": "^3.0.0-27415326.3c563fa"
+    "nuxt3": "^3.0.0-27428764.271289c"
   },
   "dependencies": {
     "@kangc/v-md-editor": "^2.3.13",
-    "axios": "^0.24.0",
-    "element-plus": "^2.0.2",
+    "axios": "^0.26.0",
+    "element-plus": "^2.0.3",
     "lodash": "^4.17.21"
   }
 }
