@@ -61,12 +61,7 @@ export default defineComponent({
       this.loadData();
     },
     handleEdit(index, row) {
-      this.$router.push({
-        path: '/admin/editor',
-        query: {
-          cid: row.cid
-        }
-      });
+      window.location.href = `/admin/editor/${row.cid}`
     }
   }
 });
