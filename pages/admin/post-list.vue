@@ -61,7 +61,7 @@ export default defineComponent({
       this.loadData();
     },
     handleEdit(index, row) {
-      window.location.href = `/admin/editor/${row.cid}`
+      window.location.href = `/admin/editor?cid=${row.cid}`
     }
   }
 });
