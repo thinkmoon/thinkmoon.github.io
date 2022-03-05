@@ -8,11 +8,24 @@ import Post from '~/api/Post';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-let data = '';
-if(route.query.cid){
+let data;
+if (route.query.cid) {
   const resopnse = await useAsyncData('article', () => Post.getDetail({ cid: route.query.cid }));
   data = ref(resopnse.data);
 }
+
+function saveArticle() {
+  let params = {
+    cid: route.query.cid,
+    title: data.title,
+    text: data.text
+  };
+  Post.update(params).then(() => {
+  })
+}
+</script>
+<script lang="ts">
+
 </script>
 <style lang="less">
 

@@ -15,4 +15,11 @@ export default class Post {
       params
     })
   }
+  static update(data){
+    return request({
+      method: 'post',
+      url: `/post/update`,
+      data
+    })
+  }
 }
