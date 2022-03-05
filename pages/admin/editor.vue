@@ -10,22 +10,19 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 let data;
 if (route.query.cid) {
-  const resopnse = await useAsyncData('article', () => Post.getDetail({ cid: route.query.cid }));
-  data = ref(resopnse.data);
+  const response = await useAsyncData('article', () => Post.getDetail({ cid: route.query.cid }));
+  data = ref(response.data);
 }
 
 function saveArticle() {
   let params = {
     cid: route.query.cid,
-    title: data.title,
-    text: data.text
+    title: data.value.title,
+    text: data.value.text
   };
   Post.update(params).then(() => {
   })
 }
-</script>
-<script lang="ts">
-
 </script>
 <style lang="less">
 
