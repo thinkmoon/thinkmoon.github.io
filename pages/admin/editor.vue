@@ -7,6 +7,10 @@
 import Post from '~/api/Post';
 import { useRoute } from 'vue-router';
 
+definePageMeta({
+  keepalive: true
+});
+
 const route = useRoute();
 let data;
 if (route.query.cid) {

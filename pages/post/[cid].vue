@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="app-container">
     <div class="article-content">
       <v-md-preview :text="content"/>
     </div>

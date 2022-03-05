@@ -2,7 +2,9 @@
   <NuxtPage/>
   <footer>
     <span>网站持续搭建中，感谢关注</span>
-    <el-link href="http://beian.miit.gov.cn/" type="primary">粤ICP备17055617号</el-link>
+    <div>
+      <el-link href="http://beian.miit.gov.cn/" type="primary">粤ICP备17055617号</el-link>
+    </div>
   </footer>
 </template>
 <style lang="less">
