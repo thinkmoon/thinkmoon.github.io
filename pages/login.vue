@@ -18,6 +18,7 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
 import { useUserStore } from '~/store/userStore';
+import UserApi from '~/api/UserApi';
 
 const router = useRouter();
 const form = reactive({
@@ -27,8 +28,11 @@ const form = reactive({
 
 const onSubmit = () => {
   const user = useUserStore();
-  user.auth = 123;
-  router.push('/admin');
+  UserApi.login(form).then(res => {
+    user.auth = res;
+    localStorage.setItem('token', res);
+    router.push('/admin');
+  });
 };
 </script>
 

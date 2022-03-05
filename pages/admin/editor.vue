@@ -28,7 +28,7 @@ onActivated(() => {
 
 function saveArticle() {
   let params = {
-    cid: route.query.cid,
+    cid: Number(route.query.cid),
     title: data.value.title,
     text: data.value.text
   };

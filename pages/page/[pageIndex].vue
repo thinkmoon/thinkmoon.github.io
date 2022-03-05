@@ -22,10 +22,10 @@
               >{{ tagItem }}
               </el-tag>
             </div>
-            <el-link :href="`/post/${item.cid}`" :underline="false" class="post-title">{{
+            <NuxtLink :to="`/post/${item.cid}`" :underline="false" class="post-title">{{
                 item.title
               }}
-            </el-link>
+            </NuxtLink>
           </div>
           <div class="posts-default-content">
             <div class="posts-text">
