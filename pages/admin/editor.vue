@@ -1,5 +1,6 @@
 <template>
   <div class="editor-container">
+    <el-input class="title-input" v-model="data.title"></el-input>
     <v-md-editor v-model="data.text" height="560px" @save="saveArticle"></v-md-editor>
   </div>
 </template>
@@ -11,12 +12,19 @@ definePageMeta({
   keepalive: true
 });
 
+let data = ref({});
 const route = useRoute();
-let data;
-if (route.query.cid) {
-  const response = await useAsyncData('article', () => Post.getDetail({ cid: route.query.cid }));
-  data = ref(response.data);
-}
+
+onActivated(() => {
+  console.log('onActivated');
+  if (route.query.cid) {
+    Post.getDetail({ cid: route.query.cid }).then(res => {
+      console.log(res);
+      data.value = res;
+    });
+  }
+});
+
 
 function saveArticle() {
   let params = {
@@ -25,14 +33,17 @@ function saveArticle() {
     text: data.value.text
   };
   Post.update(params).then(() => {
-  })
+  });
 }
 </script>
 <style lang="less">
 
 .editor-container {
   display: flex;
-
+  flex-direction: column;
+  .title-input {
+    margin: 6px 0;
+  }
   .left, .right {
     flex: 1;
     text-align: left;

@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@kangc/v-md-editor": "^2.3.14",
+    "@pinia/nuxt": "^0.1.8",
     "axios": "^0.26.0",
     "element-plus": "^2.0.4",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "pinia": "^2.0.11"
   }
 }
