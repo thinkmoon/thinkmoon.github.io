@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <Title>指尖魔法屋</Title>
+    <Title>指尖魔法屋-醉月思的博客</Title>
     <div class="blog-posts">
       <div v-for="item in postList" :key="item.cid" class="content-box">
         <div class="posts-default-img">

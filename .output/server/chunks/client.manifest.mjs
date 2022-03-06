@@ -1,6 +1,6 @@
 const client_manifest = {
   "node_modules/nuxt3/dist/app/entry.mjs": {
-    "file": "entry-1f0622d1.mjs",
+    "file": "entry-b6592b17.mjs",
     "src": "node_modules/nuxt3/dist/app/entry.mjs",
     "isEntry": true,
     "dynamicImports": [
@@ -15,11 +15,11 @@ const client_manifest = {
       "middleware/auth.ts"
     ],
     "css": [
-      "entry.75841aed.css"
+      "entry.1b2350a8.css"
     ]
   },
   "pages/admin/editor.vue": {
-    "file": "editor-54c81fef.mjs",
+    "file": "editor-34c31710.mjs",
     "src": "pages/admin/editor.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -27,7 +27,7 @@ const client_manifest = {
     ]
   },
   "pages/admin/index.vue": {
-    "file": "index-12e33796.mjs",
+    "file": "index-426655a1.mjs",
     "src": "pages/admin/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -35,7 +35,7 @@ const client_manifest = {
     ]
   },
   "pages/admin/post-list.vue": {
-    "file": "post-list-abe9da0b.mjs",
+    "file": "post-list-0447be48.mjs",
     "src": "pages/admin/post-list.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -43,7 +43,7 @@ const client_manifest = {
     ]
   },
   "pages/admin.vue": {
-    "file": "admin-ca4c3be9.mjs",
+    "file": "admin-0ffc4274.mjs",
     "src": "pages/admin.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -51,7 +51,7 @@ const client_manifest = {
     ]
   },
   "pages/index.vue": {
-    "file": "index-0c409c78.mjs",
+    "file": "index-84bf246a.mjs",
     "src": "pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -59,7 +59,7 @@ const client_manifest = {
     ]
   },
   "pages/login.vue": {
-    "file": "login-d6d6e301.mjs",
+    "file": "login-ca36b4b0.mjs",
     "src": "pages/login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -67,7 +67,7 @@ const client_manifest = {
     ]
   },
   "pages/page/[pageIndex].vue": {
-    "file": "_pageIndex_-c8703885.mjs",
+    "file": "_pageIndex_-3ad43ffe.mjs",
     "src": "pages/page/[pageIndex].vue",
     "isDynamicEntry": true,
     "imports": [
@@ -75,7 +75,7 @@ const client_manifest = {
     ]
   },
   "pages/post/[cid].vue": {
-    "file": "_cid_-c3534f66.mjs",
+    "file": "_cid_-e2bb3f13.mjs",
     "src": "pages/post/[cid].vue",
     "isDynamicEntry": true,
     "imports": [
@@ -83,7 +83,7 @@ const client_manifest = {
     ]
   },
   "middleware/auth.ts": {
-    "file": "auth-8d20e493.mjs",
+    "file": "auth-e6a0e1d3.mjs",
     "src": "middleware/auth.ts",
     "isDynamicEntry": true,
     "imports": [

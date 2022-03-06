@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <Title>{{ data.title }}</Title>
+    <Title>{{ data.title }} - 指尖魔法屋-醉月思的博客</Title>
     <div class="article-content">
       <v-md-preview :text="content"/>
     </div>
