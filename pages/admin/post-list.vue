@@ -32,7 +32,7 @@ definePageMeta({
 </script>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Post from '~/api/Post';
+import PostApi from '~/api/PostApi';
 
 export default defineComponent({
   data() {
@@ -50,7 +50,7 @@ export default defineComponent({
   },
   methods: {
     loadData() {
-      Post.getList({
+      PostApi.getList({
         current: this.pagination.index,
         size: this.pagination.size,
       }).then(res => {

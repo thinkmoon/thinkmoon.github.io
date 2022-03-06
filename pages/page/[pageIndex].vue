@@ -75,7 +75,7 @@
 
 <script lang="ts" setup>
 import axios from 'axios';
-import Post from '~/api/Post';
+import PostApi from '~/api/PostApi';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
@@ -86,7 +86,7 @@ let pageData = {
 };
 let pageIndex = route.params.pageIndex;
 pageData.current = Number(pageIndex);
-const { data } = await useAsyncData('res', () => Post.getList({ current: pageIndex }));
+const { data } = await useAsyncData('res', () => PostApi.getList({ current: pageIndex }));
 
 let postList = data.value.records;
 pageData.total = data.value.total;

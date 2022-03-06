@@ -5,7 +5,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import Post from '~/api/Post';
+import PostApi from '~/api/PostApi';
 import { useRoute } from 'vue-router';
 
 definePageMeta({
@@ -18,7 +18,7 @@ const route = useRoute();
 onActivated(() => {
   console.log('onActivated');
   if (route.query.cid) {
-    Post.getDetail({ cid: route.query.cid }).then(res => {
+    PostApi.getDetail({ cid: route.query.cid }).then(res => {
       console.log(res);
       data.value = res;
     });
@@ -32,7 +32,7 @@ function saveArticle() {
     title: data.value.title,
     text: data.value.text
   };
-  Post.update(params).then(() => {
+  PostApi.update(params).then(() => {
   });
 }
 </script>

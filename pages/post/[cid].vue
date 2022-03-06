@@ -9,13 +9,13 @@
 
 <script lang="ts" setup>
 import axios from 'axios'
-import Post from '~/api/Post';
+import PostApi from '~/api/PostApi';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const url = `https://www.thinkmoon.cn/post/${route.params.cid}`;
 
-const { data } = await useAsyncData('article', () => Post.getDetail({ cid: route.params.cid }));
+const { data } = await useAsyncData('article', () => PostApi.getDetail({ cid: route.params.cid }));
 let copyRight = `> 版权声明: 本文首发于[指尖魔法屋-${data.value.title}](${url}),转载或引用必须申明原指尖魔法屋来源及源地址！`
 const content = computed(() => `# ${data.value.title} \r\n ${data.value.text} \r\n ${copyRight}`);
 if(process.server) {
