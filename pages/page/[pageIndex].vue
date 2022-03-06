@@ -1,5 +1,6 @@
 <template>
   <div class="page-content">
+    <Title>指尖魔法屋</Title>
     <div class="blog-posts">
       <div v-for="item in postList" :key="item.cid" class="content-box">
         <div class="posts-default-img">
@@ -64,7 +65,7 @@
         </div>
       </div>
     </div>
-    <el-pagination layout="prev, pager, next"
+    <el-pagination layout="prev, pager, next, slot"
                    v-model:currentPage="pageData.current"
                    :page-size="10" :total="pageData.total"
                    @current-change="changePage">
@@ -73,6 +74,7 @@
 </template>
 
 <script lang="ts" setup>
+import axios from 'axios';
 import Post from '~/api/Post';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -91,6 +93,14 @@ pageData.total = data.value.total;
 const changePage = (page) => {
   router.replace(`/page/${page}`);
 };
+if (process.server) {
+  let url = `https://www.thinkmoon.cn/page/${route.params.pageIndex}`;
+  axios.post('http://data.zz.baidu.com/urls?site=https://www.thinkmoon.cn&token=CKLtHWl6TKYOJw39', url).then(res => {
+    console.log('推送成功:', url);
+  }).catch(err => {
+    console.error('推送失败:', url);
+  });
+}
 </script>
 
 <style lang="less" scoped>
