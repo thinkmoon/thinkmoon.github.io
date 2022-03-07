@@ -21,86 +21,86 @@ const assets = {
   },
   "/robots.txt": {
     "type": "text/plain; charset=utf-8",
-    "etag": "\"5c-V8AFqJTVOmnPYKZwvkcgxe+GxSo\"",
-    "mtime": "2022-03-06T10:21:22.857Z",
+    "etag": "\"5c-clKbIIr8xG4kyOLFAzssdB3Toyk\"",
+    "mtime": "2022-03-07T11:16:47.078Z",
     "path": "../public/robots.txt"
   },
-  "/sitemap.xml": {
-    "type": "application/xml",
+  "/sitemap.txt": {
+    "type": "text/plain; charset=utf-8",
     "etag": "\"14f4-huqtoUyzHoEiNI3KrfF0/Mp1KfI\"",
-    "mtime": "2022-03-06T10:20:33.551Z",
-    "path": "../public/sitemap.xml"
+    "mtime": "2022-03-07T11:16:35.568Z",
+    "path": "../public/sitemap.txt"
   },
   "/_nuxt/admin-e2726965.mjs": {
     "type": "application/javascript",
     "etag": "\"59f-1GWYqv1w7ydXIPGveIbSiNWn0Xo\"",
-    "mtime": "2022-03-06T10:22:11.540Z",
+    "mtime": "2022-03-07T11:17:11.276Z",
     "path": "../public/_nuxt/admin-e2726965.mjs"
   },
   "/_nuxt/auth-042ae891.mjs": {
     "type": "application/javascript",
     "etag": "\"e0-ysTD5/yci5D+w4a09vbP3/Nw0Q4\"",
-    "mtime": "2022-03-06T10:22:11.548Z",
+    "mtime": "2022-03-07T11:17:11.280Z",
     "path": "../public/_nuxt/auth-042ae891.mjs"
   },
   "/_nuxt/editor-3d47f99d.mjs": {
     "type": "application/javascript",
     "etag": "\"3aa-rZqk+h3ZYDKTEQaY+S1ByDC86xk\"",
-    "mtime": "2022-03-06T10:22:11.540Z",
+    "mtime": "2022-03-07T11:17:11.276Z",
     "path": "../public/_nuxt/editor-3d47f99d.mjs"
   },
   "/_nuxt/entry-0d66ef59.mjs": {
     "type": "application/javascript",
     "etag": "\"1fec48-PeT4zmkNbxkwrSSiWXBhYdJvknQ\"",
-    "mtime": "2022-03-06T10:22:11.565Z",
+    "mtime": "2022-03-07T11:17:11.303Z",
     "path": "../public/_nuxt/entry-0d66ef59.mjs"
   },
   "/_nuxt/entry.a12db18f.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"55bf1-1xnQLL4fkHsi+Y+nWHpBmOtEzTU\"",
-    "mtime": "2022-03-06T10:22:11.548Z",
+    "mtime": "2022-03-07T11:17:11.280Z",
     "path": "../public/_nuxt/entry.a12db18f.css"
   },
   "/_nuxt/index-c822527a.mjs": {
     "type": "application/javascript",
     "etag": "\"8b-FMtKH+qrPM+PhTbPrPvVTER0Stc\"",
-    "mtime": "2022-03-06T10:22:11.540Z",
+    "mtime": "2022-03-07T11:17:11.275Z",
     "path": "../public/_nuxt/index-c822527a.mjs"
   },
   "/_nuxt/index-e7db8979.mjs": {
     "type": "application/javascript",
     "etag": "\"134-qzNgyxfzFezoBADCQQWWnuxPwpg\"",
-    "mtime": "2022-03-06T10:22:11.540Z",
+    "mtime": "2022-03-07T11:17:11.276Z",
     "path": "../public/_nuxt/index-e7db8979.mjs"
   },
   "/_nuxt/login-a9b158d7.mjs": {
     "type": "application/javascript",
     "etag": "\"48a-6lxl6RbFMIpimhOMLS5kyNDGqn4\"",
-    "mtime": "2022-03-06T10:22:11.545Z",
+    "mtime": "2022-03-07T11:17:11.279Z",
     "path": "../public/_nuxt/login-a9b158d7.mjs"
   },
   "/_nuxt/manifest.json": {
     "type": "application/json",
     "etag": "\"8f9-+Sw6Kh448fzS0LypBdh75SRG4Q4\"",
-    "mtime": "2022-03-06T10:22:11.548Z",
+    "mtime": "2022-03-07T11:17:11.280Z",
     "path": "../public/_nuxt/manifest.json"
   },
   "/_nuxt/post-list-a215b697.mjs": {
     "type": "application/javascript",
     "etag": "\"882-4eepcPJAz3YgjyRZyCmCW5iAgr0\"",
-    "mtime": "2022-03-06T10:22:11.540Z",
+    "mtime": "2022-03-07T11:17:11.276Z",
     "path": "../public/_nuxt/post-list-a215b697.mjs"
   },
   "/_nuxt/_cid_-6aeff17b.mjs": {
     "type": "application/javascript",
     "etag": "\"49c-um0hY0zR5FoukUXAzhjtRpCQTLo\"",
-    "mtime": "2022-03-06T10:22:11.548Z",
+    "mtime": "2022-03-07T11:17:11.279Z",
     "path": "../public/_nuxt/_cid_-6aeff17b.mjs"
   },
   "/_nuxt/_pageIndex_-7a616b25.mjs": {
     "type": "application/javascript",
     "etag": "\"b7d-baqxQv0Dil+vhxzV5DWA+vX9AS0\"",
-    "mtime": "2022-03-06T10:22:11.545Z",
+    "mtime": "2022-03-07T11:17:11.279Z",
     "path": "../public/_nuxt/_pageIndex_-7a616b25.mjs"
   }
 };
@@ -117,7 +117,7 @@ function getAsset (id) {
 
 const METHODS = ["HEAD", "GET"];
 const TWO_DAYS = 2 * 60 * 60 * 24;
-const STATIC_ASSETS_BASE = "/_nuxt/D:/project/thinkmoon.github.io/dist" + "/" + "1646562121";
+const STATIC_ASSETS_BASE = "/_nuxt/D:/project/thinkmoon.github.io/dist" + "/" + "1646651819";
 async function serveStatic(req, res) {
   if (!METHODS.includes(req.method)) {
     return;

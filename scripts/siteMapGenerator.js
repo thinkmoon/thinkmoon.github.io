@@ -27,7 +27,7 @@ async function run(current) {
   if (current < pageNum) {
     run(++current);
   } else {
-    fs.writeFile('../public/sitemap.xml', sitemapArray.join('\r\n'), err => {
+    fs.writeFile('../public/sitemap.txt', sitemapArray.join('\r\n'), err => {
       if (err) {
         console.error(err)
         return
