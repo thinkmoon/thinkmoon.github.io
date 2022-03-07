@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <Title>指尖魔法屋-醉月思的博客</Title>
+    <Title>第{{ route.params.pageIndex }}页-{{ config.TITLE }}</Title>
     <div class="blog-posts">
       <div v-for="item in postList" :key="item.cid" class="content-box">
         <div class="posts-default-img">
@@ -78,6 +78,7 @@ import axios from 'axios';
 import PostApi from '~/api/PostApi';
 import { useRoute, useRouter } from 'vue-router';
 
+const config = useRuntimeConfig();
 const route = useRoute();
 const router = useRouter();
 let pageData = {

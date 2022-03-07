@@ -8,7 +8,7 @@ import { createCall, createFetch } from 'unenv/runtime/fetch/index';
 import { joinURL } from 'ufo';
 import defu from 'defu';
 
-const _runtimeConfig = {public:{app:{baseURL:"\u002F",buildAssetsDir:"\u002F_nuxt\u002F",assetsPath:{},cdnURL:null}},private:{}};
+const _runtimeConfig = {public:{TITLE:"指尖魔法屋-醉月思的博客",app:{baseURL:"\u002F",buildAssetsDir:"\u002F_nuxt\u002F",assetsPath:{},cdnURL:null}},private:{}};
 for (const type of ["private", "public"]) {
   for (const key in _runtimeConfig[type]) {
     _runtimeConfig[type][key] = destr(process.env[key] || _runtimeConfig[type][key]);

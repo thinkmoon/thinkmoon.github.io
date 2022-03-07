@@ -1,6 +1,6 @@
 {
   "node_modules/nuxt3/dist/app/entry.mjs": {
-    "file": "entry-0d66ef59.mjs",
+    "file": "entry-11220a85.mjs",
     "src": "node_modules/nuxt3/dist/app/entry.mjs",
     "isEntry": true,
     "dynamicImports": [
@@ -8,6 +8,7 @@
       "pages/admin/index.vue",
       "pages/admin/post-list.vue",
       "pages/admin.vue",
+      "pages/category/index.vue",
       "pages/index.vue",
       "pages/login.vue",
       "pages/page/[pageIndex].vue",
@@ -15,11 +16,11 @@
       "middleware/auth.ts"
     ],
     "css": [
-      "entry.a12db18f.css"
+      "entry.1b1671d1.css"
     ]
   },
   "pages/admin/editor.vue": {
-    "file": "editor-3d47f99d.mjs",
+    "file": "editor-8fb83526.mjs",
     "src": "pages/admin/editor.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -27,7 +28,7 @@
     ]
   },
   "pages/admin/index.vue": {
-    "file": "index-c822527a.mjs",
+    "file": "index-e3b1f5f2.mjs",
     "src": "pages/admin/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -35,7 +36,7 @@
     ]
   },
   "pages/admin/post-list.vue": {
-    "file": "post-list-a215b697.mjs",
+    "file": "post-list-eb400e26.mjs",
     "src": "pages/admin/post-list.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -43,15 +44,23 @@
     ]
   },
   "pages/admin.vue": {
-    "file": "admin-e2726965.mjs",
+    "file": "admin-fd90712e.mjs",
     "src": "pages/admin.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt3/dist/app/entry.mjs"
     ]
   },
+  "pages/category/index.vue": {
+    "file": "index-a4ac5e9d.mjs",
+    "src": "pages/category/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt3/dist/app/entry.mjs"
+    ]
+  },
   "pages/index.vue": {
-    "file": "index-e7db8979.mjs",
+    "file": "index-e86bcfc5.mjs",
     "src": "pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -59,7 +68,7 @@
     ]
   },
   "pages/login.vue": {
-    "file": "login-a9b158d7.mjs",
+    "file": "login-a4e36e6a.mjs",
     "src": "pages/login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -67,7 +76,7 @@
     ]
   },
   "pages/page/[pageIndex].vue": {
-    "file": "_pageIndex_-7a616b25.mjs",
+    "file": "_pageIndex_-cd84a833.mjs",
     "src": "pages/page/[pageIndex].vue",
     "isDynamicEntry": true,
     "imports": [
@@ -75,7 +84,7 @@
     ]
   },
   "pages/post/[cid].vue": {
-    "file": "_cid_-6aeff17b.mjs",
+    "file": "_cid_-251d6a0e.mjs",
     "src": "pages/post/[cid].vue",
     "isDynamicEntry": true,
     "imports": [
@@ -83,7 +92,7 @@
     ]
   },
   "middleware/auth.ts": {
-    "file": "auth-042ae891.mjs",
+    "file": "auth-4cb4e962.mjs",
     "src": "middleware/auth.ts",
     "isDynamicEntry": true,
     "imports": [
