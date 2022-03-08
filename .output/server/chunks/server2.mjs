@@ -3239,6 +3239,25 @@ const NuxtLayout = vue_cjs_prod.defineComponent({
     };
   }
 });
+const _sfc_main$2V = /* @__PURE__ */ vue_cjs_prod.defineComponent({
+  __ssrInlineRender: true,
+  setup(__props) {
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<div${serverRenderer.exports.ssrRenderAttrs(vue_cjs_prod.mergeProps({ class: "app-container" }, _attrs))}></div>`);
+    };
+  }
+});
+const _sfc_setup$j = _sfc_main$2V.setup;
+_sfc_main$2V.setup = (props, ctx) => {
+  const ssrContext = vue_cjs_prod.useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/404.vue");
+  return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
+};
+const meta$9 = {
+  middleware() {
+    return navigateTo("/page/1");
+  }
+};
 const _export_sfc$2 = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -3587,11 +3606,11 @@ const _sfc_main$2U = /* @__PURE__ */ vue_cjs_prod.defineComponent({
     };
   }
 });
-const _sfc_setup$h = _sfc_main$2U.setup;
+const _sfc_setup$i = _sfc_main$2U.setup;
 _sfc_main$2U.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/admin.vue");
-  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
+  return _sfc_setup$i ? _sfc_setup$i(props, ctx) : void 0;
 };
 const meta$8 = {
   middleware: ["auth"]
@@ -3669,11 +3688,11 @@ const _sfc_main$2T = /* @__PURE__ */ vue_cjs_prod.defineComponent({
     };
   }
 });
-const _sfc_setup$g = _sfc_main$2T.setup;
+const _sfc_setup$h = _sfc_main$2T.setup;
 _sfc_main$2T.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/admin/editor.vue");
-  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
+  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
 };
 const meta$7 = {
   keepalive: true
@@ -3839,11 +3858,11 @@ const _sfc_main$2S = /* @__PURE__ */ vue_cjs_prod.defineComponent(__spreadProps(
     };
   }
 }));
-const _sfc_setup$f = _sfc_main$2S.setup;
+const _sfc_setup$g = _sfc_main$2S.setup;
 _sfc_main$2S.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/admin/post-list.vue");
-  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
+  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
 };
 const meta$5 = {
   keepalive: true
@@ -3857,11 +3876,11 @@ const _sfc_main$2R = /* @__PURE__ */ vue_cjs_prod.defineComponent({
     };
   }
 });
-const _sfc_setup$e = _sfc_main$2R.setup;
+const _sfc_setup$f = _sfc_main$2R.setup;
 _sfc_main$2R.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/index.vue");
-  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
+  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
 };
 const meta$3 = {
   middleware() {
@@ -3908,11 +3927,11 @@ const _sfc_main$2Q = vue_cjs_prod.defineComponent({
     }
   }
 });
-const _sfc_setup$d = _sfc_main$2Q.setup;
+const _sfc_setup$e = _sfc_main$2Q.setup;
 _sfc_main$2Q.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/login.vue");
-  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
+  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
 };
 const meta$2 = void 0;
 const _sfc_main$2P = /* @__PURE__ */ vue_cjs_prod.defineComponent({
@@ -4041,11 +4060,11 @@ const _sfc_main$2P = /* @__PURE__ */ vue_cjs_prod.defineComponent({
     };
   }
 });
-const _sfc_setup$c = _sfc_main$2P.setup;
+const _sfc_setup$d = _sfc_main$2P.setup;
 _sfc_main$2P.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/page/[pageIndex].vue");
-  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
 const meta$1 = void 0;
 const _sfc_main$2O = /* @__PURE__ */ vue_cjs_prod.defineComponent({
@@ -4089,14 +4108,24 @@ const _sfc_main$2O = /* @__PURE__ */ vue_cjs_prod.defineComponent({
     };
   }
 });
-const _sfc_setup$b = _sfc_main$2O.setup;
+const _sfc_setup$c = _sfc_main$2O.setup;
 _sfc_main$2O.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/post/[cid].vue");
-  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
+  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
 const meta = void 0;
 const routes = [
+  {
+    name: "404",
+    path: "/:catchAll(.*)*",
+    file: "D:/project/thinkmoon.github.io/pages/404.vue",
+    children: [],
+    meta: meta$9,
+    component: () => Promise.resolve().then(function() {
+      return _404;
+    })
+  },
   {
     path: "/admin",
     file: "D:/project/thinkmoon.github.io/pages/admin.vue",
@@ -43235,7 +43264,7 @@ class TreeStore {
     }
   }
 }
-const _sfc_main$b = vue_cjs_prod.defineComponent({
+const _sfc_main$b$1 = vue_cjs_prod.defineComponent({
   name: "ElTreeNodeContent",
   props: {
     node: {
@@ -43255,7 +43284,7 @@ const _sfc_main$b = vue_cjs_prod.defineComponent({
     };
   }
 });
-var NodeContent = _sfc_main$b;
+var NodeContent = _sfc_main$b$1;
 function useNodeExpandEventBroadcast(props) {
   const parentNodeMap = vue_cjs_prod.inject("TreeNodeMap", null);
   const currentNodeMap = {
@@ -79046,7 +79075,7 @@ const _plugins = [
   mdPreview_61f04cda,
   nitroClient_b1475dfe
 ];
-const _sfc_main$a = {
+const _sfc_main$b = {
   setup() {
     const nuxtApp = useNuxtApp();
     nuxtApp.hooks.callHookWith((hooks) => hooks.map((hook) => hook()), "vue:setup");
@@ -79064,14 +79093,14 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _: 1
   });
 }
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
+const _sfc_setup$b = _sfc_main$b.setup;
+_sfc_main$b.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("node_modules/nuxt3/dist/app/components/nuxt-root.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
+  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const RootComponent = /* @__PURE__ */ _export_sfc$2(_sfc_main$a, [["ssrRender", _sfc_ssrRender$3]]);
-const _sfc_main$9 = /* @__PURE__ */ vue_cjs_prod.defineComponent({
+const RootComponent = /* @__PURE__ */ _export_sfc$2(_sfc_main$b, [["ssrRender", _sfc_ssrRender$3]]);
+const _sfc_main$a = /* @__PURE__ */ vue_cjs_prod.defineComponent({
   __ssrInlineRender: true,
   setup(__props) {
     const config = useRuntimeConfig();
@@ -79103,18 +79132,18 @@ const _sfc_main$9 = /* @__PURE__ */ vue_cjs_prod.defineComponent({
     };
   }
 });
-const _sfc_setup$9 = _sfc_main$9.setup;
-_sfc_main$9.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = vue_cjs_prod.useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("app.vue");
-  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
 let entry;
 const plugins = normalizePlugins(_plugins);
 {
   entry = async function createNuxtAppServer(ssrContext = {}) {
     const vueApp = vue_cjs_prod.createApp(RootComponent);
-    vueApp.component("App", _sfc_main$9);
+    vueApp.component("App", _sfc_main$a);
     const nuxt = createNuxtApp({ vueApp, ssrContext });
     await applyPlugins(nuxt, plugins);
     await nuxt.hooks.callHook("app:created", vueApp);
@@ -79122,6 +79151,25 @@ const plugins = normalizePlugins(_plugins);
   };
 }
 const entry$1 = (ctx) => entry(ctx);
+const _sfc_main$9 = /* @__PURE__ */ vue_cjs_prod.defineComponent({
+  __ssrInlineRender: true,
+  setup(__props) {
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<div${serverRenderer.exports.ssrRenderAttrs(vue_cjs_prod.mergeProps({ class: "app-container" }, _attrs))}></div>`);
+    };
+  }
+});
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
+  const ssrContext = vue_cjs_prod.useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/404.vue");
+  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+};
+const _404 = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  [Symbol.toStringTag]: "Module",
+  "default": _sfc_main$9
+});
 const _sfc_main$8 = /* @__PURE__ */ vue_cjs_prod.defineComponent({
   __ssrInlineRender: true,
   setup(__props) {
