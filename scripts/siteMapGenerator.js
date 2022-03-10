@@ -27,6 +27,8 @@ async function run(current) {
   if (current < pageNum) {
     run(++current);
   } else {
+		sitemapArray.push(`${baseUrl}/tag`)
+		sitemapArray.push(`${baseUrl}/category`)
     fs.writeFile('../public/sitemap.txt', sitemapArray.join('\r\n'), err => {
       if (err) {
         console.error(err)

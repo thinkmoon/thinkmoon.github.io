@@ -1,1 +1,0 @@
-import{_ as t,b as o,c as a,e as n,w as s,f as c,o as r}from"./entry-74ad360a.mjs";const _={name:"Category"},l=c("\u6240\u6709\u5206\u7C7B");function d(i,p,f,m,u,x){const e=o("Title");return r(),a("div",null,[n(e,null,{default:s(()=>[l]),_:1})])}var h=t(_,[["render",d]]);export{h as default};
