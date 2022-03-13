@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "nuxi dev",
-    "build": "nuxi build",
+    "build": "nuxi build && git add .",
     "start": "node .output/server/index.mjs"
   },
   "pre-commit": [
