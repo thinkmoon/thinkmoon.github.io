@@ -34,4 +34,9 @@ if(process.server) {
   margin: auto;
   background: #fff;
 }
+@media (max-width: 1024px) {
+  .article-content {
+    width: 100%;
+  }
+}
 </style>

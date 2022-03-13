@@ -57,10 +57,18 @@
       </div>
       <div class="pagination-div">
         <div>
-          <el-link :href="`/page/${Number(pageIndex) - 1}`" type="primary" v-if="Number(pageIndex) !== 1">上一页</el-link>
+          <el-link
+            :href="`/page/${Number(pageIndex) - 1}`"
+            type="primary"
+            v-if="Number(pageIndex) !== 1"
+          >上一页</el-link>
         </div>
         <div>
-          <el-link :href="`/page/${Number(pageIndex) + 1}`" type="primary" v-if="Number(pageIndex) !== data.pages">下一页</el-link>
+          <el-link
+            :href="`/page/${Number(pageIndex) + 1}`"
+            type="primary"
+            v-if="Number(pageIndex) !== data.pages"
+          >下一页</el-link>
         </div>
       </div>
     </div>
@@ -130,6 +138,14 @@ if (process.server) {
 
     .post-tag {
       margin: 4px 6px;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .page-content {
+    width: 90%;
+    .blog-posts {
+      width: 100%;
     }
   }
 }
