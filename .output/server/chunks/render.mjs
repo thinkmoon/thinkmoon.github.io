@@ -1,9 +1,9 @@
+import { useQuery } from 'h3';
 import { p as privateConfig, a as publicConfig, b as buildAssetsURL } from './server.mjs';
 import 'unenv/runtime/polyfill/fetch.node';
 import 'http';
 import 'https';
 import 'destr';
-import 'h3';
 import 'ohmyfetch';
 import 'unenv/runtime/fetch/index';
 import 'ufo';
@@ -515,18 +515,18 @@ const htmlTemplate = (params) => `<!DOCTYPE html>
 </html>
 `;
 
-const STATIC_ASSETS_BASE = "/_nuxt/D:/project/thinkmoon.github.io/dist" + "/" + "1646743658";
+const STATIC_ASSETS_BASE = "/_nuxt/D:/project/thinkmoon.github.io/dist" + "/" + "1647139124";
 const PAYLOAD_JS = "/payload.js";
 const getClientManifest = cachedImport(() => import('./client.manifest.mjs'));
 const getSSRApp = cachedImport(() => import('./server2.mjs'));
 const getSSRRenderer = cachedResult(async () => {
-  const clientManifest = await getClientManifest();
-  if (!clientManifest) {
-    throw new Error("client.manifest is not available");
-  }
   const createSSRApp = await getSSRApp();
   if (!createSSRApp) {
     throw new Error("Server bundle is not available");
+  }
+  const clientManifest = await getClientManifest();
+  if (!clientManifest) {
+    throw new Error("client.manifest is not available");
   }
   const { renderToString: renderToString2 } = await import('./vue3.mjs');
   return createRenderer(createSSRApp, { clientManifest, renderToString: renderToString2, publicPath: buildAssetsURL() }).renderToString;
@@ -559,7 +559,8 @@ function renderToString(ssrContext) {
   return getRenderer().then((renderToString2) => renderToString2(ssrContext));
 }
 async function renderMiddleware(req, res) {
-  let url = req.url;
+  const ssrError = req.url.startsWith("/__error") ? useQuery(req) : null;
+  let url = ssrError?.url || req.url;
   let isPayloadReq = false;
   if (url.startsWith(STATIC_ASSETS_BASE) && url.endsWith(PAYLOAD_JS)) {
     isPayloadReq = true;
@@ -571,11 +572,20 @@ async function renderMiddleware(req, res) {
     res,
     runtimeConfig: { private: privateConfig, public: publicConfig },
     noSSR: req.spa || req.headers["x-nuxt-no-ssr"],
-    ...req.context || {}
+    ...req.context || {},
+    error: ssrError
   };
-  const rendered = await renderToString(ssrContext);
-  if (ssrContext.error) {
-    throw ssrContext.error;
+  const rendered = await renderToString(ssrContext).catch((e) => {
+    if (!ssrError) {
+      throw e;
+    }
+  });
+  if (!rendered) {
+    return;
+  }
+  const error = ssrContext.error || ssrContext.nuxt?.error;
+  if (error && !ssrError) {
+    throw error;
   }
   if (ssrContext.redirected || res.writableEnded) {
     return;
@@ -592,8 +602,7 @@ async function renderMiddleware(req, res) {
     data = await renderHTML(payload, rendered, ssrContext);
     res.setHeader("Content-Type", "text/html;charset=UTF-8");
   }
-  const error = ssrContext.nuxt && ssrContext.nuxt.error;
-  res.statusCode = error ? error.statusCode : 200;
+  res.statusCode = res.statusCode || 200;
   res.end(data, "utf-8");
 }
 async function renderHTML(payload, rendered, ssrContext) {

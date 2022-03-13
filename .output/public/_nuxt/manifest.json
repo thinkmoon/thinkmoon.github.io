@@ -1,31 +1,32 @@
 {
   "node_modules/nuxt3/dist/app/entry.mjs": {
-    "file": "entry-f8220ddd.mjs",
+    "file": "entry-723d84a1.mjs",
     "src": "node_modules/nuxt3/dist/app/entry.mjs",
     "isEntry": true,
     "dynamicImports": [
+      "layouts/admin.vue",
+      "layouts/normal.vue",
       "pages/404.vue",
       "pages/admin/editor.vue",
       "pages/admin/index.vue",
       "pages/admin/post-list.vue",
       "pages/admin.vue",
       "pages/category/[mid]/[pageIndex].vue",
-      "pages/category/[mid].vue",
       "pages/category/index.vue",
       "pages/index.vue",
       "pages/login.vue",
       "pages/page/[pageIndex].vue",
       "pages/post/[cid].vue",
-      "pages/tag/[tid].vue",
+      "pages/tag/[tid]/[pageIndex].vue",
       "pages/tag/index.vue",
       "middleware/auth.ts"
     ],
     "css": [
-      "entry.af81fec1.css"
+      "entry.ae058194.css"
     ]
   },
   "pages/404.vue": {
-    "file": "404-84634910.mjs",
+    "file": "404-2ea1434c.mjs",
     "src": "pages/404.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -33,7 +34,7 @@
     ]
   },
   "pages/admin/editor.vue": {
-    "file": "editor-ffd586c5.mjs",
+    "file": "editor-a1424bca.mjs",
     "src": "pages/admin/editor.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -41,7 +42,7 @@
     ]
   },
   "pages/admin/index.vue": {
-    "file": "index-ce20d930.mjs",
+    "file": "index-92ae845e.mjs",
     "src": "pages/admin/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -49,7 +50,7 @@
     ]
   },
   "pages/admin/post-list.vue": {
-    "file": "post-list-ee205fc7.mjs",
+    "file": "post-list-5d8cdf63.mjs",
     "src": "pages/admin/post-list.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -57,7 +58,7 @@
     ]
   },
   "pages/admin.vue": {
-    "file": "admin-5b4459b8.mjs",
+    "file": "admin-ea8bd6dd.mjs",
     "src": "pages/admin.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -65,23 +66,15 @@
     ]
   },
   "pages/category/[mid]/[pageIndex].vue": {
-    "file": "_pageIndex_-eb493f1a.mjs",
+    "file": "_pageIndex_-e6187ccc.mjs",
     "src": "pages/category/[mid]/[pageIndex].vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt3/dist/app/entry.mjs"
     ]
   },
-  "pages/category/[mid].vue": {
-    "file": "_mid_-f3eb64b9.mjs",
-    "src": "pages/category/[mid].vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "node_modules/nuxt3/dist/app/entry.mjs"
-    ]
-  },
   "pages/category/index.vue": {
-    "file": "index-f6e8e5a8.mjs",
+    "file": "index-ef0779c4.mjs",
     "src": "pages/category/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -89,7 +82,7 @@
     ]
   },
   "pages/index.vue": {
-    "file": "index-34460e86.mjs",
+    "file": "index-54bf3022.mjs",
     "src": "pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -97,7 +90,7 @@
     ]
   },
   "pages/login.vue": {
-    "file": "login-6d5d1291.mjs",
+    "file": "login-b9bbc9c8.mjs",
     "src": "pages/login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -105,7 +98,7 @@
     ]
   },
   "pages/page/[pageIndex].vue": {
-    "file": "_pageIndex_-c4246ada.mjs",
+    "file": "_pageIndex_-45dc0e64.mjs",
     "src": "pages/page/[pageIndex].vue",
     "isDynamicEntry": true,
     "imports": [
@@ -113,20 +106,20 @@
     ]
   },
   "pages/post/[cid].vue": {
-    "file": "_cid_-799cd3c6.mjs",
+    "file": "_cid_-5341a3d4.mjs",
     "src": "pages/post/[cid].vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt3/dist/app/entry.mjs"
     ]
   },
-  "pages/tag/[tid].vue": {
-    "file": "_tid_-679fcb38.mjs",
-    "src": "pages/tag/[tid].vue",
+  "pages/tag/[tid]/[pageIndex].vue": {
+    "file": "_pageIndex_-31beb20d.mjs",
+    "src": "pages/tag/[tid]/[pageIndex].vue",
     "isDynamicEntry": true
   },
   "pages/tag/index.vue": {
-    "file": "index-2c55fd9c.mjs",
+    "file": "index-b65b0e65.mjs",
     "src": "pages/tag/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -134,11 +127,21 @@
     ]
   },
   "middleware/auth.ts": {
-    "file": "auth-86d0718c.mjs",
+    "file": "auth-ee46a365.mjs",
     "src": "middleware/auth.ts",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt3/dist/app/entry.mjs"
     ]
+  },
+  "layouts/admin.vue": {
+    "file": "admin-bcc15e17.mjs",
+    "src": "layouts/admin.vue",
+    "isDynamicEntry": true
+  },
+  "layouts/normal.vue": {
+    "file": "normal-4debad94.mjs",
+    "src": "layouts/normal.vue",
+    "isDynamicEntry": true
   }
 }
