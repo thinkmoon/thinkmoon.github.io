@@ -1,6 +1,7 @@
 /node_modules
 *.log
 .idea
+.vscode
 .nuxt
 nuxt.d.ts
 /yarn.lock

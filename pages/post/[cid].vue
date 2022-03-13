@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <Title>{{ data.title }} - {{ config.TITLE }}</Title>
+    <Title>{{ data.title }} | {{ config.TITLE }}</Title>
     <div class="article-content">
       <v-md-preview :text="content"/>
     </div>

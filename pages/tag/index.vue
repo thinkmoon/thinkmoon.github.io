@@ -1,9 +1,9 @@
 <template>
   <div class="page-content">
-    <Title>标签 - {{ config.TITLE }}</Title>
+    <Title>标签 | {{ config.TITLE }}</Title>
 
-    <el-tag type="info" v-for="tag in data" :key="tag.tid" class="taglist">
-			<el-link type="info" :href="'/tag/'+tag.tid">{{tag.name}}({{tag.count}})</el-link>
+    <el-tag type="info" v-for="tag in data" :key="tag.tid" class="tag-list">
+			<el-link type="info" :href="`/tag/${tag.tid}/1`">{{tag.name}}({{tag.count}})</el-link>
 		</el-tag>
   </div>
 </template>
@@ -16,7 +16,7 @@ const { data } = await useAsyncData('tag', () => TagApi.getTag());
 </script>
 
 <style scoped>
-.taglist {
+.tag-list {
 	margin: 10px;
 }
 </style>
