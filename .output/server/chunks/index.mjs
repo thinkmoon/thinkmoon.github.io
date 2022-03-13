@@ -1,11 +1,7 @@
-import require$$0$1 from 'unenv/runtime/mock/proxy';
+import require$$0 from 'unenv/runtime/mock/proxy';
 import * as stream from 'stream';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : "undefined" !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function getDefaultExportFromCjs (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
 
 function getDefaultExportFromNamespaceIfNotNamed (n) {
 	return n && Object.prototype.hasOwnProperty.call(n, 'default') && Object.keys(n).length === 1 ? n['default'] : n;
@@ -9587,7 +9583,7 @@ exports.withModifiers = withModifiers;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var compilerDom = require$$0$1;
+var compilerDom = require$$0;
 var runtimeDom$1 = runtimeDom.exports;
 var shared = shared$2.exports;
 
@@ -9650,8 +9646,6 @@ Object.keys(runtimeDom$1).forEach(function (k) {
 exports.compile = compileToFunction;
 }(vue_cjs_prod));
 
-const require$$0 = /*@__PURE__*/getDefaultExportFromCjs(vue_cjs_prod);
-
 var serverRenderer = {exports: {}};
 
 var serverRenderer_cjs_prod = {};
@@ -9662,7 +9656,7 @@ Object.defineProperty(serverRenderer_cjs_prod, '__esModule', { value: true });
 
 var vue = vue_cjs_prod;
 var shared = shared$2.exports;
-var compilerSsr = require$$0$1;
+var compilerSsr = require$$0;
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -10453,4 +10447,4 @@ serverRenderer_cjs_prod.ssrRenderVNode = renderVNode;
   serverRenderer.exports = serverRenderer_cjs_prod;
 }
 
-export { require$$0 as r, serverRenderer as s, vue_cjs_prod as v };
+export { serverRenderer as s, vue_cjs_prod as v };

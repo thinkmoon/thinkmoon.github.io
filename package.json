@@ -3,18 +3,14 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "nuxi dev",
-    "build": "nuxi build && git add .",
+    "build": "nuxi build",
     "start": "node .output/server/index.mjs"
   },
-  "pre-commit": [
-    "build"
-  ],
   "devDependencies": {
     "@types/lodash": "^4.14.176",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
-    "nuxt3": "^3.0.0-27439932.78761c2",
-    "pre-commit": "^1.2.2"
+    "nuxt3": "^3.0.0-27439932.78761c2"
   },
   "dependencies": {
     "@kangc/v-md-editor": "^2.3.14",
